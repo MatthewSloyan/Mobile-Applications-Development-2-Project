@@ -13,5 +13,11 @@ namespace G00348036
         {
             InitializeComponent();
         }
+
+        private void BtnSearchByIngredients_Clicked(object sender, EventArgs e)
+        {
+            //go to SearchByIngredients.xaml
+            Navigation.PushAsync(new SearchByIngredients());
+        }
     }
 }
