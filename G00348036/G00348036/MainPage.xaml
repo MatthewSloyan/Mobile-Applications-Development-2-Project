@@ -4,11 +4,27 @@
              xmlns:local="clr-namespace:G00348036"
              x:Class="G00348036.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height=".7*"/>
+            <RowDefinition Height=".7*"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout x:Name="slToolbar" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="Aqua"></StackLayout>
+        <StackLayout x:Name="slFavourites" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="Aquamarine"></StackLayout>
+        <StackLayout x:Name="slTrending" Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Beige"></StackLayout>
+
+        <Button x:Name="btnSearchByImage" Text="Search By Image" Margin="1" Grid.Row="3" Grid.Column="0"/>
+        <Button x:Name="btnSearchByRecipe" Text="Search By Recipe" Margin="1" Grid.Row="3" Grid.Column="1"/>
+        <Button x:Name="btnSearchByIngredients" Text="Search By Ingredients" Margin="1" Grid.Row="4" Grid.Column="0"/>
+        <Button x:Name="btnFavourites" Text="Search By Image" Margin="1" Grid.Row="4" Grid.Column="1"/>
+    </Grid>
 
 </ContentPage>
