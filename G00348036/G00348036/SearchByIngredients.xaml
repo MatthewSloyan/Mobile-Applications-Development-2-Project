@@ -5,14 +5,33 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="slToolbar" Grid.Row="0" BackgroundColor="Aqua"></StackLayout>
-            <StackLayout x:Name="slMenu" Grid.Row="1" BackgroundColor="Aquamarine"></StackLayout>
+            <StackLayout x:Name="slToolbar" Grid.Row="0" BackgroundColor="AliceBlue"></StackLayout>
+            <StackLayout x:Name="slMenu" Grid.Row="1" BackgroundColor="LightGray" Margin="0, -6, 0, 0"></StackLayout>
 
+            <Label Text="INGREDIENTS" Grid.Row="2" Margin="5"/>
+            <StackLayout x:Name="slIngredients" Grid.Row="3" Orientation="Vertical" Margin="3, 3, 3, 3">
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="entIngredient1" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Ingredient" TextChanged="EntIngredient_TextChanged"/>
+                    <Button x:Name="btnAdd1" Text="Add" WidthRequest="50" Clicked="BtnAdd_Clicked"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="entIngredient2" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Ingredient" TextChanged="EntIngredient_TextChanged"/>
+                    <Button x:Name="btnAdd2" Text="Add" WidthRequest="50" Clicked="BtnAdd_Clicked"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="entIngredient3" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Ingredient" TextChanged="EntIngredient_TextChanged"/>
+                    <Button x:Name="btnAdd3" Text="Add" WidthRequest="50" Clicked="BtnAdd_Clicked"/>
+                </StackLayout>
+                
+                <Button x:Name="btnSearchByIngredient" Text="Search" Margin="1"/>
+            </StackLayout>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

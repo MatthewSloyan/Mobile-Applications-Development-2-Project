@@ -16,5 +16,15 @@ namespace G00348036
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void EntIngredient_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        
+        private void BtnAdd_Clicked(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
