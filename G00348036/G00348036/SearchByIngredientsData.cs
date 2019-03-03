@@ -4,7 +4,7 @@ using System.Text;
 
 namespace G00348036
 {
-    class SearchByIngredientsData
+    public class SearchByIngredientsData
     {
         public string id { get; set; }
         public string title { get; set; }
@@ -12,5 +12,10 @@ namespace G00348036
         public string usedIngredientCount { get; set; }
         public string missedIngredientCount { get; set; }
         public string likes { get; set; }
+    }
+
+    public class RootObject
+    {
+        public List<SearchByIngredientsData> results { get; set; }
     }
 }
