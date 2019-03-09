@@ -16,7 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="SearchByIngredients.xaml">
+    <EmbeddedResource Update="Views\Recipes.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SearchByIngredients.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
