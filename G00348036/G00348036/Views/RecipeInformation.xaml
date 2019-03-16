@@ -8,7 +8,17 @@
         <DataTemplate x:Key="IngredientsTemplate">
             <ViewCell>
                 <StackLayout Margin="2, 1, 2, 1" BackgroundColor="LightGray" Orientation="Horizontal">
-                    
+                    <StackLayout>
+                        <Image Source="{Binding image}"></Image>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="{Binding Path=name}" Style="{StaticResource TitleStyle}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Amount:"/>
+                        <Label Text="{Binding Path=amount}" Style="{StaticResource TextStyle}"/>
+                        <Label Text="{Binding Path=unitShort}" Style="{StaticResource TextStyle}"/>
+                    </StackLayout>
                 </StackLayout>
             </ViewCell>
         </DataTemplate>
@@ -44,8 +54,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ScrollView>
-                <StackLayout x:Name="slFullRecipe" Grid.Row="1" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
+            <ScrollView Grid.Row="1">
+                <StackLayout x:Name="slFullRecipe" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
                     <StackLayout x:Name="slImage" Orientation="Horizontal" Margin="1">
                         <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
                     </StackLayout>
@@ -54,36 +64,52 @@
                     </StackLayout>
                     <StackLayout x:Name="slEditable" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Vertical" Margin="2" HorizontalOptions="FillAndExpand">
-                            <Label Text="Vegetarian: "/>
-                            <Label Text="{Binding Path=vegetarian}"/>
-                            <Label Text="Vegan: "/>
-                            <Label Text="{Binding Path=vegan}"/>
-                            <Label Text="Glutan Free: "/>
-                            <Label Text="{Binding Path=glutenFree}"/>
-                            <Label Text="Servings: "/>
-                            <Label Text="{Binding Path=servings}"/>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Vegetarian: "/>
+                                <Label Text="{Binding Path=vegetarian}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Vegan: "/>
+                                <Label Text="{Binding Path=vegan}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Glutan Free: "/>
+                                <Label Text="{Binding Path=glutenFree}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Servings: "/>
+                                <Label Text="{Binding Path=servings}"/>
+                            </StackLayout>
                         </StackLayout>
                         <StackLayout Orientation="Vertical" Margin="2" HorizontalOptions="FillAndExpand">
-                            <Label Text="Dairy Free: "/>
-                            <Label Text="{Binding Path=dairyFree}"/>
-                            <Label Text="Cheap: "/>
-                            <Label Text="{Binding Path=cheap}"/>
-                            <Label Text="Popular: "/>
-                            <Label Text="{Binding Path=veryPopular}"/>
-                            <Label Text="Ready in (mins): "/>
-                            <Label Text="{Binding Path=readyInMinutes}"/>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Dairy Free: "/>
+                                <Label Text="{Binding Path=dairyFree}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Cheap: "/>
+                                <Label Text="{Binding Path=cheap}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Popular: "/>
+                                <Label Text="{Binding Path=veryPopular}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Ready in (mins): "/>
+                                <Label Text="{Binding Path=readyInMinutes}"/>
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
 
                     <Label Text="INSTRUCTIONS" Style="{StaticResource TitleStyle}"/>
                     
-                    <StackLayout x:Name="slTitle" Orientation="Horizontal" Margin="1">
-                        <Label x:Name="lblTitle" Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
+                    <StackLayout Orientation="Horizontal" Margin="1">
+                        <Label Text="{Binding Path=instructions}" Style="{StaticResource TitleStyle}"/>
                     </StackLayout>
 
                     <Label Text="INGREDIENTS" Style="{StaticResource TitleStyle}"/>
-                    <ListView x:Name="lvDogs" Grid.Row="1" Grid.Column="0" Margin="2, 2, 2, 0" ItemsSource="{Binding Result.extendedIngredients, Mode=TwoWay}"
-                        ItemTemplate="{StaticResource SmallTemplate}"/>
+                    <ListView x:Name="lvIngredients" Margin="2, 2, 2, 0" ItemsSource="{Binding extendedIngredients, Mode=TwoWay}"
+                        ItemTemplate="{StaticResource IngredientsTemplate}"/>
                 </StackLayout>
             </ScrollView>
         </Grid>
