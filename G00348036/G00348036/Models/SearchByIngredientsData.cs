@@ -16,6 +16,6 @@ namespace G00348036
 
     public class RootObject
     {
-        public List<SearchByIngredientsData> results { get; set; }
+        public List<SearchByIngredientsData> Results { get; set; }
     }
 }

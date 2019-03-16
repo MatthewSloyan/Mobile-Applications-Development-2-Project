@@ -11,6 +11,7 @@ namespace G00348036
         //global list of recipes
         public List<SearchByIngredientsData> Results { get; set; }
 
+        // Contructor
         public RecipesViewModel(string URL)
         {
             this.url = URL;
