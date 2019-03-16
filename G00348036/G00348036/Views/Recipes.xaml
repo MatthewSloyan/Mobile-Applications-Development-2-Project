@@ -9,21 +9,31 @@
             <ViewCell>
                 <StackLayout Margin="2, 1, 2, 1" BackgroundColor="LightGray">
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Breed"/>
-                        <Label Text="{Binding Path=title}"/>
+                        <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Image Source="{Binding image}" HorizontalOptions="FillAndExpand" Aspect="Fill"></Image>
+                        <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Count"/>
-                        <Label Text="{Binding Path=usedIngredientCount}"/>
+                        <Label Text="Used:"/>
+                        <Label Text="{Binding Path=usedIngredientCount}" Style="{StaticResource TextStyle}"/>
+                        <Label Text=" Missing:"/>
+                        <Label Text="{Binding Path=missedIngredientCount}" Style="{StaticResource TextStyle}"/>
                     </StackLayout>
                 </StackLayout>
             </ViewCell>
         </DataTemplate>
 
-        <!--<Style x:Key="EntryStyle" TargetType="Entry">
+        <Style x:Key="TitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style x:Key="ImageStyle" TargetType="Image">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="Aspect" Value="Fill"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="TextStyle" TargetType="Label">
             <Setter Property="FontSize" Value="Small"/>
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
@@ -31,7 +41,7 @@
             <Setter Property="CornerRadius" Value="7"/>
             <Setter Property="BackgroundColor" Value="Aqua"/>
             <Setter Property="Margin" Value="2"/>
-        </Style>-->
+        </Style>
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -49,7 +59,7 @@
             <!--<Label Text="Dog Info!" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="2" HorizontalOptions="Center"/>-->
 
             <ListView x:Name="lvRecipes" Grid.Row="1" Margin="2, 2, 2, 2" 
-                      ItemsSource="{Binding Results, Mode=TwoWay}" ItemTemplate="{StaticResource RecipeTemplate}"/>
+                      ItemsSource="{Binding Results, Mode=TwoWay}" ItemTemplate="{StaticResource RecipeTemplate}" ItemSelected="LvRecipes_ItemSelected"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

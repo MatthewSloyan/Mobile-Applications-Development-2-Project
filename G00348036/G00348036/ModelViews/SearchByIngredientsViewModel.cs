@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace G00348036.ModelViews
+namespace G00348036
 {
     class SearchByIngredientsViewModel
     {

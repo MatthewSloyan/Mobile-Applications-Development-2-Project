@@ -17,5 +17,10 @@ namespace G00348036
 			InitializeComponent ();
             this.BindingContext = new RecipesViewModel(URL);
 		}
+
+        private void LvRecipes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+        }
     }
 }
