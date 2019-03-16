@@ -12,22 +12,10 @@ namespace G00348036
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Recipes : ContentPage
 	{
-        public string url { get; set; }
-
         public Recipes (string URL)
 		{
 			InitializeComponent ();
-
-            this.url = URL;
-            setUpComponents();
+            this.BindingContext = new RecipesViewModel(URL);
 		}
-
-        private void setUpComponents()
-        {
-            System.Diagnostics.Debug.WriteLine(url);
-            List<SearchByIngredientsData> results = Utils.GetApiData<SearchByIngredientsData>(url);
-
-            System.Diagnostics.Debug.WriteLine(results[0].id);
-        }
     }
 }
