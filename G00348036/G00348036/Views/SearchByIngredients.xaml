@@ -19,7 +19,7 @@
             <Label Text="INGREDIENTS" Grid.Row="2" Margin="5"/>
             <ScrollView Grid.Row="3">
                 <StackLayout x:Name="slIngredients" Orientation="Vertical" Margin="3, 3, 3, 3">
-                    <Button x:Name="btnSearchByIngredient" Text="Search" Margin="1" Clicked="BtnSearchByIngredient_Clicked"/>
+                    <Button x:Name="btnSearchByIngredient" Text="Search" Margin="1" Command="{Binding LoadRecipePageCommand}" Clicked="BtnSearchByIngredient_Clicked"/>
                     <StackLayout Orientation="Horizontal">
                         <Entry x:Name="entIngredient1" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Ingredient" TextChanged="EntIngredient_TextChanged"/>
                         <Button x:Name="btnAdd1" Text="Add" WidthRequest="70" Clicked="BtnAdd_Clicked"/>

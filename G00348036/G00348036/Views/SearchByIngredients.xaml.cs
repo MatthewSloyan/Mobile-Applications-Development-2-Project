@@ -1,20 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using unirest_net.http;
-using unirest_net.request;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace G00348036
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SearchByIngredients : ContentPage
 	{
         //Global list
