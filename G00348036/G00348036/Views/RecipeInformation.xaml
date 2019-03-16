@@ -2,14 +2,41 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="G00348036.Views.RecipeInformation">
+
+    <!--Global Resources/variables-->
+    <ContentPage.Resources>
+        <DataTemplate x:Key="IngredientsTemplate">
+            <ViewCell>
+                <StackLayout Margin="2, 1, 2, 1" BackgroundColor="LightGray" Orientation="Horizontal">
+                    
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
+        
+        <Style x:Key="TitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style x:Key="ImageStyle" TargetType="Image">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="Aspect" Value="Fill"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="TextStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Small"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="7"/>
+            <Setter Property="BackgroundColor" Value="Aqua"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
@@ -19,10 +46,44 @@
 
             <ScrollView>
                 <StackLayout x:Name="slFullRecipe" Grid.Row="1" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
-                    <StackLayout x:Name="slTitle" Orientation="Horizontal" Margin="1">
-                        <Label x:Name="lblTitle" Text="{Binding Path=title}"/>
+                    <StackLayout x:Name="slImage" Orientation="Horizontal" Margin="1">
+                        <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
                     </StackLayout>
-                   
+                    <StackLayout x:Name="slTitle" Orientation="Horizontal" Margin="1">
+                        <Label x:Name="lblTitle" Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
+                    </StackLayout>
+                    <StackLayout x:Name="slEditable" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" Margin="2" HorizontalOptions="FillAndExpand">
+                            <Label Text="Vegetarian: "/>
+                            <Label Text="{Binding Path=vegetarian}"/>
+                            <Label Text="Vegan: "/>
+                            <Label Text="{Binding Path=vegan}"/>
+                            <Label Text="Glutan Free: "/>
+                            <Label Text="{Binding Path=glutenFree}"/>
+                            <Label Text="Servings: "/>
+                            <Label Text="{Binding Path=servings}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Margin="2" HorizontalOptions="FillAndExpand">
+                            <Label Text="Dairy Free: "/>
+                            <Label Text="{Binding Path=dairyFree}"/>
+                            <Label Text="Cheap: "/>
+                            <Label Text="{Binding Path=cheap}"/>
+                            <Label Text="Popular: "/>
+                            <Label Text="{Binding Path=veryPopular}"/>
+                            <Label Text="Ready in (mins): "/>
+                            <Label Text="{Binding Path=readyInMinutes}"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Label Text="INSTRUCTIONS" Style="{StaticResource TitleStyle}"/>
+                    
+                    <StackLayout x:Name="slTitle" Orientation="Horizontal" Margin="1">
+                        <Label x:Name="lblTitle" Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
+                    </StackLayout>
+
+                    <Label Text="INGREDIENTS" Style="{StaticResource TitleStyle}"/>
+                    <ListView x:Name="lvDogs" Grid.Row="1" Grid.Column="0" Margin="2, 2, 2, 0" ItemsSource="{Binding Result.extendedIngredients, Mode=TwoWay}"
+                        ItemTemplate="{StaticResource SmallTemplate}"/>
                 </StackLayout>
             </ScrollView>
         </Grid>

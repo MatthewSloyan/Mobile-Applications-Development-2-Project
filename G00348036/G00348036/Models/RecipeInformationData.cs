@@ -10,7 +10,7 @@ namespace G00348036
         public bool vegan { get; set; }
         public bool glutenFree { get; set; }
         public bool dairyFree { get; set; }
-        public bool veryHealthy { get; set; }
+        //public bool veryHealthy { get; set; }
         public bool cheap { get; set; }
         public bool veryPopular { get; set; }
        // public bool sustainable { get; set; }
