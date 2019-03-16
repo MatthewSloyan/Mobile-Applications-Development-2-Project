@@ -1,4 +1,5 @@
-﻿using System;
+﻿using G00348036.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace G00348036
 
         private void LvRecipes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-
+            Navigation.PushAsync(new RecipeInformation());
         }
     }
 }

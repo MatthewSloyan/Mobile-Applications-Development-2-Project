@@ -15,6 +15,7 @@ namespace G00348036.Views
 		public RecipeInformation ()
 		{
 			InitializeComponent ();
-		}
+            this.BindingContext = new RecipeInformationViewModel("1234");
+        }
 	}
 }
