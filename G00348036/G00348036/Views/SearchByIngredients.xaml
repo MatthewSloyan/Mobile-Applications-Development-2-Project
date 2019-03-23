@@ -20,11 +20,11 @@
             <ScrollView Grid.Row="3">
                 <StackLayout x:Name="slIngredients" Orientation="Vertical" Margin="3, 3, 3, 3">
                     <Button x:Name="btnSearchByIngredient" Text="Search" Margin="1" Command="{Binding LoadRecipePageCommand}" Clicked="BtnSearchByIngredient_Clicked"/>
-                    <StackLayout Orientation="Horizontal">
-                        <Entry x:Name="entIngredient1" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Ingredient" TextChanged="EntIngredient_TextChanged"/>
-                        <Button x:Name="btnAdd1" Text="Add" WidthRequest="70" Clicked="BtnAdd_Clicked"/>
-                        <Button x:Name="btnDelete1" Text="Del" WidthRequest="70" Clicked="BtnAdd_Clicked"/>
-                    </StackLayout>
+                    <!--<StackLayout Orientation="Horizontal">
+                        --><!--<Entry x:Name="entIngredient1" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Ingredient" TextChanged="EntIngredient_TextChanged"/>-->
+                        <!--<Button x:Name="btnAdd1" Text="Add" WidthRequest="70" Clicked="BtnAdd_Clicked"/>-->
+                        <!--<Button x:Name="btnDelete1" Text="Del" WidthRequest="70" Clicked="BtnDelete1_Clicked"/>--><!--
+                    </StackLayout>-->
                 </StackLayout>
             </ScrollView>
            
