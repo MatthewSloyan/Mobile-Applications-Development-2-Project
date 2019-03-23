@@ -10,7 +10,6 @@ namespace G00348036
 	{
         //Global list
         ArrayList list;
-        int count = 0;
 
         public SearchByIngredients ()
 		{
@@ -22,7 +21,7 @@ namespace G00348036
 
         private void setUpComponents()
         {
-            list = new ArrayList();
+            //list = new ArrayList();
             createAddIngredientInput();
         }
 
@@ -45,7 +44,6 @@ namespace G00348036
             var layout = new StackLayout();
             layout.Orientation = StackOrientation.Horizontal;
             layout.StyleId = "slAddIngredient";
-            list.Add(count++);
 
             var entIngredient = new Entry
             {
@@ -96,14 +94,18 @@ namespace G00348036
         {
             ArrayList ingredientsList = new ArrayList();
 
+            // Iterate through each child of the overall stacklayout
             foreach (View item in slIngredients.Children)
             {
+                // If it's a stacklayout then get set as variable
                 if (item.StyleId == "slAddIngredient")
                 {
                     var sl = (StackLayout)item;
 
+                    // Iterate through each child of the inner stacklayout which contains the entry and button
                     foreach (View slItems in sl.Children)
                     {
+                        // If it's a entry then get text and add to arrayList
                         if (slItems.StyleId == "entryIngredient")
                         {
                             var entry = (Entry)slItems;
@@ -113,11 +115,18 @@ namespace G00348036
                 }
             }
 
-            //slIngredients.Children.
-            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=10&ranking=1&fillIngredients=true&ingredients=apples%2Cflour%2Csugar";
+            string dynamicString = "";
 
-            //List<SearchByIngredientsData> results = GetApiData<SearchByIngredientsData>(URL);
-            //System.Diagnostics.Debug.WriteLine(results[0].id);
+            // Iterate through the arrayList to build string for url.
+            foreach (var text in ingredientsList)
+            {
+                if (text.ToString() != "")
+                {
+                    dynamicString += text + "%2C";
+                }
+            }
+            
+            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=10&ranking=1&fillIngredients=true&ingredients=" + dynamicString;
 
             Navigation.PushAsync(new Recipes(URL));
         }
