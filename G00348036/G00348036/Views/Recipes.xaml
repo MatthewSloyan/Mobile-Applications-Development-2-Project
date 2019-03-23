@@ -7,20 +7,22 @@
     <ContentPage.Resources>
         <DataTemplate x:Key="RecipeTemplate">
             <ViewCell>
-                <StackLayout Margin="2, 1, 2, 1" BackgroundColor="LightGray">
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
+                <Frame HasShadow="True" OutlineColor="LightGray" Margin="4">
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout>
+                            <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Used:"/>
+                            <Label Text="{Binding Path=usedIngredientCount}" Style="{StaticResource TextStyle}"/>
+                            <Label Text=" Missing:"/>
+                            <Label Text="{Binding Path=missedIngredientCount}" Style="{StaticResource TextStyle}"/>
+                        </StackLayout>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Used:"/>
-                        <Label Text="{Binding Path=usedIngredientCount}" Style="{StaticResource TextStyle}"/>
-                        <Label Text=" Missing:"/>
-                        <Label Text="{Binding Path=missedIngredientCount}" Style="{StaticResource TextStyle}"/>
-                    </StackLayout>
-                </StackLayout>
+                </Frame>
             </ViewCell>
         </DataTemplate>
 
@@ -31,7 +33,6 @@
         <Style x:Key="ImageStyle" TargetType="Image">
             <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
             <Setter Property="Aspect" Value="Fill"/>
-            <Setter Property="Margin" Value="5"/>
         </Style>
         <Style x:Key="TextStyle" TargetType="Label">
             <Setter Property="FontSize" Value="Small"/>
@@ -58,7 +59,7 @@
 
             <!--<Label Text="Dog Info!" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="2" HorizontalOptions="Center"/>-->
 
-            <ListView x:Name="lvRecipes" Grid.Row="1" Margin="2, 2, 2, 2" 
+            <ListView x:Name="lvRecipes" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand"
                       ItemsSource="{Binding Results, Mode=TwoWay}" ItemTemplate="{StaticResource RecipeTemplate}" ItemSelected="LvRecipes_ItemSelected"/>
         </Grid>
     </ContentPage.Content>

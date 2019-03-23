@@ -12,10 +12,10 @@ namespace G00348036.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RecipeInformation : ContentPage
 	{
-		public RecipeInformation ()
+		public RecipeInformation (string id)
 		{
 			InitializeComponent ();
-            this.BindingContext = new RecipeInformationViewModel("1234");
+            this.BindingContext = new RecipeInformationViewModel(id);
         }
 	}
 }

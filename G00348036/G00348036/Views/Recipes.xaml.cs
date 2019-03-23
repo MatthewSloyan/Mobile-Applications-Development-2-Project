@@ -21,7 +21,9 @@ namespace G00348036
 
         private void LvRecipes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Navigation.PushAsync(new RecipeInformation());
+            SearchByIngredientsData i = e.SelectedItem as SearchByIngredientsData;
+
+            Navigation.PushAsync(new RecipeInformation(i.id));
         }
     }
 }

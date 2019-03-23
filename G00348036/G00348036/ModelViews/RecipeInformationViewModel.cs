@@ -20,10 +20,10 @@ namespace G00348036
 
         private void getRecipeInfo()
         {
-            string url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information";
+            string url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + Id + "/information";
             Result = Utils.GetSingleApiData<RecipeInformationData>(url);
 
-            System.Diagnostics.Debug.WriteLine(Result.id);
+            //System.Diagnostics.Debug.WriteLine(Result.id);
         }
     }
 }
