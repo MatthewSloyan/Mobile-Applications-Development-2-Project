@@ -8,7 +8,6 @@ namespace G00348036
 {
     class SearchByIngredientsViewModel
     {
-
         #region == public commands ==
         // use command interfaces to "bind" commands from ui elements to a method in the view model
         // ICommand interface defines two methods

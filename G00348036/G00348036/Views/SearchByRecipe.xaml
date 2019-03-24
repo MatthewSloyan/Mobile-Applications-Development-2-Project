@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="G00348036.Views.SearchByRecipe">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="slMenu" Grid.Row="0" BackgroundColor="LightGray" Margin="0, -6, 0, 0"></StackLayout>
+
+            <Label Text="SEARCH" Grid.Row="1" Margin="5"/>
+            <ScrollView Grid.Row="2">
+                <StackLayout x:Name="slSearch" Orientation="Vertical" Margin="3, 3, 3, 3">
+                    <StackLayout Orientation="Horizontal">
+                        <Entry x:Name="entSearch" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Recipe"/>
+                        <Button x:Name="btnSearch" Text="Search" WidthRequest="100" Clicked="BtnSearch_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -19,5 +19,10 @@ namespace G00348036
             //go to SearchByIngredients.xaml
             Navigation.PushAsync(new SearchByIngredients());
         }
+
+        private void BtnSearchByRecipe_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
