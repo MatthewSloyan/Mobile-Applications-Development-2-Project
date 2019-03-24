@@ -1,4 +1,5 @@
-﻿using System;
+﻿using G00348036.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,8 @@ namespace G00348036
 
         private void BtnSearchByRecipe_Clicked(object sender, EventArgs e)
         {
-
+            //go to SearchByRecipes.xaml
+            Navigation.PushAsync(new SearchByRecipe());
         }
     }
 }

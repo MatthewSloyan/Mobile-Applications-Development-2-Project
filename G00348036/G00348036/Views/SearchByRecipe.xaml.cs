@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,7 +15,11 @@ namespace G00348036.Views
 
         private void BtnSearch_Clicked(object sender, EventArgs e)
         {
+            string dynamicString = "";
 
+            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=burger";
+
+            Navigation.PushAsync(new Recipes(URL));
         }
     }
 }

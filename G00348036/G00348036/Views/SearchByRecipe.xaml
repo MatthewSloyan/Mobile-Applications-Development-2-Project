@@ -15,9 +15,12 @@
             <Label Text="SEARCH" Grid.Row="1" Margin="5"/>
             <ScrollView Grid.Row="2">
                 <StackLayout x:Name="slSearch" Orientation="Vertical" Margin="3, 3, 3, 3">
+                    <Button x:Name="btnSearch" Text="Search" Margin="1" Clicked="BtnSearch_Clicked"/>
                     <StackLayout Orientation="Horizontal">
-                        <Entry x:Name="entSearch" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Recipe"/>
-                        <Button x:Name="btnSearch" Text="Search" WidthRequest="100" Clicked="BtnSearch_Clicked"/>
+                        <Entry x:Name="entRecipe" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Recipe (Required)"/>
+                        <Entry x:Name="entSearch" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Diet (Optional)"/>
+                        <Entry x:Name="entSearch" HorizontalOptions="FillAndExpand" Placeholder="Exclude Ingredients (Separate by comma)"/>
+                        <Entry x:Name="entSearch" HorizontalOptions="FillAndExpand" Placeholder="Exclude Intolerances (Separate by comma)"/>
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
