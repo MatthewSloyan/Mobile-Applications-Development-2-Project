@@ -92,7 +92,7 @@ namespace G00348036
 
         private void BtnSearchByIngredient_Clicked(object sender, EventArgs e)
         {
-            ArrayList ingredientsList = new ArrayList();
+            string dynamicString = "";
 
             // Iterate through each child of the overall stacklayout
             foreach (View item in slIngredients.Children)
@@ -109,20 +109,9 @@ namespace G00348036
                         if (slItems.StyleId == "entryIngredient")
                         {
                             var entry = (Entry)slItems;
-                            ingredientsList.Add(entry.Text);
+                            dynamicString += entry.Text + "%2C";
                         }
                     }
-                }
-            }
-
-            string dynamicString = "";
-
-            // Iterate through the arrayList to build string for url.
-            foreach (var text in ingredientsList)
-            {
-                if (text.ToString() != "")
-                {
-                    dynamicString += text + "%2C";
                 }
             }
             

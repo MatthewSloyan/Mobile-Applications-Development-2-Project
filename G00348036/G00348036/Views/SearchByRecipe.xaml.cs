@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,7 +17,22 @@ namespace G00348036.Views
         {
             string dynamicString = "";
 
-            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=burger";
+            if (entDiet.Text != "")
+            {
+                dynamicString += "diet="+ entDiet.Text + "&";
+            }
+
+            if (entExIngredients.Text != "")
+            {
+                dynamicString += "excludeIngredients=" + entExIngredients.Text + "&";
+            }
+
+            if (entExIntolerances.Text != "")
+            {
+                dynamicString += "excludeIngredients=" + entExIntolerances.Text + "&";
+            }
+
+            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?" + dynamicString + "&number=10&offset=0&query=" + entRecipe.Text;
 
             Navigation.PushAsync(new Recipes(URL));
         }
