@@ -33,9 +33,13 @@ namespace G00348036
             {
                 RecipeResults = Utils.GetSingleApiData<SearchByRecipeData>(url);
                 RecipeResultsConverted = RecipeResults.results;
+
+                for (int i = 0; i < RecipeResultsConverted.Count; ++i)
+                {
+                    RecipeResultsConverted[i].image = "https://spoonacular.com/recipeImages/" + RecipeResultsConverted[i].image;
+                }
             }
             
-            System.Diagnostics.Debug.WriteLine(RecipeResultsConverted[0].image);
         }
     }
 }
