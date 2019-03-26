@@ -69,7 +69,7 @@ namespace G00348036
             layout.Children.Add(entIngredient);
             layout.Children.Add(addButton);
             //layout.Children.Add(deleteButton);
-            slIngredients.Children.Add(layout);
+            slIngredients.Children.Insert(slIngredients.Children.Count - 1, layout);
         }
 
         //private void BtnDelete1_Clicked(object sender, EventArgs e)

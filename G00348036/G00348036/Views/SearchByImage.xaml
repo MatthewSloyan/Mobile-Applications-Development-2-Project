@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="G00348036.Views.SearchByImage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="slMenu" Grid.Row="0" BackgroundColor="LightGray" Margin="0, -6, 0, 0"></StackLayout>
+
+            <Label Text="SEARCH BY IMAGE" Grid.Row="1" Margin="5"/>
+            <StackLayout x:Name="slSearch" Grid.Row="2" Orientation="Vertical" Margin="3, 3, 3, 3">
+                
+                <Button x:Name="btnTakePicture" Text="Take Picture" Margin="1" Clicked="BtnTakePicture_Clicked"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -13,18 +13,15 @@
             <StackLayout x:Name="slMenu" Grid.Row="0" BackgroundColor="LightGray" Margin="0, -6, 0, 0"></StackLayout>
 
             <Label Text="SEARCH" Grid.Row="1" Margin="5"/>
-            <ScrollView Grid.Row="2">
-                <StackLayout x:Name="slSearch" Orientation="Vertical" Margin="3, 3, 3, 3">
-                    <StackLayout x:Name="slEntries" Orientation="Vertical">
-                        <Entry x:Name="entRecipe" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Recipe (Required)"/>
-                        <Entry x:Name="entDiet" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Diet (Optional)"/>
-                        <Entry x:Name="entExIngredients" HorizontalOptions="FillAndExpand" Placeholder="Exclude Ingredients (Separate by comma)"/>
-                        <Entry x:Name="entExIntolerances" HorizontalOptions="FillAndExpand" Placeholder="Exclude Intolerances (Separate by comma)"/>
-                    </StackLayout>
-                    <Button x:Name="btnSearch" Text="Search" Margin="1" Clicked="BtnSearch_Clicked"/>
+            <StackLayout x:Name="slSearch" Grid.Row="2" Orientation="Vertical" Margin="3, 3, 3, 3">
+                <StackLayout x:Name="slEntries" Orientation="Vertical">
+                    <Entry x:Name="entRecipe" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Recipe (Required)"/>
+                    <Entry x:Name="entDiet" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Diet (Optional)"/>
+                    <Entry x:Name="entExIngredients" HorizontalOptions="FillAndExpand" Placeholder="Exclude Ingredients (Separate by comma)"/>
+                    <Entry x:Name="entExIntolerances" HorizontalOptions="FillAndExpand" Placeholder="Exclude Intolerances (Separate by comma)"/>
                 </StackLayout>
-            </ScrollView>
-
+                <Button x:Name="btnSearch" Text="Search" Margin="1" Clicked="BtnSearch_Clicked"/>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

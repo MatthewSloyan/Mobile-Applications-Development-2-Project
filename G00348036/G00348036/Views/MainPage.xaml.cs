@@ -26,5 +26,11 @@ namespace G00348036
             //go to SearchByRecipes.xaml
             Navigation.PushAsync(new SearchByRecipe());
         }
+
+        private void BtnSearchByImage_Clicked(object sender, EventArgs e)
+        {
+            //go to SearchByImage.xaml
+            Navigation.PushAsync(new SearchByImage());
+        }
     }
 }
