@@ -11,7 +11,8 @@ namespace G00348036
 
         //global list of recipes
         public List<SearchByIngredientsData> Results { get; set; } = null;
-        public List<SearchByRecipeData> RecipeResults { get; set; } = null;
+        public SearchByRecipeData RecipeResults { get; set; } = null;
+        public List<SearchByRecipeData.Result> RecipeResultsConverted { get; set; } = null;
 
         // Contructor
         public RecipesViewModel(string URL, int selection)
@@ -23,16 +24,18 @@ namespace G00348036
 
         private void getRecipeInfo()
         {
+            //If one then call is from searchByIngredients
             if (selection == 1)
             {
                 Results = Utils.GetApiData<SearchByIngredientsData>(url);
             }
             else
             {
-                RecipeResults = Utils.GetApiData<SearchByRecipeData>(url);
+                RecipeResults = Utils.GetSingleApiData<SearchByRecipeData>(url);
+                RecipeResultsConverted = RecipeResults.results;
             }
             
-            System.Diagnostics.Debug.WriteLine(Results[0].id);
+            System.Diagnostics.Debug.WriteLine(RecipeResultsConverted[0].image);
         }
     }
 }

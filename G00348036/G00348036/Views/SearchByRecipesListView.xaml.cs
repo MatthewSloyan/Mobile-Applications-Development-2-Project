@@ -13,5 +13,12 @@ namespace G00348036.Views
 
             this.BindingContext = new RecipesViewModel(URL, selection);
         }
+
+        private void LvRecipes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            SearchByRecipeData.Result selected = e.SelectedItem as SearchByRecipeData.Result;
+
+            Navigation.PushAsync(new RecipeInformation(selected.id.ToString()));
+        }
     }
 }

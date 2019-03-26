@@ -17,22 +17,22 @@ namespace G00348036.Views
         {
             string dynamicString = "";
 
-            if (entDiet.Text != "")
+            if (entDiet.Text != null)
             {
                 dynamicString += "diet="+ entDiet.Text + "&";
             }
 
-            if (entExIngredients.Text != "")
+            if (entExIngredients.Text != null)
             {
                 dynamicString += "excludeIngredients=" + entExIngredients.Text + "&";
             }
 
-            if (entExIntolerances.Text != "")
+            if (entExIntolerances.Text != null)
             {
                 dynamicString += "excludeIngredients=" + entExIntolerances.Text + "&";
             }
 
-            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?" + dynamicString + "&number=10&offset=0&query=" + entRecipe.Text;
+            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?" + dynamicString + "number=10&offset=0&query=" + entRecipe.Text;
 
             Navigation.PushAsync(new SearchByRecipesListView(URL, 2));
         }

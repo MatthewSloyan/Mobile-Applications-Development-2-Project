@@ -14,4 +14,5 @@ namespace G00348036
         public string usedIngredientCount { get; set; }
         public string missedIngredientCount { get; set; }
         public string likes { get; set; }
+    }
 }

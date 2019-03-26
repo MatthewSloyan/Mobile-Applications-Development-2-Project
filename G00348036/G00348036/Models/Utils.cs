@@ -14,6 +14,8 @@ namespace G00348036
             HttpRequest request = Unirest.get(URL)
                 .header("X-RapidAPI-Key", "583ced2f01mshf4b63cc4f7b49f7p130fc5jsn4e92edadc525");
             HttpResponse<string> response = request.asString();
+            string test = URL;
+            System.Diagnostics.Debug.WriteLine(response.Body);
 
             List<T> results = JsonConvert.DeserializeObject<List<T>>(response.Body);
             return results;
