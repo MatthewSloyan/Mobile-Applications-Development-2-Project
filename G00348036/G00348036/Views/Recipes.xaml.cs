@@ -8,17 +8,17 @@ namespace G00348036
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Recipes : ContentPage
 	{
-        public Recipes (string URL)
+        public Recipes (string URL, int selection)
 		{
 			InitializeComponent ();
-            this.BindingContext = new RecipesViewModel(URL);
+            this.BindingContext = new RecipesViewModel(URL, selection);
 		}
 
         private void LvRecipes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             SearchByIngredientsData i = e.SelectedItem as SearchByIngredientsData;
 
-            Navigation.PushAsync(new RecipeInformation(i.id));
+            Navigation.PushAsync(new RecipeInformation(i.id)); 
         }
     }
 }

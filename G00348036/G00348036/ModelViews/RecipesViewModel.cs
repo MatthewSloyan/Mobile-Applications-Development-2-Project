@@ -6,22 +6,32 @@ namespace G00348036
 {
     class RecipesViewModel
     {
-        public string url { get; set; }
+        private string url { get; set; }
+        private int selection { get; set; }
 
         //global list of recipes
-        public List<SearchByIngredientsData> Results { get; set; }
+        public List<SearchByIngredientsData> Results { get; set; } = null;
+        public List<SearchByRecipeData> RecipeResults { get; set; } = null;
 
         // Contructor
-        public RecipesViewModel(string URL)
+        public RecipesViewModel(string URL, int selection)
         {
             this.url = URL;
+            this.selection = selection;
             getRecipeInfo();
         }
 
         private void getRecipeInfo()
         {
-            Results = Utils.GetApiData<SearchByIngredientsData>(url);
-
+            if (selection == 1)
+            {
+                Results = Utils.GetApiData<SearchByIngredientsData>(url);
+            }
+            else
+            {
+                RecipeResults = Utils.GetApiData<SearchByRecipeData>(url);
+            }
+            
             System.Diagnostics.Debug.WriteLine(Results[0].id);
         }
     }

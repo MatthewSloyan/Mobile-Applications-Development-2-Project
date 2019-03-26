@@ -117,7 +117,7 @@ namespace G00348036
             
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=10&ranking=1&fillIngredients=true&ingredients=" + dynamicString;
 
-            Navigation.PushAsync(new Recipes(URL));
+            Navigation.PushAsync(new Recipes(URL, 1));
         }
     }
 }

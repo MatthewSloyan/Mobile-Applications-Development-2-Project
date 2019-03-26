@@ -34,7 +34,7 @@ namespace G00348036.Views
 
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?" + dynamicString + "&number=10&offset=0&query=" + entRecipe.Text;
 
-            Navigation.PushAsync(new Recipes(URL));
+            Navigation.PushAsync(new SearchByRecipesListView(URL, 2));
         }
     }
 }
