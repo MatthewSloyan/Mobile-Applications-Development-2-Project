@@ -8,6 +8,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <StackLayout x:Name="slMenu" Grid.Row="0" BackgroundColor="LightGray" Margin="0, -6, 0, 0"></StackLayout>
@@ -17,6 +18,8 @@
                 
                 <Button x:Name="btnTakePicture" Text="Take Picture" Margin="1" Clicked="BtnTakePicture_Clicked"/>
             </StackLayout>
+
+            <Image x:Name="PhotoImage" Grid.Row="3"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
