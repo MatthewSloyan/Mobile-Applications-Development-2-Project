@@ -109,7 +109,7 @@
 
                     <Label Text="INGREDIENTS" Style="{StaticResource TitleStyle}"/>
                     <ListView x:Name="lvIngredients" Margin="2, 2, 2, 0" ItemsSource="{Binding extendedIngredients, Mode=TwoWay}"
-                        ItemTemplate="{StaticResource IngredientsTemplate}"/>
+                        ItemTemplate="{StaticResource IngredientsTemplate}" HasUnevenRows="True"/>
                 </StackLayout>
             </ScrollView>
         </Grid>

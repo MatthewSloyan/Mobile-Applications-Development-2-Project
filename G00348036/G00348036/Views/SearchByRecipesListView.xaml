@@ -53,7 +53,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <ListView x:Name="lvRecipes" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand"
+            <ListView x:Name="lvRecipes" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True"
                       ItemsSource="{Binding RecipeResultsConverted, Mode=TwoWay}" ItemTemplate="{StaticResource RecipeTemplate}" ItemSelected="LvRecipes_ItemSelected"/>
         </Grid>
     </ContentPage.Content>

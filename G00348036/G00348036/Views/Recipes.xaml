@@ -52,14 +52,14 @@
                 <RowDefinition />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
+ 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <!--<Label Text="Dog Info!" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="2" HorizontalOptions="Center"/>-->
 
-            <ListView x:Name="lvRecipes" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand"
+            <ListView x:Name="lvRecipes" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True"
                       ItemsSource="{Binding Results, Mode=TwoWay}" ItemTemplate="{StaticResource RecipeTemplate}" ItemSelected="LvRecipes_ItemSelected"/>
         </Grid>
     </ContentPage.Content>
