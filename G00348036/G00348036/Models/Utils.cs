@@ -13,6 +13,7 @@ namespace G00348036
 {
     class Utils
     {
+        // Global constant for file name
         public const string FAVOURITES_SAVE_FILE = "favourites.txt";
 
         public static ObservableCollection<T> GetApiData<T>(string URL)
@@ -37,6 +38,22 @@ namespace G00348036
             return result;
         }
 
+        // Generic method to read in list from file
+        public static ObservableCollection<T> getListFromFile<T>()
+        {
+            ObservableCollection<T> list = new ObservableCollection<T>();
+            try
+            {
+                ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
+            }
+            catch
+            {
+                // Error alert
+            }
+
+            return list;
+        }
+        
         public static void AddToFavourites(SearchByIngredientsData selectedRecipe)
         {
             // Create a new list of FavouriteRecipesData
@@ -63,22 +80,6 @@ namespace G00348036
             {
                 //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
             }
-        }
-        
-        // Generic method to read in list from file
-        public static ObservableCollection<T> getListFromFile<T>()
-        {
-            ObservableCollection<T> list = new ObservableCollection<T>();
-            try
-            {
-                ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
-            }
-            catch
-            {
-                // Error alert
-            }
-
-            return list;
         }
         
         // Remove object from file
@@ -111,6 +112,7 @@ namespace G00348036
             }
         }
 
+        // Generic read from file method
         private static string ReadFromFile<T>(ref ObservableCollection<T> list, string fileName)
         {
             string fileString;
@@ -138,6 +140,7 @@ namespace G00348036
             return fullPath;
         }
 
+        // Generic write to file method
         private static void WriteListToFile(ObservableCollection<FavouriteRecipesData> list, string fullPath)
         {
             // Write updated list back out to file
