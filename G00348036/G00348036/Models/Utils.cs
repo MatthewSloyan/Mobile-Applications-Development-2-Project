@@ -6,6 +6,8 @@ using System.IO;
 using System.Text;
 using unirest_net.http;
 using unirest_net.request;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace G00348036
 {
@@ -35,38 +37,56 @@ namespace G00348036
             return result;
         }
 
-        //public static void AddToFavourites<T>(T selectedRecipe)
-        //{
-        //    ObservableCollection<T> list = new ObservableCollection<T>();
-        //    string fileString;
+        public static void AddToFavourites(SearchByIngredientsData selectedRecipe)
+        {
+            // Create a new list of FavouriteRecipesData
+            List<FavouriteRecipesData> list = new List<FavouriteRecipesData>();
+            string fileString;
+            string path;
+            string fileName;
 
-        //    //fill the list, and read a local folder
-        //    try
-        //    {
-        //        //read the local file
-        //        string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        //        string fileName = Path.Combine(path, FAVOURITES_SAVE_FILE);
+            //fill the list, and read a local folder
+            try
+            {
+                //read the local file 
+                path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                fileName = Path.Combine(path, FAVOURITES_SAVE_FILE);
 
-        //        using (var reader = new StreamReader(fileName))
-        //        {
-        //            fileString = reader.ReadToEnd();
-        //            list = JsonConvert.DeserializeObject<ObservableCollection<T>>(fileString);
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
-        //    }
+                // If the file doesn't exist create the file
+                if (!File.Exists(fileName))
+                {
+                    File.Create(fileName).Dispose();
+                }
+                else
+                {
+                    // Otherwise read in file to list
+                    using (var reader = new StreamReader(fileName))
+                    {
+                        fileString = reader.ReadToEnd();
+                        list = JsonConvert.DeserializeObject<List<FavouriteRecipesData>>(fileString);
+                    }
+                }
 
-        //    //read the file
-        //    string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        //    string fileName = Path.Combine(path, FAVOURITES_SAVE_FILE);
+                // Create new object and populate with passed in data, and add to list
+                FavouriteRecipesData fav = new FavouriteRecipesData
+                {
+                    id = selectedRecipe.id,
+                    title = selectedRecipe.title,
+                    image = selectedRecipe.image
+                };
+                list.Add(fav);
 
-        //    using (var writer = new StreamWriter(fileName, false))
-        //    {
-        //        string stringifiedText = JsonConvert.SerializeObject(list);
-        //        writer.WriteLine(stringifiedText);
-        //    }
-        //}
+                // Write updated list back out to file
+                using (var writer = new StreamWriter(fileName, false))
+                {
+                    string stringifiedText = JsonConvert.SerializeObject(list);
+                    writer.WriteLine(stringifiedText);
+                }
+            }
+            catch
+            {
+                //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
+            }
+        }
     }
 }
