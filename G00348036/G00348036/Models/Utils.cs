@@ -40,32 +40,13 @@ namespace G00348036
         public static void AddToFavourites(SearchByIngredientsData selectedRecipe)
         {
             // Create a new list of FavouriteRecipesData
-            List<FavouriteRecipesData> list = new List<FavouriteRecipesData>();
-            string fileString;
-            string path;
-            string fileName;
+            ObservableCollection<FavouriteRecipesData> list = new ObservableCollection<FavouriteRecipesData>();
 
             //fill the list, and read a local folder
             try
             {
-                //read the local file 
-                path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                fileName = Path.Combine(path, FAVOURITES_SAVE_FILE);
-
-                // If the file doesn't exist create the file
-                if (!File.Exists(fileName))
-                {
-                    File.Create(fileName).Dispose();
-                }
-                else
-                {
-                    // Otherwise read in file to list
-                    using (var reader = new StreamReader(fileName))
-                    {
-                        fileString = reader.ReadToEnd();
-                        list = JsonConvert.DeserializeObject<List<FavouriteRecipesData>>(fileString);
-                    }
-                }
+                // Reads in file and updates list above using ref, and returns the full file path
+                string fullPath = ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
 
                 // Create new object and populate with passed in data, and add to list
                 FavouriteRecipesData fav = new FavouriteRecipesData
@@ -76,37 +57,21 @@ namespace G00348036
                 };
                 list.Add(fav);
 
-                // Write updated list back out to file
-                using (var writer = new StreamWriter(fileName, false))
-                {
-                    string stringifiedText = JsonConvert.SerializeObject(list);
-                    writer.WriteLine(stringifiedText);
-                }
+                WriteListToFile(list, fullPath);
             }
             catch
             {
                 //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
             }
         }
-
+        
         // Generic method to read in list from file
         public static ObservableCollection<T> getListFromFile<T>()
         {
             ObservableCollection<T> list = new ObservableCollection<T>();
             try
             {
-                //read the local file
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                string fileName = Path.Combine(path, Utils.FAVOURITES_SAVE_FILE);
-
-                using (var reader = new StreamReader(fileName))
-                {
-                    string fileString = reader.ReadToEnd();
-                    if (fileString != "")
-                    {
-                        list = JsonConvert.DeserializeObject<ObservableCollection<T>>(fileString);
-                    }
-                }
+                ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
             }
             catch
             {
@@ -120,25 +85,12 @@ namespace G00348036
         public static void RemoveFavouriteFromFile(FavouriteRecipesData recipeObject)
         {
             // Create a new list of FavouriteRecipesData
-            List<FavouriteRecipesData> list = new List<FavouriteRecipesData>();
-            string fileString;
-            string path;
-            string fileName;
+            ObservableCollection<FavouriteRecipesData> list = new ObservableCollection<FavouriteRecipesData>();
 
             try
             {
                 //read the local file 
-                path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                fileName = Path.Combine(path, FAVOURITES_SAVE_FILE);
-                
-                // Otherwise read in file to list
-                using (var reader = new StreamReader(fileName))
-                {
-                    fileString = reader.ReadToEnd();
-                    list = JsonConvert.DeserializeObject<List<FavouriteRecipesData>>(fileString);
-                }
-
-                //list.Remove(recipeObject);
+                string fullPath = ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
 
                 int count = 0;
                 foreach (var item in list)
@@ -151,16 +103,48 @@ namespace G00348036
                     count++;
                 }
 
-                // Write updated list back out to file
-                using (var writer = new StreamWriter(fileName, false))
-                {
-                    string stringifiedText = JsonConvert.SerializeObject(list);
-                    writer.Write(stringifiedText);
-                }
+                WriteListToFile(list, fullPath);
             }
             catch
             {
                 //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
+            }
+        }
+
+        private static string ReadFromFile<T>(ref ObservableCollection<T> list, string fileName)
+        {
+            string fileString;
+            string path;
+            string fullPath;
+
+            //read the local file 
+            path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            fullPath = Path.Combine(path, fileName);
+
+            // If the file doesn't exist create the file
+            if (!File.Exists(fullPath))
+            {
+                File.Create(fullPath).Dispose();
+            }
+            else
+            {
+                // Otherwise read in file to list
+                using (var reader = new StreamReader(fullPath))
+                {
+                    fileString = reader.ReadToEnd();
+                    list = JsonConvert.DeserializeObject<ObservableCollection<T>>(fileString);
+                }
+            }
+            return fullPath;
+        }
+
+        private static void WriteListToFile(ObservableCollection<FavouriteRecipesData> list, string fullPath)
+        {
+            // Write updated list back out to file
+            using (var writer = new StreamWriter(fullPath, false))
+            {
+                string stringifiedText = JsonConvert.SerializeObject(list);
+                writer.WriteLine(stringifiedText);
             }
         }
     }
