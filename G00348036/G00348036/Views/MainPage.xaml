@@ -41,7 +41,7 @@
                 <Button Text="Favourites" Margin="1"/>
                 <Button Text="Favourites" Margin="1"/>
                 <Button Text="Favourites" Margin="1"/>
-                <Button Text="Favourites" Margin="1"/>
+                <Button Text="Favourites" Margin="1"/> 
             </StackLayout>
         </ScrollView>
 

@@ -27,5 +27,13 @@ namespace G00348036
         {
             Results = Utils.getListFromFile<FavouriteRecipesData>();
         }
+
+        public void RemoveFromFavourites(FavouriteRecipesData f)
+        {
+            Results.Remove(f);
+            SelectedRecipe = null;
+
+            Utils.RemoveFavouriteFromFile(f);
+        }
     }
 }

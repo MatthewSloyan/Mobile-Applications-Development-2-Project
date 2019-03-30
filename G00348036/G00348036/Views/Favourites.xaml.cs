@@ -27,7 +27,9 @@ namespace G00348036.Views
 
         private void BtnDeleteFromFavourites_Clicked(object sender, EventArgs e)
         {
-
+            // Get the object that was clicked
+            FavouriteRecipesData f = (sender as Button).CommandParameter as FavouriteRecipesData;
+            (BindingContext as FavouritesViewModel).RemoveFromFavourites(f);
         }
     }
 }

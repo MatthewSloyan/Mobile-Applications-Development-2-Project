@@ -115,5 +115,53 @@ namespace G00348036
 
             return list;
         }
+        
+        // Remove object from file
+        public static void RemoveFavouriteFromFile(FavouriteRecipesData recipeObject)
+        {
+            // Create a new list of FavouriteRecipesData
+            List<FavouriteRecipesData> list = new List<FavouriteRecipesData>();
+            string fileString;
+            string path;
+            string fileName;
+
+            try
+            {
+                //read the local file 
+                path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                fileName = Path.Combine(path, FAVOURITES_SAVE_FILE);
+                
+                // Otherwise read in file to list
+                using (var reader = new StreamReader(fileName))
+                {
+                    fileString = reader.ReadToEnd();
+                    list = JsonConvert.DeserializeObject<List<FavouriteRecipesData>>(fileString);
+                }
+
+                //list.Remove(recipeObject);
+
+                int count = 0;
+                foreach (var item in list)
+                {
+                    if (item.id == recipeObject.id)
+                    {
+                        list.RemoveAt(count);
+                        break;
+                    }
+                    count++;
+                }
+
+                // Write updated list back out to file
+                using (var writer = new StreamWriter(fileName, false))
+                {
+                    string stringifiedText = JsonConvert.SerializeObject(list);
+                    writer.Write(stringifiedText);
+                }
+            }
+            catch
+            {
+                //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
+            }
+        }
     }
 }
