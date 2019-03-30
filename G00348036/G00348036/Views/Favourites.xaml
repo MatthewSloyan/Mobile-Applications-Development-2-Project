@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="G00348036.Views.Favourites">
+
+    <!--Global Resources/variables-->
+    <ContentPage.Resources>
+        <DataTemplate x:Key="FavouritesTemplate">
+            <ViewCell>
+                <Frame HasShadow="True" OutlineColor="LightGray" Margin="4">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
+                        <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
+                        <Button x:Name="btnDeleteFromFavourites" Text="DEL" Style="{StaticResource ButtonStyle}" 
+                            Clicked="BtnDeleteFromFavourites_Clicked" CommandParameter="{Binding .}"/>
+                    </StackLayout>
+                </Frame>
+            </ViewCell>
+        </DataTemplate>
+
+        <Style x:Key="TitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style x:Key="ImageStyle" TargetType="Image">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="Aspect" Value="Fill"/>
+        </Style>
+        <Style x:Key="TextStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Small"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="7"/>
+            <Setter Property="BackgroundColor" Value="Aqua"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <ListView x:Name="lvFavourites" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True" 
+                SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" ItemsSource="{Binding Results, Mode=TwoWay}" 
+                    ItemTemplate="{StaticResource FavouritesTemplate}" ItemSelected="LvFavourites_ItemSelected"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
