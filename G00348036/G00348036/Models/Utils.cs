@@ -13,7 +13,7 @@ namespace G00348036
 {
     class Utils
     {
-        private const string FAVOURITES_SAVE_FILE = "favourites.txt";
+        public const string FAVOURITES_SAVE_FILE = "favourites.txt";
 
         public static ObservableCollection<T> GetApiData<T>(string URL)
         {
@@ -87,6 +87,33 @@ namespace G00348036
             {
                 //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
             }
+        }
+
+        // Generic method to read in list from file
+        public static ObservableCollection<T> getListFromFile<T>()
+        {
+            ObservableCollection<T> list = new ObservableCollection<T>();
+            try
+            {
+                //read the local file
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string fileName = Path.Combine(path, Utils.FAVOURITES_SAVE_FILE);
+
+                using (var reader = new StreamReader(fileName))
+                {
+                    string fileString = reader.ReadToEnd();
+                    if (fileString != "")
+                    {
+                        list = JsonConvert.DeserializeObject<ObservableCollection<T>>(fileString);
+                    }
+                }
+            }
+            catch
+            {
+                // Error alert
+            }
+
+            return list;
         }
     }
 }

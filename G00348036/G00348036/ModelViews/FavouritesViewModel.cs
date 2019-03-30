@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
 
 namespace G00348036
 {
@@ -22,12 +25,7 @@ namespace G00348036
         // Contructor
         public FavouritesViewModel()
         {
-            getFavouriteData();
-        }
-
-        private void getFavouriteData()
-        {
-
+            Results = Utils.getListFromFile<FavouriteRecipesData>();
         }
     }
 }

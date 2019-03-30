@@ -61,7 +61,7 @@
         <Button x:Name="btnSearchByIngredients" Text="Search By Ingredients" Margin="1" Grid.Row="3" Grid.Column="0" Clicked="BtnSearchByIngredients_Clicked"/>
         <Button x:Name="btnSearchByImage" Text="Search By Image" Margin="1" Grid.Row="3" Grid.Column="1" Clicked="BtnSearchByImage_Clicked"/>
         <Button x:Name="btnSearchByRecipe" Text="Search By Recipe" Margin="1" Grid.Row="4" Grid.Column="0" Clicked="BtnSearchByRecipe_Clicked"/>
-        <Button x:Name="btnFavourites" Text="Favourites" Margin="1" Grid.Row="4" Grid.Column="1"/>
+        <Button x:Name="btnFavourites" Text="Favourites" Margin="1" Grid.Row="4" Grid.Column="1" Clicked="BtnFavourites_Clicked"/>
     </Grid>
 
 </ContentPage>

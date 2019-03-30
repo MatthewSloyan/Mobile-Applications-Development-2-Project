@@ -32,5 +32,11 @@ namespace G00348036
             //go to SearchByImage.xaml
             Navigation.PushAsync(new SearchByImage());
         }
+
+        private void BtnFavourites_Clicked(object sender, EventArgs e)
+        {
+            //go to Favourites.xaml
+            Navigation.PushAsync(new Favourites());
+        }
     }
 }
