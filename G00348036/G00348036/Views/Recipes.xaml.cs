@@ -20,5 +20,12 @@ namespace G00348036
 
             Navigation.PushAsync(new RecipeInformation(i.id)); 
         }
+
+        private void BtnAddToFavourites_Clicked(object sender, System.EventArgs e)
+        {
+            SearchByIngredientsData s = (sender as Button).CommandParameter as SearchByIngredientsData;
+
+            (BindingContext as RecipesViewModel).AddToFavourites(s);
+        }
     }
 }

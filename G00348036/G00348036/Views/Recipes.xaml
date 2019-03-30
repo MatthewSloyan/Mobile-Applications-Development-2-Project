@@ -12,8 +12,11 @@
                         <StackLayout>
                             <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
                         </StackLayout>
-                        <StackLayout>
+                        <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
+                            <Button x:Name="btnAddToFavourites" Text="ADD" Style="{StaticResource ButtonStyle}" 
+                                    Clicked="BtnAddToFavourites_Clicked" CommandParameter="{Binding .}"/>
+                                    <!--Command="{Binding AddToFavouritesCommand}" CommandParameter="{Binding SelectedRecipe}"-->
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Used:"/>
@@ -59,8 +62,9 @@
 
             <!--<Label Text="Dog Info!" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="2" HorizontalOptions="Center"/>-->
 
-            <ListView x:Name="lvRecipes" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True"
-                      ItemsSource="{Binding Results, Mode=TwoWay}" ItemTemplate="{StaticResource RecipeTemplate}" ItemSelected="LvRecipes_ItemSelected"/>
+            <ListView x:Name="lvRecipes" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True" 
+                SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" ItemsSource="{Binding Results, Mode=TwoWay}" 
+                    ItemTemplate="{StaticResource RecipeTemplate}" ItemSelected="LvRecipes_ItemSelected"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

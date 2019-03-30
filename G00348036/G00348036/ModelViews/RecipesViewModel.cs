@@ -37,7 +37,7 @@ namespace G00348036
         // ICommand interface defines two methods
         // Execute - takes and action to be invoked/executed, essentially a method to run
         // initalised in the constructor
-        public ICommand AddToFavouritesCommand { get; set; }
+        //public ICommand AddToFavouritesCommand { get; set; }
 
         // Contructor
         public RecipesViewModel(string URL, int selection)
@@ -48,7 +48,7 @@ namespace G00348036
 
             // set up command as a new command, and pass in name of method as a param.
             // in Xamarin, the ui elements see the ICommand object and calls the execute method to invoke action
-            AddToFavouritesCommand = new Command(AddToFavourites);
+            //AddToFavouritesCommand = new Command<SearchByIngredientsData>(AddToFavourites);
         }
 
         private void getRecipeInfo()
@@ -71,9 +71,10 @@ namespace G00348036
             }
         }
 
-        public void AddToFavourites()
+        public void AddToFavourites(SearchByIngredientsData s)
         {
-            //Utils.AddToFavourites(MyDogs);
+            //Utils.AddToFavourites(SelectedRecipe);
+            System.Diagnostics.Debug.WriteLine(s.title);
         }
     }
 }
