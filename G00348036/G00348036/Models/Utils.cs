@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using unirest_net.http;
 using unirest_net.request;
@@ -9,7 +10,7 @@ namespace G00348036
 {
     class Utils
     {
-        public static List<T> GetApiData<T>(string URL)
+        public static ObservableCollection<T> GetApiData<T>(string URL)
         {
             HttpRequest request = Unirest.get(URL)
                 .header("X-RapidAPI-Key", "583ced2f01mshf4b63cc4f7b49f7p130fc5jsn4e92edadc525");
@@ -17,7 +18,7 @@ namespace G00348036
             string test = URL;
             System.Diagnostics.Debug.WriteLine(response.Body);
 
-            List<T> results = JsonConvert.DeserializeObject<List<T>>(response.Body);
+            ObservableCollection<T> results = JsonConvert.DeserializeObject<ObservableCollection<T>>(response.Body);
             return results;
         }
 
