@@ -20,7 +20,9 @@ namespace G00348036.Views
 
         private void LvFavourites_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            FavouriteRecipesData i = e.SelectedItem as FavouriteRecipesData;
 
+            Navigation.PushAsync(new RecipeInformation(i.id));
         }
 
         private void BtnDeleteFromFavourites_Clicked(object sender, EventArgs e)
