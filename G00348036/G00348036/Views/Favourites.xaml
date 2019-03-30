@@ -21,29 +21,37 @@
         <Style x:Key="TitleStyle" TargetType="Label">
             <Setter Property="FontSize" Value="Medium"/>
             <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
         </Style>
         <Style x:Key="ImageStyle" TargetType="Image">
-            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            <Setter Property="Aspect" Value="Fill"/>
-        </Style>
-        <Style x:Key="TextStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="Small"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HeightRequest" Value="175"/>
+            <Setter Property="WidthRequest" Value="175"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Start"/>
+
         </Style>
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="CornerRadius" Value="7"/>
-            <Setter Property="BackgroundColor" Value="Aqua"/>
+            <Setter Property="CornerRadius" Value="50"/>
+            <Setter Property="BackgroundColor" Value="DarkGray"/>
+            <Setter Property="WidthRequest" Value="70"/>
+            <Setter Property="HeightRequest" Value="70"/>
+            <Setter Property="TextColor" Value="White"/>
             <Setter Property="Margin" Value="2"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="End"/>
         </Style>
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
+            <StackLayout x:Name="slMenu" Grid.Row="0" BackgroundColor="LightGray" Margin="0, -6, 0, 0"></StackLayout>
             
             <ListView x:Name="lvFavourites" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True" 
                 SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" ItemsSource="{Binding Results, Mode=TwoWay}" 

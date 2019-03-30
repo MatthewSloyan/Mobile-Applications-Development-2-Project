@@ -96,6 +96,22 @@ namespace G00348036.Views
                 System.Diagnostics.Debug.WriteLine(result);
                 SearchByImageApiData results = JsonConvert.DeserializeObject<SearchByImageApiData>(result);
 
+                //foreach (Respons item in results.responses)
+                //{
+                //    List<Respons> yourValues = new List<Respons>();
+                //    yourValues.Add(item);
+
+                //    foreach (LocalizedObjectAnnotation i in yourValues)
+                //    {
+
+                //    }
+
+                //        item.localizedObjectAnnotations = yourValues;
+                //}
+
+                //List<SearchByImageApiData> values = new List<SearchByImageApiData>();
+                //values.Add(results);
+
                 // Test code for trying to access data in class
 
                 //List<LocalizedObjectAnnotation> yourValues = new List<LocalizedObjectAnnotation>();
