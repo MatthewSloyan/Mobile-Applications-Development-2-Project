@@ -33,16 +33,7 @@
         <StackLayout x:Name="slToolbar" Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="Aqua"></StackLayout>
 
         <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" Grid.Row="1" Grid.ColumnSpan="2">
-            <StackLayout x:Name="slFavourites" Orientation="Horizontal">
-                <Button Text="Favourites" Margin="1"/>
-                <Button Text="Favourites" Margin="1"/>
-                <Button Text="Favourites" Margin="1"/>
-                <Button Text="Favourites" Margin="1"/>
-                <Button Text="Favourites" Margin="1"/>
-                <Button Text="Favourites" Margin="1"/>
-                <Button Text="Favourites" Margin="1"/>
-                <Button Text="Favourites" Margin="1"/> 
-            </StackLayout>
+            <StackLayout x:Name="slFavourites" Orientation="Horizontal"></StackLayout>
         </ScrollView>
 
         <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" Grid.Row="2" Grid.ColumnSpan="2">
