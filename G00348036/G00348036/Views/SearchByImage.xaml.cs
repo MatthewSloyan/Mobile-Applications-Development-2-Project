@@ -96,72 +96,12 @@ namespace G00348036.Views
                 System.Diagnostics.Debug.WriteLine(result);
                 SearchByImageApiData results = JsonConvert.DeserializeObject<SearchByImageApiData>(result);
 
-                //foreach (Respons item in results.responses)
-                //{
-                //    List<Respons> yourValues = new List<Respons>();
-                //    yourValues.Add(item);
+                List<Respons> response = new List<Respons>();
+                response = results.responses;
 
-                //    foreach (LocalizedObjectAnnotation i in yourValues)
-                //    {
+                List<LocalizedObjectAnnotation> listOfDetectedIngredients = new List<LocalizedObjectAnnotation>();
+                listOfDetectedIngredients = response[0].localizedObjectAnnotations;
 
-                //    }
-
-                //        item.localizedObjectAnnotations = yourValues;
-                //}
-
-                //List<SearchByImageApiData> values = new List<SearchByImageApiData>();
-                //values.Add(results);
-
-                // Test code for trying to access data in class
-
-                //List<LocalizedObjectAnnotation> yourValues = new List<LocalizedObjectAnnotation>();
-                ////yourValues.nam
-
-                //SearchByImageApiData _model = new SearchByImageApiData();
-                //foreach (var item in _model.responses)
-                //{
-                //    item.localizedObjectAnnotations = yourValues;
-                //}
-
-                //SearchByImageApiData results = JsonConvert.DeserializeObject<SearchByImageApiData>(result);
-
-                //SearchByRecipeData.Result selected = e.SelectedItem as SearchByRecipeData.Result;
-
-                //List<LocalizedObjectAnnotation> localizedObjectAnnotations = new List<LocalizedObjectAnnotation>();
-                //localizedObjectAnnotations = results.responses;
-
-                //List<LocalizedObjectAnnotation> localizedObjectAnnotations = new List<LocalizedObjectAnnotation>();
-
-                //Respons g = new Respons();
-
-                //foreach (Respons i in results.responses)
-                //{
-                //    i.localizedObjectAnnotations.Add("");
-                //    System.Diagnostics.Debug.WriteLine(i.localizedObjectAnnotations);
-                //}
-
-                //System.Diagnostics.Debug.WriteLine(results.name);
-
-                //for (int i = 0; i < results.responses.Count; i++)
-                //{
-                //    List<LocalizedObjectAnnotation> r = new List<LocalizedObjectAnnotation>();
-                //    r = r.IndexOf(i);
-                //    Console.WriteLine("Item in a!");
-                //    for (int j = 0; j < r.Count; j++)
-                //    {
-                //        Console.WriteLine("Item in b!");
-                //    }
-                //}
-
-
-                //foreach (object i in results.responses)
-                //{
-                //    foreach (object j in i)
-                //    {
-
-                //    }
-                //        System.Diagnostics.Debug.WriteLine(i);
-                //}
             }
         }
     }

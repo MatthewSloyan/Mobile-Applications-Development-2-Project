@@ -69,6 +69,8 @@ namespace G00348036
                 layout.Children.Add(title);
                 layout.Children.Add(id);
                 slFavourites.Children.Add(layout);
+
+                string url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=10";
             }
         }
 
