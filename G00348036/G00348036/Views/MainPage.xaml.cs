@@ -17,13 +17,18 @@ namespace G00348036
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             SetUpComponents();
         }
-        
+
         private void SetUpComponents()
         {
             Results = Utils.getListFromFile<FavouriteRecipesData>();
-            
+
             if (Results == null)
                 return;
 
