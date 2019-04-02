@@ -81,7 +81,35 @@ namespace G00348036
                 //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
             }
         }
-        
+
+        public static void AddToFavouritesR(SearchByRecipeData.Result selectedRecipe)
+        {
+            // Create a new list of FavouriteRecipesData
+            ObservableCollection<FavouriteRecipesData> list = new ObservableCollection<FavouriteRecipesData>();
+
+            //fill the list, and read a local folder
+            try
+            {
+                // Reads in file and updates list above using ref, and returns the full file path
+                string fullPath = ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
+
+                // Create new object and populate with passed in data, and add to list
+                FavouriteRecipesData fav = new FavouriteRecipesData
+                {
+                    id = selectedRecipe.id,
+                    title = selectedRecipe.title,
+                    image = selectedRecipe.image
+                };
+                list.Add(fav);
+
+                WriteListToFile(list, fullPath);
+            }
+            catch
+            {
+                //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
+            }
+        }
+
         // Remove object from file
         public static void RemoveFavouriteFromFile(FavouriteRecipesData recipeObject)
         {

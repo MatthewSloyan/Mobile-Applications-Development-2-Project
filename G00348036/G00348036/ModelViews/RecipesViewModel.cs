@@ -74,7 +74,11 @@ namespace G00348036
         public void AddToFavourites(SearchByIngredientsData s)
         {
             Utils.AddToFavourites(s);
-            System.Diagnostics.Debug.WriteLine(s.title);
+        }
+
+        public void AddToFavouritesR(SearchByRecipeData.Result s)
+        {
+            Utils.AddToFavouritesR(s);
         }
     }
 }
