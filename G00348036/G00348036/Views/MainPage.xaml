@@ -37,16 +37,7 @@
         </ScrollView>
 
         <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" Grid.Row="2" Grid.ColumnSpan="2">
-            <StackLayout x:Name="slTrending" Orientation="Horizontal">
-                <Button Text="Trending" Margin="1"/>
-                <Button Text="Trending" Margin="1"/>
-                <Button Text="Trending" Margin="1"/>
-                <Button Text="Trending" Margin="1"/>
-                <Button Text="Trending" Margin="1"/>
-                <Button Text="Trending" Margin="1"/>
-                <Button Text="Trending" Margin="1"/>
-                <Button Text="Trending" Margin="1"/>
-            </StackLayout>
+            <StackLayout x:Name="slRandom" Orientation="Horizontal"></StackLayout>
         </ScrollView>
 
         <Button x:Name="btnSearchByIngredients" Text="Search By Ingredients" Margin="1" Grid.Row="3" Grid.Column="0" Clicked="BtnSearchByIngredients_Clicked"/>

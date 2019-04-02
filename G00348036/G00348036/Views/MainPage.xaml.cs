@@ -1,10 +1,6 @@
 ﻿using G00348036.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace G00348036
@@ -12,31 +8,53 @@ namespace G00348036
     public partial class MainPage : ContentPage
     {
         //global list of favourite recipes
-        private ObservableCollection<FavouriteRecipesData> Results { get; set; }
+        private ObservableCollection<SliderRecipesData.RecipesData> ResultsFavourites { get; set; }
+        private SliderRecipesData ResultsRandom { get; set; }
+        private ObservableCollection<SliderRecipesData.RecipesData> ResultsRandomCon { get; set; }
 
         public MainPage()
         {
             InitializeComponent();
+            // Only load Random recipes once on start up as it slows down the app too much if loading each time the page is loaded
+            SetUpRandom();
         }
 
         // Calls when ever the page comes into view, this will update the favourites and random section when new data is recieved
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            SetUpComponents();
+            SetUpFavourites();
         }
 
-        private void SetUpComponents()
+        private void SetUpFavourites()
         {
-            Results = Utils.getListFromFile<FavouriteRecipesData>();
-
             //Clear all children from favourites section so it doesn't add more when reloaded
             slFavourites.Children.Clear();
 
-            if (Results == null)
-                return;
+            // Load favourites from file and add at run time
+            ResultsFavourites = Utils.getListFromFile<SliderRecipesData.RecipesData>();
+            if (ResultsFavourites == null)
+            {
+                // Display message
+            }
+            else
+            {
+                LoadSliderInformation(ResultsFavourites, 1);
+            }
+        }
 
-            foreach (var item in Results)
+        private void SetUpRandom()
+        {
+            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=15";
+            ResultsRandom = Utils.GetSingleApiData<SliderRecipesData>(URL);
+            ResultsRandomCon = ResultsRandom.recipes;
+
+            LoadSliderInformation(ResultsRandomCon, 2);
+        }
+
+        private void LoadSliderInformation(ObservableCollection<SliderRecipesData.RecipesData> list, int selection)
+        {
+            foreach (var item in list)
             {
                 var layout = new StackLayout
                 {
@@ -60,26 +78,18 @@ namespace G00348036
                     HorizontalOptions = LayoutOptions.CenterAndExpand
                 };
 
-                var id = new Label
-                {
-                    Text = item.id,
-                    IsVisible = false
-                };
-
                 //create a tap gesture object and attach to stacklayout
                 TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped;
-                tapGestureRecognizer.NumberOfTapsRequired = 1;
-
-                //add to image
-                layout.GestureRecognizers.Add(tapGestureRecognizer);
-
+                
                 layout.Children.Add(image);
                 layout.Children.Add(title);
-                layout.Children.Add(id);
-                slFavourites.Children.Add(layout);
+                layout.GestureRecognizers.Add(tapGestureRecognizer);
 
-                string url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=10";
+                if (selection == 1)
+                    slFavourites.Children.Add(layout);
+                else
+                    slRandom.Children.Add(layout);
             }
         }
 
@@ -90,7 +100,6 @@ namespace G00348036
 
             Navigation.PushAsync(new RecipeInformation(slSender.StyleId));
         }
-        #endregion
         
         private void BtnSearchByIngredients_Clicked(object sender, EventArgs e)
         {
@@ -115,5 +124,6 @@ namespace G00348036
             //go to Favourites.xaml
             Navigation.PushAsync(new Favourites());
         }
+        #endregion
     }
 }
