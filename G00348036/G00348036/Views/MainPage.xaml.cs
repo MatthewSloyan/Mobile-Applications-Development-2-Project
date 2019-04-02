@@ -19,6 +19,7 @@ namespace G00348036
             InitializeComponent();
         }
 
+        // Calls when ever the page comes into view, this will update the favourites and random section when new data is recieved
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -28,6 +29,9 @@ namespace G00348036
         private void SetUpComponents()
         {
             Results = Utils.getListFromFile<FavouriteRecipesData>();
+
+            //Clear all children from favourites section so it doesn't add more when reloaded
+            slFavourites.Children.Clear();
 
             if (Results == null)
                 return;
