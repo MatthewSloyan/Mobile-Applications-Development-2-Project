@@ -125,16 +125,14 @@ namespace G00348036.Views
             listOfDetectedIngredients = response[0].localizedObjectAnnotations;
 
             string dynamicString = "";
-            dynamicString = listOfDetectedIngredients[0].name;
+            //dynamicString = listOfDetectedIngredients[0].name;
 
-            System.Diagnostics.Debug.WriteLine(dynamicString);
-
-            //// Iterate through each child of the overall stacklayout
-            //foreach (LocalizedObjectAnnotation item in listOfDetectedIngredients)
-            //{
-            //    dynamicString += item.name + "%2C";
-            //}
-
+            // Iterate through the returned api data to the limit specified by the user
+            for (int i = 0; i < pckIngredients.SelectedIndex; i++)
+            {
+                dynamicString += listOfDetectedIngredients[i].name + "%2C";
+            }       
+            
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=10&ranking=1&fillIngredients=true&ingredients=" + dynamicString;
 
             System.Diagnostics.Debug.WriteLine(URL);
