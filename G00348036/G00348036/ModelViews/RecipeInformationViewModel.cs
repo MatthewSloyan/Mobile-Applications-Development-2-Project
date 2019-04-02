@@ -10,6 +10,7 @@ namespace G00348036
 
         //global list of recipes
         public RecipeInformationData Result { get; set; }
+        public InstructionStepsData Instructions { get; set; }
 
         // Contructor
         public RecipeInformationViewModel(string Id)
@@ -20,9 +21,12 @@ namespace G00348036
 
         private void getRecipeInfo()
         {
-            string url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + Id + "/information";
+            string url;
+            url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + Id + "/information";
             Result = Utils.GetSingleApiData<RecipeInformationData>(url);
-
+            
+            url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + Id + "/analyzedInstructions?stepBreakdown=true";
+            Instructions = Utils.GetSingleApiData<InstructionStepsData>(url);
             //System.Diagnostics.Debug.WriteLine(Result.id);
         }
     }

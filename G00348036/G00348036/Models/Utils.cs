@@ -151,6 +151,8 @@ namespace G00348036
             path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             fullPath = Path.Combine(path, fileName);
 
+            //fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), fileName);
+
             // If the file doesn't exist create the file
             if (!File.Exists(fullPath))
             {

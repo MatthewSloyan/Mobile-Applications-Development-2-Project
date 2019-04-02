@@ -5,19 +5,31 @@
 
     <!--Global Resources/variables-->
     <ContentPage.Resources>
+        <DataTemplate x:Key="InstructionsTemplate">
+            <ViewCell>
+                <StackLayout Margin="2, 1, 2, 1" Orientation="Horizontal">
+                    <StackLayout>
+                        <Label Text="{Binding Path=number}" Style="{StaticResource ParaStyle}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Path=step}"/>
+                    </StackLayout>
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
         <DataTemplate x:Key="IngredientsTemplate">
             <ViewCell>
-                <StackLayout Margin="2, 1, 2, 1" BackgroundColor="LightGray" Orientation="Horizontal">
+                <StackLayout Margin="2, 1, 2, 1" Orientation="Horizontal">
                     <StackLayout>
                         <Image Source="{Binding image}"></Image>
                     </StackLayout>
                     <StackLayout>
-                        <Label Text="{Binding Path=name}" Style="{StaticResource TitleStyle}"/>
+                        <Label Text="{Binding Path=name}" Style="{StaticResource ParaStyle}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Amount:"/>
-                        <Label Text="{Binding Path=amount}" Style="{StaticResource TextStyle}"/>
-                        <Label Text="{Binding Path=unitShort}" Style="{StaticResource TextStyle}"/>
+                        <Label Text="Amount: "/>
+                        <Label Text="{Binding Path=amount}"/>
+                        <Label Text="{Binding Path=unit}"/>
                     </StackLayout>
                 </StackLayout>
             </ViewCell>
@@ -34,6 +46,9 @@
         </Style>
         <Style x:Key="TextStyle" TargetType="Label">
             <Setter Property="FontSize" Value="Small"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style x:Key="ParaStyle" TargetType="Label">
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
         <Style x:Key="ButtonStyle" TargetType="Button">
@@ -54,10 +69,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ScrollView Grid.Row="1">
-                <StackLayout x:Name="slFullRecipe" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
+            <!--<ScrollView Grid.Row="1">-->
+                <StackLayout x:Name="slFullRecipe" Grid.Row="1" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
                     <StackLayout x:Name="slImage" Orientation="Horizontal" Margin="1">
-                        <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
+                        <Image Source="{Binding image}" Style="{StaticResource ImageStyle}" HorizontalOptions="Center"></Image>
                     </StackLayout>
                     <StackLayout x:Name="slTitle" Orientation="Horizontal" Margin="1">
                         <Label x:Name="lblTitle" Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
@@ -103,15 +118,17 @@
 
                     <Label Text="INSTRUCTIONS" Style="{StaticResource TitleStyle}"/>
                     
-                    <StackLayout Orientation="Horizontal" Margin="1">
-                        <Label Text="{Binding Path=instructions}" Style="{StaticResource TitleStyle}"/>
-                    </StackLayout>
+                    <!--<StackLayout Orientation="Horizontal" Margin="1">
+                        <Label Text="{Binding Path=instructions}"/>
+                    </StackLayout>-->
+                    <ListView x:Name="lvInstructions" Margin="2, 2, 2, 0" ItemsSource="{Binding steps, Mode=TwoWay}"
+                        ItemTemplate="{StaticResource InstructionsTemplate}" HasUnevenRows="True"/>
 
                     <Label Text="INGREDIENTS" Style="{StaticResource TitleStyle}"/>
                     <ListView x:Name="lvIngredients" Margin="2, 2, 2, 0" ItemsSource="{Binding extendedIngredients, Mode=TwoWay}"
                         ItemTemplate="{StaticResource IngredientsTemplate}" HasUnevenRows="True"/>
                 </StackLayout>
-            </ScrollView>
+            <!--</ScrollView>--> 
         </Grid>
 
     </ContentPage.Content>
