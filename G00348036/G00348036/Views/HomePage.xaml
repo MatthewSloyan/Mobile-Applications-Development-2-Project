@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="G00348036.Views.HomePage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".7*"/>
+                <RowDefinition Height=".7*"/>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height=".5*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" Grid.Row="0" Grid.ColumnSpan="2">
+                <StackLayout x:Name="slFavourites" Orientation="Horizontal"></StackLayout>
+            </ScrollView>
+
+            <ScrollView Orientation="Horizontal" HorizontalOptions="Fill" Grid.Row="1" Grid.ColumnSpan="2">
+                <StackLayout x:Name="slRandom" Orientation="Horizontal"></StackLayout>
+            </ScrollView>
+
+            <Button x:Name="btnSearchByIngredients" Text="Search By Ingredients" Margin="1" Grid.Row="2" Grid.Column="0" Clicked="BtnSearchByIngredients_Clicked"/>
+            <Button x:Name="btnSearchByImage" Text="Search By Image" Margin="1" Grid.Row="2" Grid.Column="1" Clicked="BtnSearchByImage_Clicked"/>
+            <Button x:Name="btnSearchByRecipe" Text="Search By Recipe" Margin="1" Grid.Row="3" Grid.Column="0" Clicked="BtnSearchByRecipe_Clicked"/>
+            <Button x:Name="btnFavourites" Text="Favourites" Margin="1" Grid.Row="3" Grid.Column="1" Clicked="BtnFavourites_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
