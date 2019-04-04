@@ -111,7 +111,7 @@ namespace G00348036
                             var entry = (Entry)slItems;
                             dynamicString += entry.Text + "%2C";
                         }
-                    }
+                    } 
                 }
             }
             

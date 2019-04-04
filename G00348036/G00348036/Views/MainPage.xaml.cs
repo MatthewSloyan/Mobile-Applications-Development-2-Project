@@ -16,7 +16,7 @@ namespace G00348036
         {
             InitializeComponent();
             // Only load Random recipes once on start up as it slows down the app too much if loading each time the page is loaded
-            SetUpRandom();
+            //SetUpRandom();
         }
 
         // Calls when ever the page comes into view, this will update the favourites and random section when new data is recieved
@@ -35,7 +35,8 @@ namespace G00348036
             ResultsFavourites = Utils.getListFromFile<SliderRecipesData.RecipesData>();
             if (ResultsFavourites == null)
             {
-                // Display message
+                // Load blank template if there's no favourites added
+                LoadSliderInitial();
             }
             else
             {
@@ -90,6 +91,36 @@ namespace G00348036
                     slFavourites.Children.Add(layout);
                 else
                     slRandom.Children.Add(layout);
+            }
+        }
+
+        private void LoadSliderInitial()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                var layout = new StackLayout
+                {
+                    WidthRequest = 100,
+                    Orientation = StackOrientation.Vertical
+                };
+
+                var image = new Image
+                {
+                    HeightRequest = 100,
+                    WidthRequest = 100,
+                    HorizontalOptions = LayoutOptions.CenterAndExpand
+                };
+
+                var title = new Label
+                {
+                    Text = "Favourite",
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalOptions = LayoutOptions.CenterAndExpand
+                };
+
+                layout.Children.Add(image);
+                layout.Children.Add(title);
+                slFavourites.Children.Add(layout);
             }
         }
 

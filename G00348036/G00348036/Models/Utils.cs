@@ -34,6 +34,8 @@ namespace G00348036
                 .header("X-RapidAPI-Key", "583ced2f01mshf4b63cc4f7b49f7p130fc5jsn4e92edadc525");
             HttpResponse<string> response = request.asString();
 
+            System.Diagnostics.Debug.WriteLine(response.Body);
+
             T result = JsonConvert.DeserializeObject<T>(response.Body);
             return result;
         }
@@ -157,6 +159,7 @@ namespace G00348036
             if (!File.Exists(fullPath))
             {
                 File.Create(fullPath).Dispose();
+                //list = new ObservableCollection<T>();
             }
             else
             {

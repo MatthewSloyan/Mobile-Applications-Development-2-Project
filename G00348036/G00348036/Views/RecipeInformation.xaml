@@ -69,8 +69,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!--<ScrollView Grid.Row="1">-->
-                <StackLayout x:Name="slFullRecipe" Grid.Row="1" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
+            <ScrollView Grid.Row="1">
+                <StackLayout x:Name="slFullRecipe" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
                     <StackLayout x:Name="slImage" Orientation="Horizontal" Margin="1">
                         <Image Source="{Binding image}" Style="{StaticResource ImageStyle}" HorizontalOptions="Center"></Image>
                     </StackLayout>
@@ -121,14 +121,14 @@
                     <!--<StackLayout Orientation="Horizontal" Margin="1">
                         <Label Text="{Binding Path=instructions}"/>
                     </StackLayout>-->
-                    <ListView x:Name="lvInstructions" Margin="2, 2, 2, 0" ItemsSource="{Binding steps, Mode=TwoWay}"
+                    <ListView x:Name="lvInstructions" Margin="2, 2, 2, 0" ItemsSource="{Binding Steps, Mode=TwoWay}"
                         ItemTemplate="{StaticResource InstructionsTemplate}" HasUnevenRows="True"/>
 
                     <Label Text="INGREDIENTS" Style="{StaticResource TitleStyle}"/>
                     <ListView x:Name="lvIngredients" Margin="2, 2, 2, 0" ItemsSource="{Binding extendedIngredients, Mode=TwoWay}"
                         ItemTemplate="{StaticResource IngredientsTemplate}" HasUnevenRows="True"/>
                 </StackLayout>
-            <!--</ScrollView>--> 
+            </ScrollView> 
         </Grid>
 
     </ContentPage.Content>

@@ -4,15 +4,27 @@ using System.Text;
 
 namespace G00348036
 {
-    class InstructionStepsData
+    public class InstructionStepsData
     {
         public string name { get; set; }
-        public List<Steps> steps { get; set; }
+        public List<Step> steps { get; set; }
     }
 
-    public class Steps
+    public class Step
     {
-        public string number { get; set; }
+        public int number { get; set; }
         public string step { get; set; }
+        public List<object> ingredients { get; set; }
+        public List<object> equipment { get; set; }
+        public Length length { get; set; }
     }
+
+    public class Length
+    {
+        public int number { get; set; }
+        public string unit { get; set; }
+    }
+
+    
+
 }
