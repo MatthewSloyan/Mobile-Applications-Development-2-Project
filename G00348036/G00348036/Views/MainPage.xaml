@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:G00348036"
+             xmlns:local1="clr-namespace:G00348036.Views"
              x:Class="G00348036.MainPage">
 
-    <ContentPage.ToolbarItems>
+    <TabbedPage.ToolbarItems>
         <!--<ToolbarItem Text="Test" Order="Primary">
 
         </ToolbarItem>
@@ -15,9 +16,14 @@
 
         </ToolbarItem>-->
         <ToolbarItem Text="Settings" Order="Secondary" />
-    </ContentPage.ToolbarItems>
+    </TabbedPage.ToolbarItems>
 
-    <Grid>
+    <local:SearchByIngredients Title="By Ingredient"/>
+    <local1:SearchByRecipe Title="By Recipe"/>
+    <local1:SearchByImage Title="By Image"/>
+    <local1:Favourites Title="Favourites"/>
+
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height=".7*"/>
@@ -44,6 +50,6 @@
         <Button x:Name="btnSearchByImage" Text="Search By Image" Margin="1" Grid.Row="3" Grid.Column="1" Clicked="BtnSearchByImage_Clicked"/>
         <Button x:Name="btnSearchByRecipe" Text="Search By Recipe" Margin="1" Grid.Row="4" Grid.Column="0" Clicked="BtnSearchByRecipe_Clicked"/>
         <Button x:Name="btnFavourites" Text="Favourites" Margin="1" Grid.Row="4" Grid.Column="1" Clicked="BtnFavourites_Clicked"/>
-    </Grid>
+    </Grid>-->
 
-</ContentPage>
+</TabbedPage>

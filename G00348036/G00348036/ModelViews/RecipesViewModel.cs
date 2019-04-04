@@ -80,5 +80,11 @@ namespace G00348036
         {
             Utils.AddToFavouritesR(s);
         }
+
+        public void RemoveFromList(SearchByIngredientsData s)
+        {
+            Results.Remove(s);
+            SelectedRecipe = null;
+        }
     }
 }

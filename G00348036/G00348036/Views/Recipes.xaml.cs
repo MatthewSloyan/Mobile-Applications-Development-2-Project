@@ -27,5 +27,12 @@ namespace G00348036
 
             (BindingContext as RecipesViewModel).AddToFavourites(s);
         }
+
+        private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+        {
+            // Get the object that was swiped
+            SearchByIngredientsData s = (sender as Button).CommandParameter as SearchByIngredientsData;
+            (BindingContext as RecipesViewModel).RemoveFromList(s);
+        }
     }
 }

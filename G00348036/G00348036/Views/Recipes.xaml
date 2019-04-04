@@ -21,9 +21,12 @@
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Used:"/>
                             <Label Text="{Binding Path=usedIngredientCount}" Style="{StaticResource TextStyle}"/>
-                            <Label Text=" Missing:"/>
+                            <Label Text="Missing:"/>
                             <Label Text="{Binding Path=missedIngredientCount}" Style="{StaticResource TextStyle}"/>
                         </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <SwipeGestureRecognizer Direction="Left,Right" Swiped="SwipeGestureRecognizer_Swiped"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </Frame>
             </ViewCell>
