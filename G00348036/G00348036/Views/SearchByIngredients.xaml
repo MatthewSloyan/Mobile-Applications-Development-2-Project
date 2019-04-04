@@ -7,23 +7,14 @@
         
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!--<StackLayout x:Name="slToolbar" Grid.Row="0" BackgroundColor="AliceBlue"></StackLayout>-->
-            <StackLayout x:Name="slMenu" Grid.Row="0" BackgroundColor="LightGray" Margin="0, -6, 0, 0"></StackLayout>
-
-            <Label Text="INGREDIENTS" Grid.Row="1" Margin="5"/>
-            <ScrollView Grid.Row="2">
+            <Label Text="INGREDIENTS" Grid.Row="0" Margin="5"/>
+            <ScrollView Grid.Row="1">
                 <StackLayout x:Name="slIngredients" Orientation="Vertical" Margin="3, 3, 3, 3">
                     <Button x:Name="btnSearchByIngredient" Text="Search" Margin="1" Command="{Binding LoadRecipePageCommand}" Clicked="BtnSearchByIngredient_Clicked"/>
-                    <!--<StackLayout Orientation="Horizontal">
-                        --><!--<Entry x:Name="entIngredient1" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Ingredient" TextChanged="EntIngredient_TextChanged"/>-->
-                        <!--<Button x:Name="btnAdd1" Text="Add" WidthRequest="70" Clicked="BtnAdd_Clicked"/>-->
-                        <!--<Button x:Name="btnDelete1" Text="Del" WidthRequest="70" Clicked="BtnDelete1_Clicked"/>--><!--
-                    </StackLayout>-->
                 </StackLayout>
             </ScrollView>
            

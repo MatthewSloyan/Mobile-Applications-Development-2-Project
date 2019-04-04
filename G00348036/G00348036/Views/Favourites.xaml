@@ -46,13 +46,10 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="slMenu" Grid.Row="0" BackgroundColor="LightGray" Margin="0, -6, 0, 0"></StackLayout>
-            
-            <ListView x:Name="lvFavourites" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True" 
+            <ListView x:Name="lvFavourites" Grid.Row="0" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True" 
                 SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" ItemsSource="{Binding Results, Mode=TwoWay}" 
                     ItemTemplate="{StaticResource FavouritesTemplate}" ItemSelected="LvFavourites_ItemSelected"/>
         </Grid>

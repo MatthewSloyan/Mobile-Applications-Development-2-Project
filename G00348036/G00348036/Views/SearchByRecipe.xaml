@@ -5,15 +5,12 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="slMenu" Grid.Row="0" BackgroundColor="LightGray" Margin="0, -6, 0, 0"></StackLayout>
-
-            <Label Text="SEARCH" Grid.Row="1" Margin="5"/>
-            <StackLayout x:Name="slSearch" Grid.Row="2" Orientation="Vertical" Margin="3, 3, 3, 3">
+            <Label Text="SEARCH" Grid.Row="0" Margin="5"/>
+            <StackLayout x:Name="slSearch" Grid.Row="1" Orientation="Vertical" Margin="3, 3, 3, 3">
                 <StackLayout x:Name="slEntries" Orientation="Vertical">
                     <Entry x:Name="entRecipe" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Recipe (Required)"/>
                     <Entry x:Name="entDiet" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Diet (Optional)"/>
