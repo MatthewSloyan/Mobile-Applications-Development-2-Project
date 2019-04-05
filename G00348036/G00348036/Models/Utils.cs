@@ -16,6 +16,7 @@ namespace G00348036
         // Global constant for file name
         public const string FAVOURITES_SAVE_FILE = "favourites.txt";
 
+        // Generic method which gets and parses lists of objects from a url
         public static ObservableCollection<T> GetApiData<T>(string URL)
         {
             HttpRequest request = Unirest.get(URL)
@@ -28,6 +29,7 @@ namespace G00348036
             return results;
         }
 
+        // Generic method which gets and parses a single object from a url
         public static T GetSingleApiData<T>(string URL)
         {
             HttpRequest request = Unirest.get(URL)
@@ -67,6 +69,11 @@ namespace G00348036
                 // Reads in file and updates list above using ref, and returns the full file path
                 string fullPath = ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
 
+                // If the list is null E.g. on first start up, then create new list which solves the bug which wouldn't
+                // allow the user to add to favourite if they have no favourites saved.
+                if(list == null)
+                    list = new ObservableCollection<FavouriteRecipesData>();
+
                 // Create new object and populate with passed in data, and add to list
                 FavouriteRecipesData fav = new FavouriteRecipesData
                 {
@@ -94,6 +101,9 @@ namespace G00348036
             {
                 // Reads in file and updates list above using ref, and returns the full file path
                 string fullPath = ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
+
+                if (list == null)
+                    list = new ObservableCollection<FavouriteRecipesData>();
 
                 // Create new object and populate with passed in data, and add to list
                 FavouriteRecipesData fav = new FavouriteRecipesData
