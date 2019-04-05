@@ -31,7 +31,7 @@ namespace G00348036
         private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
         {
             // Get the object that was swiped
-            SearchByIngredientsData s = (sender as Button).CommandParameter as SearchByIngredientsData;
+            SearchByIngredientsData s = e.Parameter as SearchByIngredientsData;
             (BindingContext as RecipesViewModel).RemoveFromList(s);
         }
     }

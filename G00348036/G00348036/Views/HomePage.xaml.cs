@@ -136,26 +136,27 @@ namespace G00348036.Views
 
         private void BtnSearchByIngredients_Clicked(object sender, EventArgs e)
         {
-            //go to SearchByIngredients.xaml
-            Navigation.PushAsync(new SearchByIngredients());
+            // Gets the MainPage, and set it's current page to each option
+            var parentPage = Parent as TabbedPage;
+            parentPage.CurrentPage = parentPage.Children[1];
         }
 
         private void BtnSearchByRecipe_Clicked(object sender, EventArgs e)
         {
-            //go to SearchByRecipes.xaml
-            Navigation.PushAsync(new SearchByRecipe());
+            var parentPage = Parent as TabbedPage;
+            parentPage.CurrentPage = parentPage.Children[2];
         }
 
         private void BtnSearchByImage_Clicked(object sender, EventArgs e)
         {
-            //go to SearchByImage.xaml
-            Navigation.PushAsync(new SearchByImage());
+            var parentPage = Parent as TabbedPage;
+            parentPage.CurrentPage = parentPage.Children[3];
         }
 
         private void BtnFavourites_Clicked(object sender, EventArgs e)
         {
-            //go to Favourites.xaml
-            Navigation.PushAsync(new Favourites());
+            var parentPage = Parent as TabbedPage;
+            parentPage.CurrentPage = parentPage.Children[4];
         }
         #endregion
     }

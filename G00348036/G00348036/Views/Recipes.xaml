@@ -10,7 +10,11 @@
                 <Frame HasShadow="True" OutlineColor="LightGray" Margin="4">
                     <StackLayout Orientation="Vertical">
                         <StackLayout>
-                            <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
+                            <Image Source="{Binding image}" Style="{StaticResource ImageStyle}">
+                                <Image.GestureRecognizers>
+                                    <SwipeGestureRecognizer Direction="Left,Right" Swiped="SwipeGestureRecognizer_Swiped" CommandParameter="{Binding .}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
@@ -24,9 +28,6 @@
                             <Label Text="Missing:"/>
                             <Label Text="{Binding Path=missedIngredientCount}" Style="{StaticResource TextStyle}"/>
                         </StackLayout>
-                        <StackLayout.GestureRecognizers>
-                            <SwipeGestureRecognizer Direction="Left,Right" Swiped="SwipeGestureRecognizer_Swiped"/>
-                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </Frame>
             </ViewCell>

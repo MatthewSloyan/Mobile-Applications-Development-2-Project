@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="G00348036.Views.Favourites">
 
     <!--Global Resources/variables-->
@@ -9,7 +10,7 @@
             <ViewCell>
                 <Frame HasShadow="True" OutlineColor="LightGray" Margin="4">
                     <StackLayout Orientation="Horizontal">
-                        <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
+                        <controls:CircleImage Source="{Binding image}" Style="{StaticResource ImageStyle}"></controls:CircleImage>
                         <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
                         <Button x:Name="btnDeleteFromFavourites" Text="DEL" Style="{StaticResource ButtonStyle}" 
                             Clicked="BtnDeleteFromFavourites_Clicked" CommandParameter="{Binding .}"/>
@@ -19,21 +20,21 @@
         </DataTemplate>
 
         <Style x:Key="TitleStyle" TargetType="Label">
+            <Setter Property="Margin" Value="15, 0, 0, 15"/>
             <Setter Property="FontSize" Value="Medium"/>
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="VerticalTextAlignment" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
         </Style>
         <Style x:Key="ImageStyle" TargetType="Image">
-            <Setter Property="HeightRequest" Value="175"/>
-            <Setter Property="WidthRequest" Value="175"/>
+            <Setter Property="HeightRequest" Value="120"/>
+            <Setter Property="WidthRequest" Value="120"/>
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="Start"/>
-
         </Style>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="CornerRadius" Value="50"/>
-            <Setter Property="BackgroundColor" Value="DarkGray"/>
+            <Setter Property="BackgroundColor" Value="LightGreen"/>
             <Setter Property="WidthRequest" Value="70"/>
             <Setter Property="HeightRequest" Value="70"/>
             <Setter Property="TextColor" Value="White"/>

@@ -15,7 +15,8 @@
         <ToolbarItem Text="Test2" Order="Primary">
 
         </ToolbarItem>-->
-        <ToolbarItem Text="Settings" Order="Secondary" />
+        <ToolbarItem Name="Refresh" Order="Primary" Text="Refresh" Icon="refresh.png" Priority="0"/>
+        <!--<ToolbarItem Text="Settings" Order="Secondary" />-->
     </TabbedPage.ToolbarItems>
 
     <local1:HomePage Title="Home"/>
