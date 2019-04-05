@@ -19,22 +19,33 @@ namespace G00348036.Views
 
             if (entDiet.Text != null)
             {
-                dynamicString += "diet="+ entDiet.Text + "&";
+                dynamicString += "diet="+ entDiet.Text.Trim() + "&";
             }
 
             if (entExIngredients.Text != null)
             {
-                dynamicString += "excludeIngredients=" + entExIngredients.Text + "&";
+                dynamicString += "excludeIngredients=" + checkForComma(entExIngredients.Text) + "&";
             }
 
             if (entExIntolerances.Text != null)
             {
-                dynamicString += "excludeIngredients=" + entExIntolerances.Text + "&";
+                dynamicString += "excludeIngredients=" + checkForComma(entExIntolerances.Text) + "&";
             }
 
-            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?" + dynamicString + "number=10&offset=0&query=" + entRecipe.Text;
+            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?" + dynamicString + "number=15&offset=0&query=" + entRecipe.Text.Trim();
 
             Navigation.PushAsync(new SearchByRecipesListView(URL, 2));
+        }
+
+        // Check for a comma in the entered string, if found add "%2C+" operator for http requests
+        private string checkForComma(string entryText)
+        {
+            // Replace comma with and operator
+            string modifiedComma = entryText.Replace(','.ToString(), "%2C+");
+            // Strip out any additional white space if a space is entered between entries
+            string strippedString = modifiedComma.Replace(" ", string.Empty);
+
+            return strippedString;
         }
     }
 }

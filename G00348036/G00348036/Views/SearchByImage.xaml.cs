@@ -133,7 +133,7 @@ namespace G00348036.Views
                 dynamicString += listOfDetectedIngredients[i].name + "%2C";
             }       
             
-            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=10&ranking=1&fillIngredients=true&ingredients=" + dynamicString;
+            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=15&ranking=1&fillIngredients=true&ingredients=" + dynamicString;
 
             System.Diagnostics.Debug.WriteLine(URL);
 

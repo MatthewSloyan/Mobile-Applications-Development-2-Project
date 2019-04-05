@@ -15,14 +15,14 @@
         <ToolbarItem Text="Test2" Order="Primary">
 
         </ToolbarItem>-->
-        <ToolbarItem Name="Refresh" Order="Primary" Text="Refresh" Icon="refresh.png" Priority="0"/>
-        <!--<ToolbarItem Text="Settings" Order="Secondary" />-->
+        <!--<ToolbarItem Name="Refresh" Order="Primary" Text="Refresh" Icon="refresh.png" Priority="0"/>-->
+        <ToolbarItem Text="Settings" Order="Secondary" />
     </TabbedPage.ToolbarItems>
 
     <local1:HomePage Title="Home"/>
-    <local:SearchByIngredients Title="By Ingredient"/>
-    <local1:SearchByRecipe Title="By Recipe"/>
-    <local1:SearchByImage Title="By Image"/>
+    <local:SearchByIngredients Title="Ingredient"/>
+    <local1:SearchByRecipe Title="Recipe"/>
+    <local1:SearchByImage Title="Image"/>
     <local1:Favourites Title="Favourites"/>
 
 </TabbedPage>

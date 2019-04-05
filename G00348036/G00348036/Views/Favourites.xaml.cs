@@ -15,6 +15,12 @@ namespace G00348036.Views
 		public Favourites ()
 		{
 			InitializeComponent ();
+        }
+
+        // Calls when ever the page comes into view, this will update the favourites
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             this.BindingContext = new FavouritesViewModel();
         }
 

@@ -9,7 +9,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Label Text="SEARCH" Grid.Row="0" Margin="5"/>
+            <Label Text="SEARCH BY RECIPE" Grid.Row="0" Margin="5"/>
             <StackLayout x:Name="slSearch" Grid.Row="1" Orientation="Vertical" Margin="3, 3, 3, 3">
                 <StackLayout x:Name="slEntries" Orientation="Vertical">
                     <Entry x:Name="entRecipe" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Recipe (Required)"/>
