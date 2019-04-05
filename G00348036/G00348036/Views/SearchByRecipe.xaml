@@ -17,7 +17,7 @@
                     <Entry x:Name="entExIngredients" HorizontalOptions="FillAndExpand" Placeholder="Exclude Ingredients (Separate by comma)"/>
                     <Entry x:Name="entExIntolerances" HorizontalOptions="FillAndExpand" Placeholder="Exclude Intolerances (Separate by comma)"/>
                 </StackLayout>
-                <Button x:Name="btnSearch" Text="Search" Margin="1" Clicked="BtnSearch_Clicked"/>
+                <Button x:Name="btnSearch" Text="SEARCH" Margin="1" Style="{StaticResource ButtonStyleFull}" Clicked="BtnSearch_Clicked"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

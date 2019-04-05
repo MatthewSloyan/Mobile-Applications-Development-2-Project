@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageCircle.Forms.Plugin.Abstractions;
+using System;
 using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
@@ -66,11 +67,11 @@ namespace G00348036.Views
                     StyleId = item.id
                 };
 
-                var image = new Image
+                var image = new CircleImage
                 {
                     Source = item.image,
-                    HeightRequest = 100,
-                    WidthRequest = 100,
+                    HeightRequest = 70,
+                    WidthRequest = 70,
                     HorizontalOptions = LayoutOptions.CenterAndExpand
                 };
 
@@ -78,7 +79,8 @@ namespace G00348036.Views
                 {
                     Text = item.title,
                     FontAttributes = FontAttributes.Bold,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    HorizontalOptions = LayoutOptions.Center
                 };
 
                 //create a tap gesture object and attach to stacklayout

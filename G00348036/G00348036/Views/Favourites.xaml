@@ -11,37 +11,13 @@
                 <Frame HasShadow="True" OutlineColor="LightGray" Margin="4">
                     <StackLayout Orientation="Horizontal">
                         <controls:CircleImage Source="{Binding image}" Style="{StaticResource ImageStyle}"></controls:CircleImage>
-                        <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
-                        <Button x:Name="btnDeleteFromFavourites" Text="DEL" Style="{StaticResource ButtonStyle}" 
+                        <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyleList}"/>
+                        <Button x:Name="btnDeleteFromFavourites" Text="DEL" Style="{StaticResource ButtonStyleRound}" 
                             Clicked="BtnDeleteFromFavourites_Clicked" CommandParameter="{Binding .}"/>
                     </StackLayout>
                 </Frame>
             </ViewCell>
         </DataTemplate>
-
-        <Style x:Key="TitleStyle" TargetType="Label">
-            <Setter Property="Margin" Value="15, 0, 0, 15"/>
-            <Setter Property="FontSize" Value="Medium"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="VerticalTextAlignment" Value="Center"/>
-            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
-        </Style>
-        <Style x:Key="ImageStyle" TargetType="Image">
-            <Setter Property="HeightRequest" Value="120"/>
-            <Setter Property="WidthRequest" Value="120"/>
-            <Setter Property="VerticalOptions" Value="Center"/>
-            <Setter Property="HorizontalOptions" Value="Start"/>
-        </Style>
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="CornerRadius" Value="50"/>
-            <Setter Property="BackgroundColor" Value="LightGreen"/>
-            <Setter Property="WidthRequest" Value="70"/>
-            <Setter Property="HeightRequest" Value="70"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="Margin" Value="2"/>
-            <Setter Property="VerticalOptions" Value="Center"/>
-            <Setter Property="HorizontalOptions" Value="End"/>
-        </Style>
     </ContentPage.Resources>
 
     <ContentPage.Content>

@@ -80,7 +80,7 @@ namespace G00348036
             }
             catch
             {
-                //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
+
             }
         }
 

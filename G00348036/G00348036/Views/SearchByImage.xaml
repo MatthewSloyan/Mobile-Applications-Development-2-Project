@@ -30,11 +30,11 @@
                         <Picker.SelectedIndex>1</Picker.SelectedIndex>
                     </Picker>
                 </StackLayout>
-                <Button x:Name="btnTakePicture" Text="Take Picture" Margin="1" Clicked="BtnTakePicture_Clicked"/>
+                <Button x:Name="btnTakePicture" Text="Take Picture" Style="{StaticResource ButtonStyleFull}" Clicked="BtnTakePicture_Clicked"/>
             </StackLayout>
 
             <Image x:Name="PhotoImage" Grid.Row="2" HorizontalOptions="Center"/>
-            <Button x:Name="btnSend" Grid.Row="3" Text="Send" Margin="1" Clicked="BtnSend_Clicked" HeightRequest="50"/>
+            <Button x:Name="btnSend" Grid.Row="3" Text="SEND" Style="{StaticResource ButtonStyleFull}" Clicked="BtnSend_Clicked" HeightRequest="50"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

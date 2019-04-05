@@ -33,10 +33,6 @@ namespace G00348036
         private void BtnAdd_Clicked(object sender, EventArgs e)
         {
             createAddIngredientInput();
-
-            //var layout = new StackLayout();
-            //layout = (BindingContext as SearchByIngredientsViewModel).createAddIngredientInput();
-            //slIngredients.Children.Add(layout); 
         }
 
         private void createAddIngredientInput()
@@ -55,7 +51,8 @@ namespace G00348036
             var addButton = new Button
             {
                 Text = "Add",
-                WidthRequest = 70
+                WidthRequest = 70,
+                Style = (Style)Application.Current.Resources["ButtonStyleFull"]
             };
 
             //var deleteButton = new Button
