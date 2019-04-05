@@ -13,9 +13,12 @@
 
             <Label Text="SEARCH BY INGREDIENTS" Grid.Row="0" Margin="5"/>
             <ScrollView Grid.Row="1">
-                <StackLayout x:Name="slIngredients" Orientation="Vertical" Margin="3, 3, 3, 3">
-                    <Button x:Name="btnSearchByIngredient" Text="SEARCH" Margin="1" Style="{StaticResource ButtonStyleFull}" 
+                <StackLayout Orientation="Vertical">
+                    <StackLayout x:Name="slIngredients" Orientation="Vertical" Margin="3, 3, 3, 3"></StackLayout>
+                    <StackLayout Orientation="Vertical" Margin="3, 3, 3, 3">
+                        <Button x:Name="btnSearchByIngredient" Text="SEARCH" Margin="1" Style="{StaticResource ButtonStyleFull}" 
                             Command="{Binding LoadRecipePageCommand}" Clicked="BtnSearchByIngredient_Clicked"/>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
            
