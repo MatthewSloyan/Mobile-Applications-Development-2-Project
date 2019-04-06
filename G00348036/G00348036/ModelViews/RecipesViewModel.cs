@@ -57,10 +57,21 @@ namespace G00348036
             if (selection == 1)
             {
                 Results = Utils.GetApiData<RecipeResults>(url);
+
+                if (Results.Count == 0)
+                {
+                    _pageService.DisplayAlert("Error", "No recipes found using your input ingredients, please try again.", "OK", "CANCEL");
+                }
             }
             else
             {
                 SearchRecipesData RecipeResults = Utils.GetSingleApiData<SearchRecipesData>(url);
+                if (RecipeResults.results.Count == 0)
+                {
+                    _pageService.DisplayAlert("Error", "No recipes found using your inputs, please try again.", "OK", "CANCEL");
+                    return;
+                }
+
                 RecipeResultsConverted = RecipeResults.results;
 
                 // As image url doesn't include the base URL prepend onto image for displaying.
@@ -71,17 +82,20 @@ namespace G00348036
             }
         }
 
+        // Add recipe to list 
         public void AddToFavourites(RecipeResults s)
         {
             Utils.AddToFavourites(s);
         }
 
+        // Removes recipe from list when swiped
         public void RemoveFromList(RecipeResults s)
         {
             Results.Remove(s);
             SelectedRecipe = null;
         }
 
+        // Navigate using page service
         public void NavigatePage(string id)
         {
             // Navigation won't work, not a property of the view model
