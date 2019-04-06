@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             x:Class="G00348036.Recipes">
+             x:Class="G00348036.SearchByIngredientsListView">
 
     <!--Global Resources/variables-->
     <ContentPage.Resources>
@@ -36,17 +36,13 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition />
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
- 
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!--<Label Text="Dog Info!" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="2" HorizontalOptions="Center"/>-->
-
-            <ListView x:Name="lvRecipes" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True" 
+            <ListView x:Name="lvRecipes" Grid.Row="0" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True" 
                 SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" ItemsSource="{Binding Results, Mode=TwoWay}" 
                     ItemTemplate="{StaticResource RecipeTemplate}" ItemSelected="LvRecipes_ItemSelected"/>
         </Grid>

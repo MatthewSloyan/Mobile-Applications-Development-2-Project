@@ -16,16 +16,21 @@ namespace G00348036.Views
 
         private void LvRecipes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            SearchByRecipeData.Result selected = e.SelectedItem as SearchByRecipeData.Result;
-
-            Navigation.PushAsync(new RecipeInformation(selected.id.ToString()));
+            RecipeResults selected = e.SelectedItem as RecipeResults;
+            (BindingContext as RecipesViewModel).NavigatePage(selected.id);
         }
 
         private void BtnAddToFavourites_Clicked(object sender, System.EventArgs e)
         {
-            SearchByRecipeData.Result s = (sender as Button).CommandParameter as SearchByRecipeData.Result;
+            RecipeResults s = (sender as Button).CommandParameter as RecipeResults;
+            (BindingContext as RecipesViewModel).AddToFavourites(s);
+        }
 
-            (BindingContext as RecipesViewModel).AddToFavouritesR(s);
+        private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+        {
+            // Get the object that was swiped and remove from list
+            RecipeResults s = e.Parameter as RecipeResults;
+            (BindingContext as RecipesViewModel).RemoveFromList(s);
         }
     }
 }

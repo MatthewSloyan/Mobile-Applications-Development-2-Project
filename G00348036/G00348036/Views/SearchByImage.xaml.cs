@@ -153,7 +153,7 @@ namespace G00348036.Views
 
             System.Diagnostics.Debug.WriteLine(URL);
 
-            Navigation.PushAsync(new Recipes(URL, 1));
+            Navigation.PushAsync(new SearchByIngredientsListView(URL, 1));
         }
     }
 }

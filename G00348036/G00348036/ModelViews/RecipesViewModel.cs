@@ -14,31 +14,31 @@ namespace G00348036
         private string url { get; set; }
         private int selection { get; set; }
 
-        //global list of Recipes for ingredients
-        private ObservableCollection<SearchByIngredientsData> _results;
-        public ObservableCollection<SearchByIngredientsData> Results
+        //global list of Recipes for search by ingredients
+        private ObservableCollection<RecipeResults> _results;
+        public ObservableCollection<RecipeResults> Results
         {
             get { return _results; }
             set { SetValue(ref _results, value); }
         }
 
-        private SearchByIngredientsData _selectedRecipe;
-        public SearchByIngredientsData SelectedRecipe
+        //global list of recipes for search by recipe
+        public ObservableCollection<RecipeResults> _recipeResultsConverted;
+        public ObservableCollection<RecipeResults> RecipeResultsConverted
+        {
+            get { return _results; }
+            set { SetValue(ref _results, value); }
+        }
+        
+        // Selected ingredient
+        private RecipeResults _selectedRecipe;
+        public RecipeResults SelectedRecipe
         {
             get { return _selectedRecipe; }
             set { SetValue(ref _selectedRecipe, value); }
         }
-
-        //global list of recipes
-        public SearchByRecipeData RecipeResults { get; set; } = null;
-        public List<SearchByRecipeData.Result> RecipeResultsConverted { get; set; } = null;
-
-        // use command interfaces to "bind" commands from ui elements to a method in the view model
-        // ICommand interface defines two methods
-        // Execute - takes and action to be invoked/executed, essentially a method to run
-        // initalised in the constructor
-        //public ICommand AddToFavouritesCommand { get; set; }
-        // set in the constructor
+        
+        // Page service interface
         private readonly IPageService _pageService;
 
         // Contructor
@@ -47,11 +47,8 @@ namespace G00348036
             _pageService = pageService;
             this.url = URL;
             this.selection = selection;
-            getRecipeInfo();
 
-            // set up command as a new command, and pass in name of method as a param.
-            // in Xamarin, the ui elements see the ICommand object and calls the execute method to invoke action
-            //AddToFavouritesCommand = new Command<SearchByIngredientsData>(AddToFavourites);
+            getRecipeInfo();
         }
 
         private void getRecipeInfo()
@@ -59,11 +56,11 @@ namespace G00348036
             //If one then call is from searchByIngredients
             if (selection == 1)
             {
-                Results = Utils.GetApiData<SearchByIngredientsData>(url); 
+                Results = Utils.GetApiData<RecipeResults>(url);
             }
             else
             {
-                RecipeResults = Utils.GetSingleApiData<SearchByRecipeData>(url);
+                SearchRecipesData RecipeResults = Utils.GetSingleApiData<SearchRecipesData>(url);
                 RecipeResultsConverted = RecipeResults.results;
 
                 // As image url doesn't include the base URL prepend onto image for displaying.
@@ -74,17 +71,12 @@ namespace G00348036
             }
         }
 
-        public void AddToFavourites(SearchByIngredientsData s)
+        public void AddToFavourites(RecipeResults s)
         {
             Utils.AddToFavourites(s);
         }
 
-        public void AddToFavouritesR(SearchByRecipeData.Result s)
-        {
-            Utils.AddToFavouritesR(s);
-        }
-
-        public void RemoveFromList(SearchByIngredientsData s)
+        public void RemoveFromList(RecipeResults s)
         {
             Results.Remove(s);
             SelectedRecipe = null;

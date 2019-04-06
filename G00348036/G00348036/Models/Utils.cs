@@ -58,7 +58,7 @@ namespace G00348036
             return list;
         }
         
-        public static void AddToFavourites(SearchByIngredientsData selectedRecipe)
+        public static void AddToFavourites(RecipeResults selectedRecipe)
         {
             // Create a new list of FavouriteRecipesData
             ObservableCollection<RecipesData> list = new ObservableCollection<RecipesData>();
@@ -92,38 +92,7 @@ namespace G00348036
 
             }
         }
-
-        public static void AddToFavouritesR(SearchByRecipeData.Result selectedRecipe)
-        {
-            // Create a new list of FavouriteRecipesData
-            ObservableCollection<RecipesData> list = new ObservableCollection<RecipesData>();
-
-            //fill the list, and read a local folder
-            try
-            {
-                // Reads in file and updates list above using ref, and returns the full file path
-                string fullPath = ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
-
-                if (list == null)
-                    list = new ObservableCollection<RecipesData>();
-
-                // Create new object and populate with passed in data, and add to list
-                RecipesData fav = new RecipesData
-                {
-                    id = selectedRecipe.id,
-                    title = selectedRecipe.title,
-                    image = selectedRecipe.image
-                };
-                list.Add(fav);
-
-                WriteListToFile(list, fullPath);
-            }
-            catch
-            {
-                //await DisplayAlert("Error", "There are no favourites saved, please add some and return", "OK");
-            }
-        }
-
+        
         // Remove object from file
         public static void RemoveFavouriteFromFile(RecipesData recipeObject)
         {
