@@ -64,12 +64,19 @@ namespace G00348036
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
                     result = streamReader.ReadToEnd();
-                    loadRecipesPage(result, pickerNumber);
+                    if (result == "")
+                    {
+                        _pageService.DisplayAlert("Error", "No ingredients found in image, please try again.", "OK", "CANCEL");
+                    }
+                    else
+                    {
+                        loadRecipesPage(result, pickerNumber);
+                    }
                 }
             }
             catch (Exception)
             {
-                System.Diagnostics.Debug.WriteLine("Error");
+                _pageService.DisplayAlert("Error", "Error while detecting ingredients, please try again.", "OK", "CANCEL");
             }
         }
 
