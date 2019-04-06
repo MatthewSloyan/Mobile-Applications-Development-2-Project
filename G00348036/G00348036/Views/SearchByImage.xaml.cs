@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace G00348036.Views
+namespace G00348036
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SearchByImage : ContentPage
@@ -18,10 +18,11 @@ namespace G00348036.Views
         public SearchByImage ()
 		{
 			InitializeComponent ();
+            this.BindingContext = new ImageViewModel(new PageService());
             btnSend.IsEnabled = false;
         }
 
-        #region Event handlers
+        #region == Event handlers == 
         private async void BtnTakePicture_Clicked(object sender, EventArgs e)
         {
             await TakePictureAsync();
@@ -31,8 +32,8 @@ namespace G00348036.Views
         
         private void BtnSend_Clicked(object sender, EventArgs e)
         {
-            // set up api call and load search results page
-            SetUpAPI();
+            // set up api call and load search results page using model view
+            (BindingContext as ImageViewModel).SetUpAPI(filePath, pckIngredients.SelectedIndex + 1);
         }
         #endregion
 
@@ -68,92 +69,6 @@ namespace G00348036.Views
                 filePath = file.Path;
                 return stream;
             });
-        }
-        
-        // set up api call and load search results page
-        private void SetUpAPI()
-        {
-            // Convert the saved image to base64 format to send via http
-            byte[] bytes = File.ReadAllBytes(filePath);
-            string file = Convert.ToBase64String(bytes);
-            string result = "";
-
-            // Based on the JSON format and layout that google Vision requires build Json data using information.
-            // content = base64 image converted above
-            // type = OBJECT_LOCALIZATION to find multiple objects in an image
-            // maxResults = number of ingredients entered in picker
-            var obj = new
-            {
-                requests = new[] {
-                    new  {
-                         image = new { content  = file },
-                         features = new[] {
-                             new  { type = "OBJECT_LOCALIZATION", maxResults = pckIngredients.SelectedIndex}
-                         }
-                    }
-                }
-            };
-
-            try
-            {
-                // To implement the HTTP request I found suitable code below but modified it and improved for my own needs.
-                // https://stackoverflow.com/questions/9145667/how-to-post-json-to-a-server-using-c
-
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAz2XlLIlDE4NHoCENCrliqW1Motsk8WHY");
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "POST";
-
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    // Serialize the new object created above into JSON format for sending via HTTP
-                    streamWriter.Write(JsonConvert.SerializeObject(obj));
-                    streamWriter.Flush();
-                    streamWriter.Close();
-                }
-
-                // Recieve response from Google Vision API call, and pass into load method
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    result = streamReader.ReadToEnd();
-                    loadRecipesPage(result);
-                }
-            }
-            catch (Exception)
-            {
-                System.Diagnostics.Debug.WriteLine("Error");
-            }
-        }
-
-        // using the string of json data returned from Google Vision
-        private void loadRecipesPage(string result)
-        {
-            string dynamicString = "";
-            System.Diagnostics.Debug.WriteLine(result);
-
-            // To extract the data from the json was tough as it contains two nested lists, so with trial and error I solved it.
-            // First get object from json string
-            SearchByImageApiData results = JsonConvert.DeserializeObject<SearchByImageApiData>(result);
-
-            // Get first nested list
-            List<Respons> response = new List<Respons>();
-            response = results.responses;
-
-            // get second nested list which is used to loop through
-            List<LocalizedObjectAnnotation> listOfDetectedIngredients = new List<LocalizedObjectAnnotation>();
-            listOfDetectedIngredients = response[0].localizedObjectAnnotations;
-
-            // Iterate through the returned api data to the limit specified by the user
-            for (int i = 0; i < pckIngredients.SelectedIndex; i++)
-            {
-                dynamicString += listOfDetectedIngredients[i].name + "%2C";
-            }       
-            
-            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=15&ranking=1&fillIngredients=true&ingredients=" + dynamicString;
-
-            System.Diagnostics.Debug.WriteLine(URL);
-
-            Navigation.PushAsync(new SearchByIngredientsListView(URL, 1));
         }
     }
 }

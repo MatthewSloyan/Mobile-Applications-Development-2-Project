@@ -22,7 +22,7 @@
     <local1:HomePage Title="Home"/>
     <local:SearchByIngredients Title="Ingredient"/>
     <local1:SearchByRecipe Title="Recipe"/>
-    <local1:SearchByImage Title="Image"/>
+    <local:SearchByImage Title="Image"/>
     <local1:Favourites Title="Favourites"/>
 
 </TabbedPage>
