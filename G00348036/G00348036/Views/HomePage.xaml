@@ -23,10 +23,10 @@
                 <StackLayout x:Name="slRandom" Orientation="Horizontal"></StackLayout>
             </ScrollView>
 
-            <Button x:Name="btnSearchByIngredients" Text="Search By Ingredients" Margin="1" Grid.Row="2" Grid.Column="0" Clicked="BtnSearchByIngredients_Clicked"/>
-            <Button x:Name="btnSearchByRecipe" Text="Search By Recipe" Margin="1" Grid.Row="2" Grid.Column="1" Clicked="BtnSearchByRecipe_Clicked"/>
-            <Button x:Name="btnSearchByImage" Text="Search By Image" Margin="1" Grid.Row="3" Grid.Column="0" Clicked="BtnSearchByImage_Clicked"/>
-            <Button x:Name="btnFavourites" Text="Favourites" Margin="1" Grid.Row="3" Grid.Column="1" Clicked="BtnFavourites_Clicked"/>
+            <ImageButton Source="ByIngredients.jpg" Aspect="AspectFill" Margin="1" Grid.Row="2" Grid.Column="0" Clicked="BtnSearchByIngredients_Clicked"/>
+            <ImageButton Source="ByRecipe.jpg" Aspect="AspectFill" Margin="1" Grid.Row="2" Grid.Column="1" Clicked="BtnSearchByRecipe_Clicked"/>
+            <ImageButton Source="ByImage.jpg" Aspect="AspectFill" Margin="1" Grid.Row="3" Grid.Column="0" Clicked="BtnSearchByImage_Clicked"/>
+            <ImageButton Source="Favourites.jpg" Aspect="AspectFill" Margin="1" Grid.Row="3" Grid.Column="1" Clicked="BtnFavourites_Clicked"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
