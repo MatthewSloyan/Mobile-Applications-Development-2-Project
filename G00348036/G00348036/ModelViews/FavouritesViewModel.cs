@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using G00348036.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -8,32 +9,40 @@ namespace G00348036
     class FavouritesViewModel : BaseViewModel
     {
         //global list of recipes
-        private ObservableCollection<FavouriteRecipesData> _results;
-        public ObservableCollection<FavouriteRecipesData> Results
+        private ObservableCollection<RecipesData> _results;
+        public ObservableCollection<RecipesData> Results
         {
             get { return _results; }
             set { SetValue(ref _results, value); }
         }
 
-        private FavouriteRecipesData _selectedRecipe;
-        public FavouriteRecipesData SelectedRecipe
+        private RecipesData _selectedRecipe;
+        public RecipesData SelectedRecipe
         {
             get { return _selectedRecipe; }
             set { SetValue(ref _selectedRecipe, value); }
         }
 
+        private readonly IPageService _pageService;
+
         // Contructor
-        public FavouritesViewModel()
+        public FavouritesViewModel(PageService pageService)
         {
-            Results = Utils.getListFromFile<FavouriteRecipesData>();
+            _pageService = pageService;
+            Results = Utils.getListFromFile<RecipesData>();
         }
 
-        public void RemoveFromFavourites(FavouriteRecipesData f)
+        public void RemoveFromFavourites(RecipesData f)
         {
             Results.Remove(f);
             SelectedRecipe = null;
 
             Utils.RemoveFavouriteFromFile(f);
+        }
+
+        public void NavigatePage(string id)
+        {
+            _pageService.PushAsync(new RecipeInformation(id));
         }
     }
 }

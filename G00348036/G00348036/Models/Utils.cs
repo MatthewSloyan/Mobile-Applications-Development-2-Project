@@ -61,7 +61,7 @@ namespace G00348036
         public static void AddToFavourites(SearchByIngredientsData selectedRecipe)
         {
             // Create a new list of FavouriteRecipesData
-            ObservableCollection<FavouriteRecipesData> list = new ObservableCollection<FavouriteRecipesData>();
+            ObservableCollection<RecipesData> list = new ObservableCollection<RecipesData>();
 
             //fill the list, and read a local folder
             try
@@ -73,11 +73,11 @@ namespace G00348036
                 // allow the user to add to favourite if they have no favourites saved.
                 if(list == null)
                 {
-                    list = new ObservableCollection<FavouriteRecipesData>();
+                    list = new ObservableCollection<RecipesData>();
                 }
 
                 // Create new object and populate with passed in data, and add to list
-                FavouriteRecipesData fav = new FavouriteRecipesData
+                RecipesData fav = new RecipesData
                 {
                     id = selectedRecipe.id,
                     title = selectedRecipe.title,
@@ -96,7 +96,7 @@ namespace G00348036
         public static void AddToFavouritesR(SearchByRecipeData.Result selectedRecipe)
         {
             // Create a new list of FavouriteRecipesData
-            ObservableCollection<FavouriteRecipesData> list = new ObservableCollection<FavouriteRecipesData>();
+            ObservableCollection<RecipesData> list = new ObservableCollection<RecipesData>();
 
             //fill the list, and read a local folder
             try
@@ -105,10 +105,10 @@ namespace G00348036
                 string fullPath = ReadFromFile(ref list, FAVOURITES_SAVE_FILE);
 
                 if (list == null)
-                    list = new ObservableCollection<FavouriteRecipesData>();
+                    list = new ObservableCollection<RecipesData>();
 
                 // Create new object and populate with passed in data, and add to list
-                FavouriteRecipesData fav = new FavouriteRecipesData
+                RecipesData fav = new RecipesData
                 {
                     id = selectedRecipe.id,
                     title = selectedRecipe.title,
@@ -125,10 +125,10 @@ namespace G00348036
         }
 
         // Remove object from file
-        public static void RemoveFavouriteFromFile(FavouriteRecipesData recipeObject)
+        public static void RemoveFavouriteFromFile(RecipesData recipeObject)
         {
             // Create a new list of FavouriteRecipesData
-            ObservableCollection<FavouriteRecipesData> list = new ObservableCollection<FavouriteRecipesData>();
+            ObservableCollection<RecipesData> list = new ObservableCollection<RecipesData>();
 
             try
             {
@@ -165,13 +165,10 @@ namespace G00348036
             path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             fullPath = Path.Combine(path, fileName);
 
-            //fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), fileName);
-
             // If the file doesn't exist create the file
             if (!File.Exists(fullPath))
             {
                 File.Create(fullPath).Dispose();
-                //list = new ObservableCollection<T>();
             }
             else
             {
@@ -186,7 +183,7 @@ namespace G00348036
         }
 
         // Generic write to file method
-        private static void WriteListToFile(ObservableCollection<FavouriteRecipesData> list, string fullPath)
+        private static void WriteListToFile<T>(ObservableCollection<T> list, string fullPath)
         {
             // Write updated list back out to file
             using (var writer = new StreamWriter(fullPath, false))

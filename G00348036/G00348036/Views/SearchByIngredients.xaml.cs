@@ -13,7 +13,6 @@ namespace G00348036
 
             // Create one initial entry box and buttons
             createAddIngredientInput();
-            this.BindingContext = new SearchByIngredientsViewModel();
         }
         
         private void createAddIngredientInput()

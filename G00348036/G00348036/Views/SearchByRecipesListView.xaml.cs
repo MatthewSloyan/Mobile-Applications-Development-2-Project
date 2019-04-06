@@ -11,7 +11,7 @@ namespace G00348036.Views
         {
             InitializeComponent();
 
-            this.BindingContext = new RecipesViewModel(URL, selection);
+            this.BindingContext = new RecipesViewModel(new PageService(), URL, selection);
         }
 
         private void LvRecipes_ItemSelected(object sender, SelectedItemChangedEventArgs e)

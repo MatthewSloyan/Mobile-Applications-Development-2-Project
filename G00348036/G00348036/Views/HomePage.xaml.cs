@@ -16,8 +16,8 @@ namespace G00348036.Views
 	{
         // Global list of favourite recipes
         // Had to use an ObservableCollection as method in utils class uses them
-        private ObservableCollection<SliderRecipesData.RecipesData> ResultsFavourites { get; set; }
-        private ObservableCollection<SliderRecipesData.RecipesData> ResultsRandomCon { get; set; }
+        private ObservableCollection<RecipesData> ResultsFavourites { get; set; }
+        private ObservableCollection<RecipesData> ResultsRandomCon { get; set; }
 
         public HomePage()
         {
@@ -40,7 +40,7 @@ namespace G00348036.Views
             slFavourites.Children.Clear();
 
             // Load favourites from file and add at run time
-            ResultsFavourites = Utils.getListFromFile<SliderRecipesData.RecipesData>();
+            ResultsFavourites = Utils.getListFromFile<RecipesData>();
             if (ResultsFavourites == null)
             {
                 // Load blank template if there's no favourites added
@@ -59,13 +59,13 @@ namespace G00348036.Views
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=12";
 
             // Get random results and convert to same type as favoutites and the json is different
-            SliderRecipesData ResultsRandom = Utils.GetSingleApiData<SliderRecipesData>(URL);
+            RandomRecipesData ResultsRandom = Utils.GetSingleApiData<RandomRecipesData>(URL);
             ResultsRandomCon = ResultsRandom.recipes;
 
             LoadSliderInformation(ResultsRandomCon, 2);
         }
 
-        private void LoadSliderInformation(ObservableCollection<SliderRecipesData.RecipesData> list, int selection)
+        private void LoadSliderInformation(ObservableCollection<RecipesData> list, int selection)
         {
             // For each recipe in the list create a stacklayout, image, and label at run time and add to horizontal scroll bar
             foreach (var item in list)

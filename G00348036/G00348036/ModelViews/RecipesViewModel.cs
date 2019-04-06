@@ -1,7 +1,9 @@
-﻿using System;
+﻿using G00348036.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -12,7 +14,7 @@ namespace G00348036
         private string url { get; set; }
         private int selection { get; set; }
 
-        //global list of dogs
+        //global list of Recipes for ingredients
         private ObservableCollection<SearchByIngredientsData> _results;
         public ObservableCollection<SearchByIngredientsData> Results
         {
@@ -28,8 +30,6 @@ namespace G00348036
         }
 
         //global list of recipes
-        //public List<SearchByIngredientsData> Results { get; set; } = null;
-
         public SearchByRecipeData RecipeResults { get; set; } = null;
         public List<SearchByRecipeData.Result> RecipeResultsConverted { get; set; } = null;
 
@@ -38,10 +38,13 @@ namespace G00348036
         // Execute - takes and action to be invoked/executed, essentially a method to run
         // initalised in the constructor
         //public ICommand AddToFavouritesCommand { get; set; }
+        // set in the constructor
+        private readonly IPageService _pageService;
 
         // Contructor
-        public RecipesViewModel(string URL, int selection)
+        public RecipesViewModel(IPageService pageService, string URL, int selection)
         {
+            _pageService = pageService;
             this.url = URL;
             this.selection = selection;
             getRecipeInfo();
@@ -85,6 +88,13 @@ namespace G00348036
         {
             Results.Remove(s);
             SelectedRecipe = null;
+        }
+
+        public void NavigatePage(string id)
+        {
+            // Navigation won't work, not a property of the view model
+            // Part of the page class in Xamarin forms, use an interface
+            _pageService.PushAsync(new RecipeInformation(id));
         }
     }
 }

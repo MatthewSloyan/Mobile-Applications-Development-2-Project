@@ -11,7 +11,7 @@ namespace G00348036
         public Recipes (string URL, int selection)
 		{
 			InitializeComponent ();
-            this.BindingContext = new RecipesViewModel(URL, selection);
+            this.BindingContext = new RecipesViewModel(new PageService(), URL, selection);
 		}
 
         #region Event Handlers
@@ -19,8 +19,7 @@ namespace G00348036
         private void LvRecipes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             SearchByIngredientsData i = e.SelectedItem as SearchByIngredientsData;
-
-            Navigation.PushAsync(new RecipeInformation(i.id)); 
+            (BindingContext as RecipesViewModel).NavigatePage(i.id);
         }
 
         // When button is clicked get object from list and pass to view model
