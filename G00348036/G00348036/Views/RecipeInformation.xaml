@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="G00348036.Views.RecipeInformation">
 
     <!--Global Resources/variables-->
@@ -11,18 +12,19 @@
                     <StackLayout>
                         <Label Text="{Binding Path=number}" Style="{StaticResource TextStyle}"/>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout>
                         <Label Text="{Binding Path=step}"/>
                     </StackLayout>
                 </StackLayout>
             </ViewCell>
         </DataTemplate>
+        
         <DataTemplate x:Key="IngredientsTemplate">
             <ViewCell>
                 <StackLayout Margin="7, 2, 2, 7" Orientation="Horizontal">
-                    <!--<StackLayout>
-                        <Image Source="{Binding image}" Style="{StaticResource ImageStyle}"></Image>
-                    </StackLayout>-->
+                    <StackLayout>
+                        <controls:CircleImage Source="{Binding image}" Style="{StaticResource ImageStyleSmall}"></controls:CircleImage>
+                    </StackLayout>
                     <StackLayout>
                         <Label Text="{Binding Path=name}" Style="{StaticResource TextStyle}"/>
                     </StackLayout>
@@ -47,53 +49,55 @@
             </Grid.ColumnDefinitions>
 
             <ScrollView Grid.Row="0">
-                <StackLayout x:Name="slFullRecipe" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
-                    <StackLayout x:Name="slImage" Orientation="Horizontal" Margin="1">
-                        <Image Source="{Binding image}" Style="{StaticResource ImageStyleLarge}" HorizontalOptions="Center"></Image>
-                    </StackLayout>
-                    <StackLayout x:Name="slTitle" Orientation="Horizontal" Margin="1">
-                        <Label x:Name="lblTitle" Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
-                    </StackLayout>
-                    <BoxView Style="{StaticResource DividerLine}"></BoxView>
-                    <StackLayout x:Name="slEditable" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <StackLayout Orientation="Vertical" Margin="7, 2, 2, 7" HorizontalOptions="FillAndExpand">
-                            <StackLayout Orientation="Horizontal" >
-                                <Label Text="Vegetarian: "/>
-                                <Label Text="{Binding Path=vegetarian}" Style="{StaticResource TextStyle}"/>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout x:Name="slFullRecipe" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
+                        <StackLayout x:Name="slImage" Orientation="Horizontal" Margin="1">
+                            <Image Source="{Binding image}" Style="{StaticResource ImageStyleLarge}" HorizontalOptions="Center"></Image>
+                        </StackLayout>
+                        <StackLayout x:Name="slTitle" Orientation="Horizontal" Margin="1">
+                            <Label x:Name="lblTitle" Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
+                        </StackLayout>
+                        <BoxView Style="{StaticResource DividerLine}"></BoxView>
+                        <StackLayout x:Name="slEditable" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Vertical" Margin="7, 2, 2, 7" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Text="Vegetarian: "/>
+                                    <Label Text="{Binding Path=vegetarian}" Style="{StaticResource TextStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Text="Vegan: "/>
+                                    <Label Text="{Binding Path=vegan}" Style="{StaticResource TextStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Text="Glutan Free: "/>
+                                    <Label Text="{Binding Path=glutenFree}" Style="{StaticResource TextStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Text="Servings: "/>
+                                    <Label Text="{Binding Path=servings}" Style="{StaticResource TextStyle}"/>
+                                </StackLayout>
                             </StackLayout>
-                            <StackLayout Orientation="Horizontal" >
-                                <Label Text="Vegan: "/>
-                                <Label Text="{Binding Path=vegan}" Style="{StaticResource TextStyle}"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" >
-                                <Label Text="Glutan Free: "/>
-                                <Label Text="{Binding Path=glutenFree}" Style="{StaticResource TextStyle}"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" >
-                                <Label Text="Servings: "/>
-                                <Label Text="{Binding Path=servings}" Style="{StaticResource TextStyle}"/>
+                            <StackLayout Orientation="Vertical" Margin="7, 2, 2, 7" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Text="Dairy Free: "/>
+                                    <Label Text="{Binding Path=dairyFree}" Style="{StaticResource TextStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Text="Cheap: "/>
+                                    <Label Text="{Binding Path=cheap}" Style="{StaticResource TextStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Text="Popular: "/>
+                                    <Label Text="{Binding Path=veryPopular}" Style="{StaticResource TextStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" >
+                                    <Label Text="Ready in (mins): "/>
+                                    <Label Text="{Binding Path=readyInMinutes}" Style="{StaticResource TextStyle}"/>
+                                </StackLayout>
                             </StackLayout>
                         </StackLayout>
-                        <StackLayout Orientation="Vertical" Margin="7, 2, 2, 7" HorizontalOptions="FillAndExpand">
-                            <StackLayout Orientation="Horizontal" >
-                                <Label Text="Dairy Free: "/>
-                                <Label Text="{Binding Path=dairyFree}" Style="{StaticResource TextStyle}"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" >
-                                <Label Text="Cheap: "/>
-                                <Label Text="{Binding Path=cheap}" Style="{StaticResource TextStyle}"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" >
-                                <Label Text="Popular: "/>
-                                <Label Text="{Binding Path=veryPopular}" Style="{StaticResource TextStyle}"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" >
-                                <Label Text="Ready in (mins): "/>
-                                <Label Text="{Binding Path=readyInMinutes}" Style="{StaticResource TextStyle}"/>
-                            </StackLayout>
-                        </StackLayout>
                     </StackLayout>
-
+                    
                     <Label Text="INSTRUCTIONS" Style="{StaticResource TitleStyle}"/>
                     <BoxView Style="{StaticResource DividerLine}"></BoxView>
                     
@@ -105,7 +109,7 @@
 
                     <Label Text="INGREDIENTS" Style="{StaticResource TitleStyle}"/>
                     <BoxView Style="{StaticResource DividerLine}"></BoxView>
-                    <ListView x:Name="lvIngredients" Margin="2, 2, 2, 0" ItemsSource="{Binding extendedIngredients, Mode=TwoWay}"
+                    <ListView x:Name="lvIngredients" Margin="2, 2, 2, 0" ItemsSource="{Binding ExtendedIngredients, Mode=TwoWay}"
                         ItemTemplate="{StaticResource IngredientsTemplate}" HasUnevenRows="True"/>
                 </StackLayout>
             </ScrollView> 
