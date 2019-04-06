@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,40 +7,19 @@ namespace G00348036
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SearchByIngredients : ContentPage
 	{
-        //Global list
-        //ArrayList list = new ArrayList();
-       // int count = 0;
-
         public SearchByIngredients ()
 		{
 			InitializeComponent ();
-            setUpComponents();
 
+            // Create one initial entry box and buttons
+            createAddIngredientInput();
             this.BindingContext = new SearchByIngredientsViewModel();
         }
-
-        private void setUpComponents()
-        {
-            //list = new ArrayList();
-            createAddIngredientInput();
-        }
-
-        private void EntIngredient_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
         
-        private void BtnAdd_Clicked(object sender, EventArgs e)
-        {
-            createAddIngredientInput();
-        }
-
         private void createAddIngredientInput()
         {
             var layout = new StackLayout();
             layout.Orientation = StackOrientation.Horizontal;
-            layout.StyleId = "slAddIngredient";
-            //list.Add(count++);
 
             var entIngredient = new Entry
             {
@@ -54,6 +32,7 @@ namespace G00348036
             {
                 Text = "ADD",
                 WidthRequest = 70,
+                // Get style from global app.xaml page
                 Style = (Style)Application.Current.Resources["ButtonStyleFull"]
             };
 
@@ -61,18 +40,27 @@ namespace G00348036
             {
                 Text = "DEL",
                 WidthRequest = 70,
-                Style = (Style)Application.Current.Resources["ButtonStyleFull"],
-                StyleId = slIngredients.Children.Count.ToString()
+                Style = (Style)Application.Current.Resources["ButtonStyleFull"]
             };
 
+            // Add clicked events
             addButton.Clicked += BtnAdd_Clicked;
             deleteButton.Clicked += BtnDelete_Clicked;
+            // Add all elements to stacklayout and then to outer stacklayout
             layout.Children.Add(entIngredient);
             layout.Children.Add(addButton);
             layout.Children.Add(deleteButton);
-            slIngredients.Children.Insert(slIngredients.Children.Count - 1, layout);
+            slIngredients.Children.Add(layout);
         }
 
+        #region Event handlers
+        // On add button click add new child to stacklayout
+        private void BtnAdd_Clicked(object sender, EventArgs e)
+        {
+            createAddIngredientInput();
+        }
+
+        // On del button click remove last child from stacklayout
         private void BtnDelete_Clicked(object sender, EventArgs e)
         {
             // Remove the last child from the stacklayout, which removes the entry and two buttons.
@@ -80,77 +68,41 @@ namespace G00348036
             // It's not the most ideal solution but it solves the problem of accidentally adding too many entries 
             if(slIngredients.Children.Count != 1) 
                 slIngredients.Children.RemoveAt(slIngredients.Children.Count-1);
-
-            //for (int i = 1; i <= slIngredients.Children.Count-1; i++)
-            //{
-            //    if (i.ToString() == (sender as Button).StyleId)
-            //    {
-            //        slIngredients.Children.RemoveAt(i);
-            //        //count--;
-            //        //System.Diagnostics.Debug.WriteLine(count);
-            //    }
-            //}
-            //foreach (View item in slIngredients.Children)
-            //{
-            //    if (item.StyleId == "slAddIngredient")
-            //    {
-            //        var sl = (StackLayout)item;
-                    
-            //        foreach (View slItems in sl.Children)
-            //        {
-            //            //var sl = (StackLayout)item 
-            //            if (i.ToString() == (sender as Button).StyleId)
-            //            {
-            //                slIngredients.Children.RemoveAt(i);
-            //                count--;
-            //                System.Diagnostics.Debug.WriteLine(count);
-
-            //                foreach (View item in slIngredients.Children)
-            //                {
-
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-
-            //if (slIngredients.Children.Count != 1)
-            //{
-            //    slIngredients.Children.RemoveAt(1);
-            //}
         }
 
+        // Search for recipes using the text entries
         private void BtnSearchByIngredient_Clicked(object sender, EventArgs e)
         {
             string dynamicString = "";
 
-            // Iterate through each child of the overall stacklayout
-            foreach (View item in slIngredients.Children)
+            // Iterate through each child of the overall stacklayout in xaml then
+            // Get stacklayout as it can only contain stacklayouts
+            foreach (View outerStacklayoutItem in slIngredients.Children)
             {
-                // If it's a stacklayout then get set as variable
-                if (item.StyleId == "slAddIngredient")
-                {
-                    var sl = (StackLayout)item;
+                var sl = (StackLayout)outerStacklayoutItem;
 
-                    // Iterate through each child of the inner stacklayout which contains the entry and button
-                    foreach (View slItems in sl.Children)
+                // Iterate through each child of the inner stacklayout which contains the entry and buttons
+                foreach (View innerStacklayoutItem in sl.Children)
+                {
+                    // If it's a entry then get text and add to string with and operator
+                    if (innerStacklayoutItem.StyleId == "entryIngredient")
                     {
-                        // If it's a entry then get text and add to arrayList
-                        if (slItems.StyleId == "entryIngredient")
+                        var entry = (Entry)innerStacklayoutItem;
+                        if (entry.Text != "")
                         {
-                            var entry = (Entry)slItems;
-                            dynamicString += entry.Text + "%2C";
+                            dynamicString += entry.Text.Trim() + "%2C";
                         }
-                    } 
-                }
+                    }
+                } 
             }
 
-            // Strip out any white space just incase
+            // Strip out any white space for extra safety
             string strippedString = dynamicString.Replace(" ", string.Empty);
 
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=15&ranking=1&fillIngredients=true&ingredients=" + strippedString;
-
+            System.Diagnostics.Debug.WriteLine(URL);
             Navigation.PushAsync(new Recipes(URL, 1));
         }
+        #endregion
     }
 }

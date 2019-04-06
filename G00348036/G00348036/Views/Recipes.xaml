@@ -6,7 +6,6 @@
 
     <!--Global Resources/variables-->
     <ContentPage.Resources>
-        
         <DataTemplate x:Key="RecipeTemplate">
             <ViewCell>
                 <Frame HasShadow="True" OutlineColor="LightGray" Margin="4">
@@ -26,7 +25,7 @@
                         <!--Command="{Binding AddToFavouritesCommand}" CommandParameter="{Binding SelectedRecipe}"-->
                     </StackLayout>
                     <Frame.GestureRecognizers>
-                        <SwipeGestureRecognizer Direction="Left,Right" Swiped="SwipeGestureRecognizer_Swiped" CommandParameter="{Binding .}"/>
+                        <SwipeGestureRecognizer Direction="Left,Right" Swiped="SwipeGestureRecognizer_Swiped" CommandParameter="{Binding SelectedRecipe}"/>
                     </Frame.GestureRecognizers>
                 </Frame>
             </ViewCell>

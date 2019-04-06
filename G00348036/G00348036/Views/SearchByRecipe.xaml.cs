@@ -8,11 +8,32 @@ namespace G00348036.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchByRecipe : ContentPage
     {
+        bool bRecipeName = false;
+
         public SearchByRecipe()
         {
             InitializeComponent();
+            btnSearch.IsEnabled = false;
+        }
+        
+        // Check if first required entry box contains a value, if not disable button 
+        private void EntRecipe_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //Check for valid input
+            if (entRecipe.Text == "")
+            {
+                bRecipeName = false;
+                btnSearch.IsEnabled = false;
+            }
+            else { bRecipeName = true; }
+
+            if (bRecipeName == true)
+            {
+                btnSearch.IsEnabled = true;
+            }
         }
 
+        // On search get information from entry boxes and make url to search with
         private void BtnSearch_Clicked(object sender, EventArgs e)
         {
             string dynamicString = "";
@@ -22,11 +43,14 @@ namespace G00348036.Views
                 dynamicString += "diet="+ entDiet.Text.Trim() + "&";
             }
 
+            // Excluded ingredients
             if (entExIngredients.Text != null)
             {
+                // Check for comma replaces commas with "%2C+" if encounted and strips out any additional white space
                 dynamicString += "excludeIngredients=" + checkForComma(entExIngredients.Text) + "&";
             }
 
+            // Excluded intolerance
             if (entExIntolerances.Text != null)
             {
                 dynamicString += "excludeIngredients=" + checkForComma(entExIntolerances.Text) + "&";
@@ -34,6 +58,7 @@ namespace G00348036.Views
 
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?" + dynamicString + "number=15&offset=0&query=" + entRecipe.Text.Trim();
 
+            // Navigate to page and set up model view
             Navigation.PushAsync(new SearchByRecipesListView(URL, 2));
         }
 

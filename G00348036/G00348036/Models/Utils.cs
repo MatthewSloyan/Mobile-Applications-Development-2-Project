@@ -72,7 +72,9 @@ namespace G00348036
                 // If the list is null E.g. on first start up, then create new list which solves the bug which wouldn't
                 // allow the user to add to favourite if they have no favourites saved.
                 if(list == null)
+                {
                     list = new ObservableCollection<FavouriteRecipesData>();
+                }
 
                 // Create new object and populate with passed in data, and add to list
                 FavouriteRecipesData fav = new FavouriteRecipesData

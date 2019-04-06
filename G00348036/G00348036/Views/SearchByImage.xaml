@@ -14,8 +14,8 @@
             <Label Text="SEARCH BY IMAGE" Grid.Row="0" Margin="5"/>
             <StackLayout x:Name="slSearch" Grid.Row="1" Orientation="Vertical" Margin="3, 3, 3, 3">
                 <StackLayout x:Name="slHeight" Orientation="Horizontal" Margin="3, 6, 3, 3">
-                    <Label Text="How many ingredients do you have?"/>
-                    <Picker x:Name="pckIngredients">
+                    <Label Text="How many ingredients do you have?" VerticalTextAlignment="Center"/>
+                    <Picker x:Name="pckIngredients" HorizontalOptions="Center">
                         <Picker.Items>
                             <x:String>1</x:String>
                             <x:String>2</x:String>
@@ -33,8 +33,8 @@
                 <Button x:Name="btnTakePicture" Text="Take Picture" Style="{StaticResource ButtonStyleFull}" Clicked="BtnTakePicture_Clicked"/>
             </StackLayout>
 
-            <Image x:Name="PhotoImage" Grid.Row="2" HorizontalOptions="Center"/>
-            <Button x:Name="btnSend" Grid.Row="3" Text="SEND" Style="{StaticResource ButtonStyleFull}" Clicked="BtnSend_Clicked" HeightRequest="50"/>
+            <Image x:Name="PhotoImage" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Button x:Name="btnSend" Grid.Row="3" Text="SEARCH" Style="{StaticResource ButtonStyleFull}" Clicked="BtnSend_Clicked" HeightRequest="50"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

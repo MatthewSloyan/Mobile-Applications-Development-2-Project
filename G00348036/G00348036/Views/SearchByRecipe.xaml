@@ -12,8 +12,8 @@
             <Label Text="SEARCH BY RECIPE" Grid.Row="0" Margin="5"/>
             <StackLayout x:Name="slSearch" Grid.Row="1" Orientation="Vertical" Margin="3, 3, 3, 3">
                 <StackLayout x:Name="slEntries" Orientation="Vertical">
-                    <Entry x:Name="entRecipe" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Recipe (Required)"/>
-                    <Entry x:Name="entDiet" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Diet (Optional)"/>
+                    <Entry x:Name="entRecipe" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Recipe*" TextChanged="EntRecipe_TextChanged"/>
+                    <Entry x:Name="entDiet" HorizontalOptions="FillAndExpand" Placeholder="Enter Your Diet"/>
                     <Entry x:Name="entExIngredients" HorizontalOptions="FillAndExpand" Placeholder="Exclude Ingredients (Separate by comma)"/>
                     <Entry x:Name="entExIntolerances" HorizontalOptions="FillAndExpand" Placeholder="Exclude Intolerances (Separate by comma)"/>
                 </StackLayout>

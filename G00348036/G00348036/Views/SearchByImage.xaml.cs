@@ -15,52 +15,62 @@ namespace G00348036.Views
 	{
         string filePath = "";
 
-		public SearchByImage ()
+        public SearchByImage ()
 		{
 			InitializeComponent ();
+            btnSend.IsEnabled = false;
         }
 
-        private void BtnTakePicture_Clicked(object sender, EventArgs e)
+        #region Event handlers
+        private async void BtnTakePicture_Clicked(object sender, EventArgs e)
         {
-            TakePictureAsync();
+            await TakePictureAsync();
+            // After picture is taken enable search button
+            btnSend.IsEnabled = true;
         }
         
         private void BtnSend_Clicked(object sender, EventArgs e)
         {
+            // set up api call and load search results page
             SetUpAPI();
         }
+        #endregion
 
+        // Camera functionality has been implemented and edited using the tutorial provided in the plugin documentation
+        // Other setup for android was also required
+        // https://github.com/jamesmontemagno/MediaPlugin
         private async Task TakePictureAsync()
         {
             await CrossMedia.Current.Initialize();
 
+            // If camera is not available return, e.g if device doesn't contain camera
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
                 await DisplayAlert("No Camera", "No camera available.", "OK");
                 return;
             }
 
+            // take photo and save locally in application data 
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
-                Directory = "Sample",
+                Directory = "Images",
                 Name = "image.jpg"
             });
 
             if (file == null)
                 return;
-
-            await DisplayAlert("File Location", file.Path, "OK");
-
+            
+            // Set image source on xaml to the new photo
             PhotoImage.Source = Xamarin.Forms.ImageSource.FromStream(() =>
             {
                 var stream = file.GetStream();
+                // Set global file path
                 filePath = file.Path;
-                // Set up the API call
-                //SetUpAPI(file.Path);
                 return stream;
             });
         }
-
+        
+        // set up api call and load search results page
         private void SetUpAPI()
         {
             // Convert the saved image to base64 format to send via http
@@ -69,13 +79,16 @@ namespace G00348036.Views
             string result = "";
 
             // Based on the JSON format and layout that google Vision requires build Json data using information.
+            // content = base64 image converted above
+            // type = OBJECT_LOCALIZATION to find multiple objects in an image
+            // maxResults = number of ingredients entered in picker
             var obj = new
             {
                 requests = new[] {
                     new  {
                          image = new { content  = file },
                          features = new[] {
-                             new  { type = "OBJECT_LOCALIZATION", maxResults = 10}
+                             new  { type = "OBJECT_LOCALIZATION", maxResults = pckIngredients.SelectedIndex}
                          }
                     }
                 }
@@ -98,7 +111,7 @@ namespace G00348036.Views
                     streamWriter.Close();
                 }
 
-                // Recieve response from Google Vision API call
+                // Recieve response from Google Vision API call, and pass into load method
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
@@ -112,20 +125,23 @@ namespace G00348036.Views
             }
         }
 
+        // using the string of json data returned from Google Vision
         private void loadRecipesPage(string result)
         {
+            string dynamicString = "";
             System.Diagnostics.Debug.WriteLine(result);
 
+            // To extract the data from the json was tough as it contains two nested lists, so with trial and error I solved it.
+            // First get object from json string
             SearchByImageApiData results = JsonConvert.DeserializeObject<SearchByImageApiData>(result);
 
+            // Get first nested list
             List<Respons> response = new List<Respons>();
             response = results.responses;
 
+            // get second nested list which is used to loop through
             List<LocalizedObjectAnnotation> listOfDetectedIngredients = new List<LocalizedObjectAnnotation>();
             listOfDetectedIngredients = response[0].localizedObjectAnnotations;
-
-            string dynamicString = "";
-            //dynamicString = listOfDetectedIngredients[0].name;
 
             // Iterate through the returned api data to the limit specified by the user
             for (int i = 0; i < pckIngredients.SelectedIndex; i++)

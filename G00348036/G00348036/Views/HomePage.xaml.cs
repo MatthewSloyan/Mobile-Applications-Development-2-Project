@@ -1,4 +1,8 @@
-﻿using ImageCircle.Forms.Plugin.Abstractions;
+﻿// Name: Matthew Sloyan
+// ID: G00348036
+// https://github.com/MatthewSloyan/Mobile-Applications-Development-2-Project
+
+using ImageCircle.Forms.Plugin.Abstractions;
 using System;
 using System.Collections.ObjectModel;
 
@@ -10,9 +14,9 @@ namespace G00348036.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class HomePage : ContentPage
 	{
-        //global list of favourite recipes
+        // Global list of favourite recipes
+        // Had to use an ObservableCollection as method in utils class uses them
         private ObservableCollection<SliderRecipesData.RecipesData> ResultsFavourites { get; set; }
-        private SliderRecipesData ResultsRandom { get; set; }
         private ObservableCollection<SliderRecipesData.RecipesData> ResultsRandomCon { get; set; }
 
         public HomePage()
@@ -20,6 +24,7 @@ namespace G00348036.Views
             InitializeComponent();
             // Only load Random recipes once on start up as it slows down the app too much if loading each time the page is loaded
             //SetUpRandom();
+            OnAppearing();
         }
 
         // Calls when ever the page comes into view, this will update the favourites and random section when new data is recieved
@@ -43,14 +48,18 @@ namespace G00348036.Views
             }
             else
             {
+                // Or load actual saved favourites from list
                 LoadSliderInformation(ResultsFavourites, 1);
             }
         }
 
+        // Get random recipes from api and load using the same method as favourites for code reuse
         private void SetUpRandom()
         {
-            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=15";
-            ResultsRandom = Utils.GetSingleApiData<SliderRecipesData>(URL);
+            string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=12";
+
+            // Get random results and convert to same type as favoutites and the json is different
+            SliderRecipesData ResultsRandom = Utils.GetSingleApiData<SliderRecipesData>(URL);
             ResultsRandomCon = ResultsRandom.recipes;
 
             LoadSliderInformation(ResultsRandomCon, 2);
@@ -58,6 +67,7 @@ namespace G00348036.Views
 
         private void LoadSliderInformation(ObservableCollection<SliderRecipesData.RecipesData> list, int selection)
         {
+            // For each recipe in the list create a stacklayout, image, and label at run time and add to horizontal scroll bar
             foreach (var item in list)
             {
                 var layout = new StackLayout
@@ -72,7 +82,8 @@ namespace G00348036.Views
                     Source = item.image,
                     HeightRequest = 70,
                     WidthRequest = 70,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand
+                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                    Aspect = Aspect.AspectFill
                 };
 
                 var title = new Label
@@ -91,6 +102,7 @@ namespace G00348036.Views
                 layout.Children.Add(title);
                 layout.GestureRecognizers.Add(tapGestureRecognizer);
 
+                // Selection to determine where the method was called from and where to add
                 if (selection == 1)
                     slFavourites.Children.Add(layout);
                 else
@@ -98,6 +110,7 @@ namespace G00348036.Views
             }
         }
 
+        // Create a default display if there's no favourites saved, for design purposes
         private void LoadSliderInitial()
         {
             for (int i = 0; i < 5; i++)
@@ -110,16 +123,19 @@ namespace G00348036.Views
 
                 var image = new Image
                 {
-                    HeightRequest = 100,
-                    WidthRequest = 100,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand
+                    Source = "recipeIcon.png",
+                    HeightRequest = 70,
+                    WidthRequest = 70,
+                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                    Aspect = Aspect.AspectFill
                 };
 
                 var title = new Label
                 {
-                    Text = "Favourite",
+                    Text = "Add Your Favourites",
                     FontAttributes = FontAttributes.Bold,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    HorizontalOptions = LayoutOptions.Center
                 };
 
                 layout.Children.Add(image);
@@ -129,6 +145,7 @@ namespace G00348036.Views
         }
 
         #region Event handlers
+        // If a recipe is selected in either horizontal scroll bars, get the stacklayout and send it's styleId which is the recipe id
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             StackLayout slSender = (StackLayout)sender;

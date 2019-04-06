@@ -24,6 +24,8 @@ namespace G00348036.Views
             this.BindingContext = new FavouritesViewModel();
         }
 
+        #region Event Handlers
+        // When a list item is selected get the object of the recipe and send it's id to the RecipeInformation page to load full recipe
         private void LvFavourites_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             FavouriteRecipesData i = e.SelectedItem as FavouriteRecipesData;
@@ -31,11 +33,13 @@ namespace G00348036.Views
             Navigation.PushAsync(new RecipeInformation(i.id));
         }
 
+        // It button is selected get object and pass to viewmodel for deletion
         private void BtnDeleteFromFavourites_Clicked(object sender, EventArgs e)
         {
             // Get the object that was clicked
             FavouriteRecipesData f = (sender as Button).CommandParameter as FavouriteRecipesData;
             (BindingContext as FavouritesViewModel).RemoveFromFavourites(f);
         }
+        #endregion
     }
 }
