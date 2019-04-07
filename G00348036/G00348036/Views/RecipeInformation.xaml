@@ -25,13 +25,13 @@
                     <StackLayout>
                         <controls:CircleImage Source="{Binding image}" Style="{StaticResource ImageStyleSmall}"></controls:CircleImage>
                     </StackLayout>
-                    <StackLayout>
-                        <Label Text="{Binding Path=name}" Style="{StaticResource TextStyle}"/>
+                    <StackLayout VerticalOptions="Center">
+                        <Label Text="{Binding Path=name}" FontAttributes="Bold" VerticalTextAlignment="Center"/>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="   Amount: "/>
-                        <Label Text="{Binding Path=amount}"/>
-                        <Label Text="{Binding Path=unit}"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text="&#x09;&#x09; Amount: " VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Path=amount}" VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding Path=unit}" VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </StackLayout>
             </ViewCell>
@@ -51,10 +51,10 @@
             <ScrollView Grid.Row="0">
                 <StackLayout Orientation="Vertical">
                     <StackLayout x:Name="slFullRecipe" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
-                        <StackLayout x:Name="slImage" Orientation="Horizontal" Margin="1">
+                        <StackLayout x:Name="slImage" Orientation="Horizontal">
                             <Image Source="{Binding image}" Style="{StaticResource ImageStyleLarge}" HorizontalOptions="Center"></Image>
                         </StackLayout>
-                        <StackLayout x:Name="slTitle" Orientation="Horizontal" Margin="1">
+                        <StackLayout x:Name="slTitle" Orientation="Horizontal">
                             <Label x:Name="lblTitle" Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>
                         </StackLayout>
                         <BoxView Style="{StaticResource DividerLine}"></BoxView>
@@ -101,16 +101,14 @@
                     <Label Text="INSTRUCTIONS" Style="{StaticResource TitleStyle}"/>
                     <BoxView Style="{StaticResource DividerLine}"></BoxView>
                     
-                    <!--<StackLayout Orientation="Horizontal" Margin="1">
-                        <Label Text="{Binding Path=instructions}"/>
-                    </StackLayout>-->
                     <ListView x:Name="lvInstructions" Margin="2, 2, 2, 0" ItemsSource="{Binding Steps, Mode=TwoWay}"
-                        ItemTemplate="{StaticResource InstructionsTemplate}" HasUnevenRows="True"/>
+                        ItemTemplate="{StaticResource InstructionsTemplate}" HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="LightGray"/>
 
                     <Label Text="INGREDIENTS" Style="{StaticResource TitleStyle}"/>
                     <BoxView Style="{StaticResource DividerLine}"></BoxView>
+                    
                     <ListView x:Name="lvIngredients" Margin="2, 2, 2, 0" ItemsSource="{Binding ExtendedIngredients, Mode=TwoWay}"
-                        ItemTemplate="{StaticResource IngredientsTemplate}" HasUnevenRows="True"/>
+                        ItemTemplate="{StaticResource IngredientsTemplate}" HasUnevenRows="True" SeparatorVisibility="Default" SeparatorColor="LightGray"/>
                 </StackLayout>
             </ScrollView> 
         </Grid>

@@ -24,7 +24,7 @@
         <Style x:Key="ImageStyleLarge" TargetType="Image">
             <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
             <Setter Property="Aspect" Value="AspectFill"/>
-            <Setter Property="Margin" Value="0, 10, 10, 0"/>
+            <Setter Property="Margin" Value="0, 0, 10, 0"/>
         </Style>
         <Style x:Key="ImageStyleSmall" TargetType="Image">
             <Setter Property="HeightRequest" Value="50"/>
