@@ -2,7 +2,6 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:G00348036"
-             xmlns:local1="clr-namespace:G00348036.Views"
              x:Class="G00348036.MainPage">
 
     <TabbedPage.ToolbarItems>
@@ -19,10 +18,10 @@
         <ToolbarItem Text="Settings" Order="Secondary" />
     </TabbedPage.ToolbarItems>
 
-    <local1:HomePage Title="Home"/>
+    <local:HomePage Title="Home"/>
     <local:SearchByIngredients Title="Ingredient"/>
-    <local1:SearchByRecipe Title="Recipe"/>
+    <local:SearchByRecipe Title="Recipe"/>
     <local:SearchByImage Title="Image"/>
-    <local1:Favourites Title="Favourites"/>
+    <local:Favourites Title="Favourites"/>
 
 </TabbedPage>

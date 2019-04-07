@@ -18,8 +18,6 @@ namespace G00348036
         // by default params are passed by value, so need a by ref call instead
         protected void SetValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null)
         {
-            //if (backingField == value) return;
-
             if (EqualityComparer<T>.Default.Equals(backingField, value)) return;
             backingField = value;
             OnPropertyChanged(propertyName);

@@ -1,6 +1,4 @@
-﻿using G00348036.Views;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace G00348036
@@ -32,6 +30,7 @@ namespace G00348036
 
         // I wanted to implement a quick way to get through the list, so swiping will remove the recipe from the list
         // but from testing it's not the most intutitive feature but it still works.
+        // Also it doesn't seem to sometimes get the right object, as it could be due to the selected recipe passed in
         private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
         {
             // Get the object that was swiped and remove from list

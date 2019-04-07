@@ -10,6 +10,8 @@ namespace G00348036
 {
     public class PageService : IPageService
     {
+        // Method to get the current page and pass in the new page to be pushed onto the navigation stack
+        // This can be used throughout the model views
         public async Task PushAsync(Page page)
         {
             await Application.Current.MainPage.Navigation.PushAsync(page);

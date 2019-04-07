@@ -1,7 +1,4 @@
-﻿using G00348036.Views;
-using System;
-using System.Collections.ObjectModel;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace G00348036
 {

@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace G00348036.Views
+namespace G00348036
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class HomePage : ContentPage

@@ -1,16 +1,10 @@
-﻿using G00348036.Views;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using System.Collections.ObjectModel;
 
 namespace G00348036
 {
     public class RecipesViewModel : BaseViewModel
     {
+        #region == Private global variables ==
         private string url { get; set; }
         private int selection { get; set; }
 
@@ -26,8 +20,8 @@ namespace G00348036
         public ObservableCollection<RecipeResults> _recipeResultsConverted;
         public ObservableCollection<RecipeResults> RecipeResultsConverted
         {
-            get { return _results; }
-            set { SetValue(ref _results, value); }
+            get { return _recipeResultsConverted; }
+            set { SetValue(ref _recipeResultsConverted, value); }
         }
         
         // Selected ingredient
@@ -38,8 +32,9 @@ namespace G00348036
             set { SetValue(ref _selectedRecipe, value); }
         }
         
-        // Page service interface
+        // Page service interface, set up in contructor
         private readonly IPageService _pageService;
+        #endregion
 
         // Contructor
         public RecipesViewModel(IPageService pageService, string URL, int selection)
@@ -53,18 +48,21 @@ namespace G00348036
 
         private void getRecipeInfo()
         {
-            //If one then call is from searchByIngredients
+            //If 1 then call is from searchByIngredients or searchByImage, as the json returned can be parsed straight into a list
             if (selection == 1)
             {
+                // Get list of results from api
                 Results = Utils.GetApiData<RecipeResults>(url);
 
                 if (Results.Count == 0)
                 {
+                    // If no results are returned display error
                     _pageService.DisplayAlert("Error", "No recipes found using your input ingredients, please try again.", "OK", "CANCEL");
                 }
             }
             else
             {
+                //If 2 then call is from searchByRecipe, as the json returned is an object with a nested list which is then converted to a list object
                 SearchRecipesData RecipeResults = Utils.GetSingleApiData<SearchRecipesData>(url);
                 if (RecipeResults.results.Count == 0)
                 {
@@ -72,6 +70,7 @@ namespace G00348036
                     return;
                 }
 
+                // Get the nested list from the results and set as global variable 
                 RecipeResultsConverted = RecipeResults.results;
 
                 // As image url doesn't include the base URL prepend onto image for displaying.
@@ -82,13 +81,15 @@ namespace G00348036
             }
         }
 
-        // Add recipe to list 
+        #region == Public method ==
+        // Add recipe to favourites by passing object to utils class 
         public void AddToFavourites(RecipeResults s)
         {
             Utils.AddToFavourites(s);
         }
 
         // Removes recipe from list when swiped
+        // It doesn't seem to always get the right object, as it could be due to the selected recipe passed in
         public void RemoveFromList(RecipeResults s)
         {
             Results.Remove(s);
@@ -102,5 +103,6 @@ namespace G00348036
             // Part of the page class in Xamarin forms, use an interface
             _pageService.PushAsync(new RecipeInformation(id));
         }
+        #endregion
     }
 }

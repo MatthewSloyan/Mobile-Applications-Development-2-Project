@@ -39,7 +39,8 @@ namespace G00348036
             {
                 Text = "DEL",
                 WidthRequest = 70,
-                Style = (Style)Application.Current.Resources["ButtonStyleFull"]
+                Style = (Style)Application.Current.Resources["ButtonStyleFull"],
+                BackgroundColor = Color.FromHex("e55050")
             };
 
             // Add clicked events

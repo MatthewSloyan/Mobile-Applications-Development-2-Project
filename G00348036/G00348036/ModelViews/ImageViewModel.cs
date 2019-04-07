@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
 
 namespace G00348036
 {
@@ -64,6 +63,7 @@ namespace G00348036
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
                     result = streamReader.ReadToEnd();
+                    // Handle error if no results are returned
                     if (result == "")
                     {
                         _pageService.DisplayAlert("Error", "No ingredients found in image, please try again.", "OK", "CANCEL");
