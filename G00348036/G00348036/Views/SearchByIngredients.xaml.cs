@@ -73,6 +73,8 @@ namespace G00348036
         // Search for recipes using the text entries
         private void BtnSearchByIngredient_Clicked(object sender, EventArgs e)
         {
+            activityInd.IsEnabled = true;
+
             string dynamicString = "";
 
             // Iterate through each child of the overall stacklayout in xaml then
@@ -102,6 +104,8 @@ namespace G00348036
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=15&ranking=1&fillIngredients=true&ingredients=" + strippedString;
             System.Diagnostics.Debug.WriteLine(URL);
             Navigation.PushAsync(new SearchByIngredientsListView(URL, 1));
+
+            activityInd.IsEnabled = false;
         }
         #endregion
     }

@@ -11,6 +11,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <ActivityIndicator x:Name="activityInd" Grid.Row="1" HorizontalOptions="Center" Color="Blue" IsRunning="False" />
+
             <Label Text="SEARCH BY INGREDIENTS" Grid.Row="0" Margin="5"/>
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical">
