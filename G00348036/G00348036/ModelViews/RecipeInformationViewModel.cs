@@ -5,14 +5,32 @@ using System.Threading.Tasks;
 
 namespace G00348036
 {
-    class RecipeInformationViewModel
+    class RecipeInformationViewModel : BaseViewModel
     {
         private string Id { get; set; }
 
         //global list of recipes
-        public RecipeInformationData Result { get; set; }
-        public List<ExtendedIngredient> ExtendedIngredients { get; set; }
-        public List<Step> Steps { get; set; }
+        // Needed to call the set value method in the BaseViewModel
+        private RecipeInformationData _results;
+        public RecipeInformationData Result
+        {
+            get { return _results; }
+            set { SetValue(ref _results, value); }
+        }
+        
+        private List<ExtendedIngredient> _extendedIngredients;
+        public List<ExtendedIngredient> ExtendedIngredients
+        {
+            get { return _extendedIngredients; }
+            set { SetValue(ref _extendedIngredients, value); }
+        }
+
+        private List<Step> _steps;
+        public List<Step> Steps
+        {
+            get { return _steps; }
+            set { SetValue(ref _steps, value); }
+        }
 
         // Page service interface, set up in contructor
         private readonly IPageService _pageService;
