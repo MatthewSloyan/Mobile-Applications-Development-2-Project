@@ -27,6 +27,8 @@ namespace G00348036
         {
             RecipeResults s = (sender as Button).CommandParameter as RecipeResults;
             (BindingContext as RecipesViewModel).AddToFavourites(s);
+
+            DisplayAlert("Success", "Recipe has been added to favourites.", "OK");
         }
 
         // I wanted to implement a quick way to get through the list, so swiping will remove the recipe from the list

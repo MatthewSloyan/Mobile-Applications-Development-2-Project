@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace G00348036
 {
@@ -27,29 +28,34 @@ namespace G00348036
         // Load the recipe information from the api
         private void getRecipeInfo()
         {
-            try
+            // Starts a background task, which will load the page and then the data when ready. It creates a better user experience rather 
+            // than having the app hang while the data is loaded.
+            Task.Factory.StartNew(() =>
             {
-                // Get overall recipe information using the url and passed in id
-                string url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + Id + "/information";
-                Result = Utils.GetSingleApiData<RecipeInformationData>(url);
-                ExtendedIngredients = Result.extendedIngredients;
-
-                // As image url doesn't include the base URL prepend onto image for displaying.
-                for (int i = 0; i < ExtendedIngredients.Count; ++i)
+                try
                 {
-                    ExtendedIngredients[i].image = "https://spoonacular.com/cdn/ingredients_100x100/" + ExtendedIngredients[i].image;
-                }
+                    // Get overall recipe information using the url and passed in id
+                    string url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + Id + "/information";
+                    Result = Utils.GetSingleApiData<RecipeInformationData>(url);
+                    ExtendedIngredients = Result.extendedIngredients;
 
-                // Get specific intructions with steps, as the above information doesn't include great instructions
-                string urlIntructions = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + Id + "/analyzedInstructions?stepBreakdown=true";
-                ObservableCollection<InstructionStepsData> Instructions = Utils.GetApiData<InstructionStepsData>(urlIntructions);
-                Steps = Instructions[0].steps;
-            }
-            catch (Exception)
-            {
-                // If exception display error
-                _pageService.DisplayAlert("Error", "No recipe found, please try again.", "OK", "CANCEL");
-            }
+                    // As image url doesn't include the base URL prepend onto image for displaying.
+                    for (int i = 0; i < ExtendedIngredients.Count; ++i)
+                    {
+                        ExtendedIngredients[i].image = "https://spoonacular.com/cdn/ingredients_100x100/" + ExtendedIngredients[i].image;
+                    }
+
+                    // Get specific intructions with steps, as the above information doesn't include great instructions
+                    string urlIntructions = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + Id + "/analyzedInstructions?stepBreakdown=true";
+                    ObservableCollection<InstructionStepsData> Instructions = Utils.GetApiData<InstructionStepsData>(urlIntructions);
+                    Steps = Instructions[0].steps;
+                }
+                catch (Exception)
+                {
+                    // If exception display error
+                    _pageService.DisplayAlert("Error", "No recipe found, please try again.", "OK", "CANCEL");
+                }
+            });
         }
     }
 }

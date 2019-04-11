@@ -5,7 +5,7 @@
 using ImageCircle.Forms.Plugin.Abstractions;
 using System;
 using System.Collections.ObjectModel;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -57,12 +57,17 @@ namespace G00348036
         private void SetUpRandom()
         {
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=12";
-
-            // Get random results and convert to same type as favoutites and the json is different
-            RandomRecipesData ResultsRandom = Utils.GetSingleApiData<RandomRecipesData>(URL);
-            ResultsRandomCon = ResultsRandom.recipes;
-
-            LoadSliderInformation(ResultsRandomCon, 2);
+            try
+            {
+                // Get random results and convert to same type as favoutites and the json is different
+                RandomRecipesData ResultsRandom = Utils.GetSingleApiData<RandomRecipesData>(URL);
+                ResultsRandomCon = ResultsRandom.recipes;
+                LoadSliderInformation(ResultsRandomCon, 2);
+            }
+            catch (Exception)
+            {
+                DisplayAlert("Error", "Random Recipes can not be loaded.", "OK");
+            }
         }
 
         private void LoadSliderInformation(ObservableCollection<RecipesData> list, int selection)

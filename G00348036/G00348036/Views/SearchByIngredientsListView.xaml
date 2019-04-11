@@ -25,7 +25,7 @@
                         <!--Command="{Binding AddToFavouritesCommand}" CommandParameter="{Binding SelectedRecipe}"-->
                     </StackLayout>
                     <Frame.GestureRecognizers>
-                        <SwipeGestureRecognizer Direction="Left,Right" Swiped="SwipeGestureRecognizer_Swiped" CommandParameter="{Binding SelectedRecipe}"/>
+                        <SwipeGestureRecognizer Direction="Left,Right" Swiped="SwipeGestureRecognizer_Swiped" CommandParameter="{Binding .}"/>
                     </Frame.GestureRecognizers>
                 </Frame>
             </ViewCell>
@@ -41,6 +41,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
+            <ActivityIndicator x:Name="activityInd" Grid.Row="0" HorizontalOptions="Center" Color="Blue" IsRunning="False" />
 
             <ListView x:Name="lvRecipes" Grid.Row="0" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True" 
                 SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" ItemsSource="{Binding Results, Mode=TwoWay}" 

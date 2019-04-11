@@ -54,36 +54,44 @@ namespace G00348036
             // than having the app hang while the data is loaded.
             Task getRecipeData = Task.Factory.StartNew(() =>
             {
-               //If 1 then call is from searchByIngredients or searchByImage, as the json returned can be parsed straight into a list
-                if (selection == 1)
+                try
                 {
-                    // Get list of results from api
-                    Results = Utils.GetApiData<RecipeResults>(url);
-
-                    if (Results.Count == 0)
+                    //If 1 then call is from searchByIngredients or searchByImage, as the json returned can be parsed straight into a list
+                    if (selection == 1)
                     {
-                        // If no results are returned display error
-                        _pageService.DisplayAlert("Error", "No recipes found using your input ingredients, please try again.", "OK", "CANCEL");
+                        // Get list of results from api
+                        Results = Utils.GetApiData<RecipeResults>(url);
+
+                        if (Results.Count == 0)
+                        {
+                            // If no results are returned display error
+                            _pageService.DisplayAlert("Error", "No recipes found using your input ingredients, please try again.", "OK", "CANCEL");
+                        }
+                    }
+                    else
+                    {
+                        //If 2 then call is from searchByRecipe, as the json returned is an object with a nested list which is then converted to a list object
+                        SearchRecipesData RecipeResults = Utils.GetSingleApiData<SearchRecipesData>(url);
+                        if (RecipeResults.results.Count == 0)
+                        {
+                            _pageService.DisplayAlert("Error", "No recipes found using your inputs, please try again.", "OK", "CANCEL");
+                            return;
+                        }
+
+                        // Get the nested list from the results and set as global variable 
+                        RecipeResultsConverted = RecipeResults.results;
+
+                        // As image url doesn't include the base URL prepend onto image for displaying.
+                        for (int i = 0; i < RecipeResultsConverted.Count; ++i)
+                        {
+                            RecipeResultsConverted[i].image = "https://spoonacular.com/recipeImages/" + RecipeResultsConverted[i].image;
+                        }
                     }
                 }
-                else
+                catch (Exception)
                 {
-                    //If 2 then call is from searchByRecipe, as the json returned is an object with a nested list which is then converted to a list object
-                    SearchRecipesData RecipeResults = Utils.GetSingleApiData<SearchRecipesData>(url);
-                    if (RecipeResults.results.Count == 0)
-                    {
-                        _pageService.DisplayAlert("Error", "No recipes found using your inputs, please try again.", "OK", "CANCEL");
-                        return;
-                    }
-
-                    // Get the nested list from the results and set as global variable 
-                    RecipeResultsConverted = RecipeResults.results;
-
-                    // As image url doesn't include the base URL prepend onto image for displaying.
-                    for (int i = 0; i < RecipeResultsConverted.Count; ++i)
-                    {
-                        RecipeResultsConverted[i].image = "https://spoonacular.com/recipeImages/" + RecipeResultsConverted[i].image;
-                    }
+                    // Throw general error message if something unexpected happens
+                    _pageService.DisplayAlert("Error", "Error occured, please try again.", "OK", "CANCEL");
                 }
             });
         }

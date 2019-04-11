@@ -7,10 +7,14 @@ namespace G00348036
 	public partial class SearchByIngredientsListView : ContentPage
 	{
         public SearchByIngredientsListView(string URL, int selection)
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent ();
+
+            // Tried to implement a loading activity but it doesn't seem to before the page loads
+            activityInd.IsEnabled = true;
             this.BindingContext = new RecipesViewModel(new PageService(), URL, selection);
-		}
+            activityInd.IsEnabled = false;
+        }
 
         #region Event Handlers
         // When a list item is selected get the object of the recipe and send it's id to the RecipeInformation page to load full recipe
@@ -26,6 +30,8 @@ namespace G00348036
             RecipeResults s = (sender as Button).CommandParameter as RecipeResults;
 
             (BindingContext as RecipesViewModel).AddToFavourites(s);
+
+            DisplayAlert("Success", "Recipe has been added to favourites.", "OK");
         }
 
         // I wanted to implement a quick way to get through the list, so swiping will remove the recipe from the list
