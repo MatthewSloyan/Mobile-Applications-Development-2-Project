@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace G00348036
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Favourites : ContentPage
 	{
 		public Favourites ()
@@ -38,6 +34,25 @@ namespace G00348036
             // Get the object that was clicked
             RecipesData f = (sender as Button).CommandParameter as RecipesData;
             (BindingContext as FavouritesViewModel).RemoveFromFavourites(f);
+
+            // Check if vibration property exists
+            if (Application.Current.Properties.ContainsKey("vibration"))
+            {
+                // Get value set
+                string id = Application.Current.Properties["vibration"].ToString();
+
+                // If true then sound is on so play sound
+                if (id == "True")
+                {
+                    try
+                    {
+                        var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                        player.Load("eraseSound.wav");
+                        player.Play();
+                    }
+                    catch (Exception){}
+                }
+            }
         }
         #endregion
     }

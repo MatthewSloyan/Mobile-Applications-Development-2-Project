@@ -133,6 +133,7 @@
     <Content Include="ByImage.jpg" />
     <Content Include="ByIngredients.jpg" />
     <Content Include="ByRecipe.jpg" />
+    <Content Include="Assets\eraseSound.wav" />
     <Content Include="Favourites.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <EmbeddedResource Include="recipeIcon.png" />

@@ -16,7 +16,7 @@
                     <Label Text="Vibration " VerticalTextAlignment="Center"/>
                     <Switch x:Name="switchVibration" Toggled="SwitchVibration_Toggled" VerticalOptions="Center"/>
                 </StackLayout>
-                
+
                 <Label Text="APPLICATION INFORMATION" Grid.Row="0" Margin="5"/>
                 <BoxView Style="{StaticResource DividerLine}"></BoxView>
                 <StackLayout Orientation="Horizontal" Margin="7">
@@ -32,7 +32,6 @@
                     <Label Text="G00348036@gmit.ie"/>
                 </StackLayout>
             </StackLayout>
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -17,14 +17,10 @@ namespace G00348036
 			InitializeComponent ();
 		}
 
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
-        {
-
-        }
-
         private void SwitchVibration_Toggled(object sender, ToggledEventArgs e)
         {
-
+            // Set the value of vibration to either true or false
+            Application.Current.Properties["vibration"] = e.Value;
         }
     }
 }
