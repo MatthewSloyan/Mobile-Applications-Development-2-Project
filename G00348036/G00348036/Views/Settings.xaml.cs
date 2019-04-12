@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace G00348036
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Settings : ContentPage
 	{
 		public Settings ()
@@ -27,6 +22,7 @@ namespace G00348036
                 // Get value
                 string id = Application.Current.Properties["vibration"].ToString();
                 
+                // If true then sound is on
                 if (id == "True")
                 {
                     switchVibration.IsToggled = true;
