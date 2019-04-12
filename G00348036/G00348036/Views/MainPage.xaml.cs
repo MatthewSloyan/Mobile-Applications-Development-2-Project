@@ -16,7 +16,7 @@ namespace G00348036
 
         private void ToolbarItem_Clicked(object sender, System.EventArgs e)
         {
-
+            Navigation.PushAsync(new Settings());
         }
     }
 }
