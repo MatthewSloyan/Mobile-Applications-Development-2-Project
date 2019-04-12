@@ -1,10 +1,6 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Plugin.Media;
 
@@ -25,6 +21,16 @@ namespace G00348036.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+        }
+
+        // From research I have found there's a bug if a page is returned to either a tabbed or master details page it crashes on Android.
+        // A fix for this is overriding the back button and moving the task to the back of the activity stack seems to solve the problem, 
+        // which I found below at the link. It seems it's a common problem.
+        // https://forums.xamarin.com/discussion/81793/back-button-from-causes-crash-on-android-when-page-is-masterdetail
+        public override void OnBackPressed()
+        {
+            this.MoveTaskToBack(true);
+            base.OnBackPressed();
         }
     }
 }

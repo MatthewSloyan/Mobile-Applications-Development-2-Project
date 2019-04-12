@@ -52,7 +52,7 @@ namespace G00348036
         {
             // Starts a background task, which will load the page and then the data when ready. It creates a better user experience rather 
             // than having the app hang while the data is loaded.
-            Task getRecipeData = Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
