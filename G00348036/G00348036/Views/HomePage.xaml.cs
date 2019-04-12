@@ -57,6 +57,8 @@ namespace G00348036
         private void SetUpRandom()
         {
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=12";
+
+            // I tried to implement a background task here to speed up initial app load, but I couldn't get it work as it would crash.
             try
             {
                 // Get random results and convert to same type as favoutites and the json is different
@@ -87,6 +89,7 @@ namespace G00348036
                     Source = item.image,
                     HeightRequest = 70,
                     WidthRequest = 70,
+                    Margin = new Thickness(0, 10, 0, 0),
                     HorizontalOptions = LayoutOptions.CenterAndExpand,
                     Aspect = Aspect.AspectFill
                 };

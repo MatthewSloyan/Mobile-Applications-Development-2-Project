@@ -5,17 +5,7 @@
              x:Class="G00348036.MainPage">
 
     <TabbedPage.ToolbarItems>
-        <!--<ToolbarItem Text="Test" Order="Primary">
-
-        </ToolbarItem>
-        <ToolbarItem Text="Test1" Order="Primary">
-
-        </ToolbarItem>
-        <ToolbarItem Text="Test2" Order="Primary">
-
-        </ToolbarItem>-->
-        <!--<ToolbarItem Name="Refresh" Order="Primary" Text="Refresh" Icon="refresh.png" Priority="0"/>-->
-        <ToolbarItem Text="Settings" Order="Secondary" />
+        <ToolbarItem Text="Settings" Order="Secondary" Clicked="ToolbarItem_Clicked"/>
     </TabbedPage.ToolbarItems>
 
     <local:HomePage Title="Home"/>

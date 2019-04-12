@@ -10,7 +10,8 @@ namespace G00348036
         private string Id { get; set; }
 
         //global list of recipes
-        // Needed to call the set value method in the BaseViewModel
+        // Needed to call the set value method in the BaseViewModel to allow it to change the values if changed,
+        // This allows the data to load once it's ready improving the user experience
         private RecipeInformationData _results;
         public RecipeInformationData Result
         {

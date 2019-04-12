@@ -30,16 +30,16 @@ namespace G00348036
             var addButton = new Button
             {
                 Text = "ADD",
-                WidthRequest = 70,
+                WidthRequest = 65,
                 // Get style from global app.xaml page
-                Style = (Style)Application.Current.Resources["ButtonStyleFull"]
+                Style = (Style)Application.Current.Resources["ButtonStyleSmall"]
             };
 
             var deleteButton = new Button
             {
                 Text = "DEL",
                 WidthRequest = 70,
-                Style = (Style)Application.Current.Resources["ButtonStyleFull"],
+                Style = (Style)Application.Current.Resources["ButtonStyleSmall"],
                 BackgroundColor = Color.FromHex("e55050")
             };
 
