@@ -15,7 +15,28 @@ namespace G00348036
 		public Settings ()
 		{
 			InitializeComponent ();
-		}
+
+            CheckIfSoundIsOn();
+        }
+
+        private void CheckIfSoundIsOn()
+        {
+            // Check if vibration property exists
+            if (Application.Current.Properties.ContainsKey("vibration"))
+            {
+                // Get value
+                string id = Application.Current.Properties["vibration"].ToString();
+                
+                if (id == "True")
+                {
+                    switchVibration.IsToggled = true;
+                }
+                else
+                {
+                    switchVibration.IsToggled = false;
+                }
+            }
+        }
 
         private void SwitchVibration_Toggled(object sender, ToggledEventArgs e)
         {

@@ -13,7 +13,7 @@
                 <Label Text="SETTINGS" Margin="7"/>
                 <BoxView Style="{StaticResource DividerLine}"></BoxView>
                 <StackLayout Orientation="Horizontal" Margin="7">
-                    <Label Text="Vibration " VerticalTextAlignment="Center"/>
+                    <Label Text="Sound " VerticalTextAlignment="Center"/>
                     <Switch x:Name="switchVibration" Toggled="SwitchVibration_Toggled" VerticalOptions="Center"/>
                 </StackLayout>
 
