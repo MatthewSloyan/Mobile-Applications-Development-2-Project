@@ -8,7 +8,7 @@ namespace G00348036
         {
             InitializeComponent();
 
-           // NavigationPage.SetHasNavigationBar(this, false);
+            //NavigationPage.SetHasNavigationBar(this, false);
             //NavigationPage.BarTextColorProperty = Color.FromHex("e55050");
             //SetValue(NavigationPage.BarTextColorProperty, Color.White);
             //SetValue(NavigationPage.Na, Color.FromHex("e55050"));

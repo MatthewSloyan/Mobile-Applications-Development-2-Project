@@ -14,11 +14,11 @@
                         <StackLayout Orientation="Vertical">
                             <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyleList}"/>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                <Label Text="Ready in (mins):"/>
+                                <Label Text="Time (m):"/>
                                 <Label Text="{Binding Path=readyInMinutes}" Style="{StaticResource TextStyle}"/>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                <Label Text=" No of Servings:"/>
+                                <Label Text="Servings:"/>
                                 <Label Text="{Binding Path=servings}" Style="{StaticResource TextStyle}"/>
                             </StackLayout>
                         </StackLayout>

@@ -88,7 +88,7 @@ namespace G00348036
                     if (innerStacklayoutItem.StyleId == "entryIngredient")
                     {
                         var entry = (Entry)innerStacklayoutItem;
-                        if (entry.Text != "")
+                        if (entry.Text != null)
                         {
                             dynamicString += entry.Text.Trim() + "%2C";
                         }
@@ -100,7 +100,6 @@ namespace G00348036
             string strippedString = dynamicString.Replace(" ", string.Empty);
 
             string URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=15&ranking=1&fillIngredients=true&ingredients=" + strippedString;
-            System.Diagnostics.Debug.WriteLine(URL);
             Navigation.PushAsync(new SearchByIngredientsListView(URL, 1));
         }
         #endregion

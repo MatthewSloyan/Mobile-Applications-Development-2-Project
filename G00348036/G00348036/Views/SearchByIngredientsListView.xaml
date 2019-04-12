@@ -13,9 +13,11 @@
                         <controls:CircleImage Source="{Binding image}" Style="{StaticResource ImageStyle}"></controls:CircleImage>
                         <StackLayout Orientation="Vertical">
                             <Label Text="{Binding Path=title}" Style="{StaticResource TitleStyleList}"/>
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                                 <Label Text="Used:"/>
                                 <Label Text="{Binding Path=usedIngredientCount}" Style="{StaticResource TextStyle}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                                 <Label Text="Missing:"/>
                                 <Label Text="{Binding Path=missedIngredientCount}" Style="{StaticResource TextStyle}"/>
                             </StackLayout>

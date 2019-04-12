@@ -52,7 +52,7 @@
                 <StackLayout Orientation="Vertical">
                     <StackLayout x:Name="slFullRecipe" HorizontalOptions="FillAndExpand" BindingContext="{Binding Result}">
                         <StackLayout x:Name="slImage" Orientation="Horizontal">
-                            <Image Source="{Binding image}" Style="{StaticResource ImageStyleLarge}" HorizontalOptions="Center"></Image>
+                            <Image Source="{Binding image}" Style="{StaticResource ImageStyleLarge}"></Image>
                         </StackLayout>
                         <StackLayout x:Name="slTitle" Orientation="Horizontal">
                             <Label x:Name="lblTitle" Text="{Binding Path=title}" Style="{StaticResource TitleStyle}"/>

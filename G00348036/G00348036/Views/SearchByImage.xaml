@@ -30,6 +30,7 @@
                         <Picker.SelectedIndex>1</Picker.SelectedIndex>
                     </Picker>
                 </StackLayout>
+                <Label Text="Please take picture on a plain background and space out ingredients." FontAttributes="Bold"/>
                 <Button x:Name="btnTakePicture" Text="Take Picture" Style="{StaticResource ButtonStyleFull}" Clicked="BtnTakePicture_Clicked"/>
             </StackLayout>
 

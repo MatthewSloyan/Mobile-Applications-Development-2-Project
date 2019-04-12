@@ -16,8 +16,7 @@
                 <StackLayout Orientation="Vertical">
                     <StackLayout x:Name="slIngredients" Orientation="Vertical" Margin="3, 3, 3, 3"></StackLayout>
                     <StackLayout Orientation="Vertical" Margin="3, 3, 3, 3">
-                        <Button x:Name="btnSearchByIngredient" Text="SEARCH" Margin="1" Style="{StaticResource ButtonStyleFull}" 
-                            Command="{Binding LoadRecipePageCommand}" Clicked="BtnSearchByIngredient_Clicked"/>
+                        <Button x:Name="btnSearchByIngredient" Text="SEARCH" Margin="1" Style="{StaticResource ButtonStyleFull}" Clicked="BtnSearchByIngredient_Clicked"/>
                     </StackLayout>
                 </StackLayout>
             </ScrollView>

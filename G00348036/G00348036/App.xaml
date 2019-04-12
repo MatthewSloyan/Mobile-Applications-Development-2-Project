@@ -16,6 +16,7 @@
             <Setter Property="FontSize" Value="Medium"/>
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
         </Style>
         <Style x:Key="TextStyle" TargetType="Label">
@@ -23,7 +24,7 @@
         </Style>
         <Style x:Key="ImageStyleLarge" TargetType="Image">
             <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            <Setter Property="Aspect" Value="AspectFill"/>
+            <Setter Property="Aspect" Value="Fill"/>
             <Setter Property="Margin" Value="0, 0, 10, 0"/>
         </Style>
         <Style x:Key="ImageStyleSmall" TargetType="Image">
@@ -34,8 +35,8 @@
             <Setter Property="Aspect" Value="AspectFill"/>
         </Style>
         <Style x:Key="ImageStyle" TargetType="Image">
-            <Setter Property="HeightRequest" Value="120"/>
-            <Setter Property="WidthRequest" Value="120"/>
+            <Setter Property="HeightRequest" Value="115"/>
+            <Setter Property="WidthRequest" Value="115"/>
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="HorizontalOptions" Value="Start"/>
             <Setter Property="Aspect" Value="AspectFill"/>
