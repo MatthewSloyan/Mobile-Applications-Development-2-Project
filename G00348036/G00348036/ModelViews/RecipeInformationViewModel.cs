@@ -58,7 +58,7 @@ namespace G00348036
                     Result = Utils.GetSingleApiData<RecipeInformationData>(url);
                     ExtendedIngredients = Result.extendedIngredients;
 
-                    // As image url doesn't include the base URL prepend onto image for displaying.
+                    //// As image url doesn't include the base URL prepend onto image for displaying.
                     for (int i = 0; i < ExtendedIngredients.Count; ++i)
                     {
                         ExtendedIngredients[i].image = "https://spoonacular.com/cdn/ingredients_100x100/" + ExtendedIngredients[i].image;
@@ -67,12 +67,17 @@ namespace G00348036
                     // Get specific intructions with steps, as the above information doesn't include great instructions
                     string urlIntructions = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + Id + "/analyzedInstructions?stepBreakdown=true";
                     ObservableCollection<InstructionStepsData> Instructions = Utils.GetApiData<InstructionStepsData>(urlIntructions);
-                    Steps = Instructions[0].steps;
+                    
+                    // Check if instruction are available as some ingredients don't contain detailed steps, which was causing the app to crash.
+                    if (Instructions.Count != 0)
+                    {
+                        Steps = Instructions[0].steps;
+                    }
                 }
                 catch (Exception)
                 {
                     // If exception display error
-                    _pageService.DisplayAlert("Error", "No recipe found, please try again.", "OK", "CANCEL");
+                    _pageService.DisplayAlert("Error", "Error loading recipe, please try again.", "OK", "CANCEL");
                 }
             });
         }

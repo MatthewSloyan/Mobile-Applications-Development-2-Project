@@ -20,6 +20,13 @@ namespace G00348036
         // When a list item is selected get the object of the recipe and send it's id to the RecipeInformation page to load full recipe
         private void LvRecipes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            // From testing I found that on pressing the back button the selected value would be null which would cause the app to crash
+            // To fix this I have implemented a return if null which seems to work perfectly.
+            if (e.SelectedItem == null)
+            {
+                return;
+            }
+
             RecipeResults i = e.SelectedItem as RecipeResults;
             (BindingContext as RecipesViewModel).NavigatePage(i.id);
         }

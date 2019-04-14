@@ -17,10 +17,10 @@ namespace G00348036
         private void CheckIfSoundIsOn()
         {
             // Check if vibration property exists
-            if (Application.Current.Properties.ContainsKey("vibration"))
+            if (Application.Current.Properties.ContainsKey("sound"))
             {
                 // Get value
-                string id = Application.Current.Properties["vibration"].ToString();
+                string id = Application.Current.Properties["sound"].ToString();
                 
                 // If true then sound is on
                 if (id == "True")
@@ -37,7 +37,7 @@ namespace G00348036
         private void SwitchVibration_Toggled(object sender, ToggledEventArgs e)
         {
             // Set the value of vibration to either true or false
-            Application.Current.Properties["vibration"] = e.Value;
+            Application.Current.Properties["sound"] = e.Value;
         }
     }
 }
