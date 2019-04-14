@@ -28,10 +28,12 @@ namespace G00348036.Droid
         // A fix for this is overriding the back button and moving the task to the back of the activity stack seems to solve the problem, 
         // which I found below at the link. It seems it's a common problem.
         // https://forums.xamarin.com/discussion/81793/back-button-from-causes-crash-on-android-when-page-is-masterdetail
-        public override void OnBackPressed()
-        {
-            this.MoveTaskToBack(true);
-            base.OnBackPressed();
-        }
+
+        // From further testing I have found that this is not needed, as it has been fixed. 
+        //public override void OnBackPressed()
+        //{
+        //    this.MoveTaskToBack(true);
+        //    base.OnBackPressed();
+        //}
     }
 }
