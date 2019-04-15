@@ -26,14 +26,14 @@ namespace G00348036
             set { SetValue(ref _recipeResultsConverted, value); }
         }
         
-        // Selected ingredient
-        private RecipeResults _selectedRecipe;
-        public RecipeResults SelectedRecipe
+        // Selected Recipe
+        private RecipesData _selectedRecipe;
+        public RecipesData SelectedRecipe
         {
             get { return _selectedRecipe; }
             set { SetValue(ref _selectedRecipe, value); }
         }
-        
+
         // Page service interface, set up in contructor
         private readonly IPageService _pageService;
         #endregion
@@ -105,11 +105,11 @@ namespace G00348036
 
         // Removes recipe from list when swiped
         // It doesn't seem to always get the right object, as it could be due to the selected recipe passed in
-        public void RemoveFromList(RecipeResults s)
-        {
-            Results.Remove(s);
-            SelectedRecipe = null;
-        }
+        //public void RemoveFromList(RecipeResults s)
+        //{
+        //    Results.Remove(s);
+        //    SelectedRecipe = null;
+        //}
 
         // Navigate using page service
         public void NavigatePage(string id)

@@ -23,7 +23,7 @@ namespace G00348036
         {
             InitializeComponent();
             // Only load Random recipes once on start up as it slows down the app too much if loading each time the page is loaded
-            //SetUpRandom();
+            SetUpRandom();
             OnAppearing();
         }
 

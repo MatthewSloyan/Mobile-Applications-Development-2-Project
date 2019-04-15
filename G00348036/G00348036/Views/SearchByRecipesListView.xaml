@@ -25,9 +25,9 @@
                         <Button x:Name="btnAddToFavourites" Text="ADD" Style="{StaticResource ButtonStyleRound}" 
                                     Clicked="BtnAddToFavourites_Clicked" CommandParameter="{Binding .}"/>
                     </StackLayout>
-                    <Frame.GestureRecognizers>
+                    <!--<Frame.GestureRecognizers>
                         <SwipeGestureRecognizer Direction="Left,Right" Swiped="SwipeGestureRecognizer_Swiped" CommandParameter="{Binding SelectedRecipe}"/>
-                    </Frame.GestureRecognizers>
+                    </Frame.GestureRecognizers>-->
                 </Frame>
             </ViewCell>
         </DataTemplate>
@@ -42,7 +42,8 @@
             </Grid.RowDefinitions>
 
             <ListView x:Name="lvRecipes" Grid.Row="1" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True"
-                      ItemsSource="{Binding RecipeResultsConverted, Mode=TwoWay}" ItemTemplate="{StaticResource RecipeTemplate}" ItemSelected="LvRecipes_ItemSelected"/>
+                 ItemsSource="{Binding RecipeResultsConverted, Mode=TwoWay}" ItemTemplate="{StaticResource RecipeTemplate}" 
+                      SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" ItemTapped="LvRecipes_ItemSelected"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

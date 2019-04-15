@@ -28,7 +28,7 @@
 
             <ListView x:Name="lvFavourites" Grid.Row="0" Margin="5" VerticalOptions="FillAndExpand" HasUnevenRows="True" 
                 SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" ItemsSource="{Binding Results, Mode=TwoWay}" 
-                    ItemTemplate="{StaticResource FavouritesTemplate}" ItemSelected="LvFavourites_ItemSelected"/>
+                    ItemTemplate="{StaticResource FavouritesTemplate}" ItemTapped="LvFavourites_ItemSelected"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

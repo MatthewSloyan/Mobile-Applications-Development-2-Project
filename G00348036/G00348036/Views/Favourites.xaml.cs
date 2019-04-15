@@ -54,7 +54,7 @@ namespace G00348036
                     try
                     {
                         var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                        player.Load("eraseSound.wav");
+                        player.Load("erasesound.wav");
                         player.Play();
                     }
                     catch (Exception){}
