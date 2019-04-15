@@ -115,8 +115,5 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Favourites.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Assets\erasesound.wav" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

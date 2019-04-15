@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using Plugin.Media;
+﻿using Plugin.Media;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

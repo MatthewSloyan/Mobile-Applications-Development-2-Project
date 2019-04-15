@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.IO;
+using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -53,8 +54,12 @@ namespace G00348036
                 {
                     try
                     {
+                        // Read the sound file from the assets folder
+                        var assembly = IntrospectionExtensions.GetTypeInfo(typeof(MainPage)).Assembly;
+                        Stream stream = assembly.GetManifestResourceStream("G00348036.Assets.erasesound.wav");
+
                         var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                        player.Load("erasesound.wav");
+                        player.Load(stream);
                         player.Play();
                     }
                     catch (Exception){}
