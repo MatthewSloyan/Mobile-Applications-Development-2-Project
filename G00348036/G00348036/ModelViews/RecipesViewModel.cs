@@ -7,8 +7,8 @@ namespace G00348036
     public class RecipesViewModel : BaseViewModel
     {
         #region == Private global variables ==
-        private string url { get; set; }
-        private int selection { get; set; }
+        private string Url { get; set; }
+        private int Selection { get; set; }
 
         //global list of Recipes for search by ingredients
         private ObservableCollection<RecipeResults> _results;
@@ -42,8 +42,8 @@ namespace G00348036
         public RecipesViewModel(IPageService pageService, string URL, int selection)
         {
             _pageService = pageService;
-            this.url = URL;
-            this.selection = selection;
+            this.Url = URL;
+            this.Selection = selection;
 
             getRecipeInfo();
         }
@@ -52,29 +52,32 @@ namespace G00348036
         {
             // Starts a background task, which will load the page and then the data when ready. It creates a better user experience rather 
             // than having the app hang while the data is loaded.
+
             Task.Factory.StartNew(() =>
             {
                 try
                 {
                     //If 1 then call is from searchByIngredients or searchByImage, as the json returned can be parsed straight into a list
-                    if (selection == 1)
+                    if (Selection == 1)
                     {
                         // Get list of results from api
-                        Results = Utils.GetApiData<RecipeResults>(url);
+                        Results = Utils.GetApiData<RecipeResults>(Url);
 
-                        if (Results.Count == 0)
+                        if (Results.Count == 0 || Results == null)
                         {
                             // If no results are returned display error
-                            _pageService.DisplayAlert("Error", "No recipes found using your input ingredients, please try again.", "OK", "CANCEL");
+                            // For some reason this was causing an unhandled expection
+                            //_pageService.DisplayAlert("Error", "No recipes found using your input ingredients, please try again.", "OK", "CANCEL");
                         }
                     }
                     else
                     {
                         //If 2 then call is from searchByRecipe, as the json returned is an object with a nested list which is then converted to a list object
-                        SearchRecipesData RecipeResults = Utils.GetSingleApiData<SearchRecipesData>(url);
-                        if (RecipeResults.results.Count == 0)
+                        SearchRecipesData RecipeResults = Utils.GetSingleApiData<SearchRecipesData>(Url);
+                        if (RecipeResults.results.Count == 0 || RecipeResults.results == null)
                         {
-                            _pageService.DisplayAlert("Error", "No recipes found using your inputs, please try again.", "OK", "CANCEL");
+                            //// For some reason this was causing an unhandled expection
+                            //_pageService.DisplayAlert("Error", "No recipes found using your inputs, please try again.", "OK", "CANCEL");
                             return;
                         }
 
@@ -105,6 +108,7 @@ namespace G00348036
 
         // Removes recipe from list when swiped
         // It doesn't seem to always get the right object, as it could be due to the selected recipe passed in
+        // I have left this out as it didn't meet the required standards
         //public void RemoveFromList(RecipeResults s)
         //{
         //    Results.Remove(s);

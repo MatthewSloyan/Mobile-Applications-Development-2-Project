@@ -135,7 +135,7 @@
     <Content Include="ByRecipe.jpg" />
     <Content Include="Favourites.jpg" />
     <Content Include="Properties\Default.rd.xml" />
-    <EmbeddedResource Include="recipeIcon.png" />
+    <Content Include="recipeIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
