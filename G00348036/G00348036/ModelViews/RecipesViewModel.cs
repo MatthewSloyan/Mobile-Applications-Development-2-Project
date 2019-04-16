@@ -67,6 +67,7 @@ namespace G00348036
                         {
                             // If no results are returned display error
                             // For some reason this was causing an unhandled expection
+                            // Could be due to the fact it's being called inside a task factory task
                             //_pageService.DisplayAlert("Error", "No recipes found using your input ingredients, please try again.", "OK", "CANCEL");
                         }
                     }

@@ -23,7 +23,7 @@ namespace G00348036
         {
             InitializeComponent();
             // Only load Random recipes once on start up as it slows down the app too much if loading each time the page is loaded
-            //SetUpRandom();
+            SetUpRandom();
             OnAppearing();
         }
 
@@ -121,7 +121,7 @@ namespace G00348036
         // Create a default display if there's no favourites saved, for design purposes
         private void LoadSliderInitial()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 7; i++)
             {
                 var layout = new StackLayout
                 {
